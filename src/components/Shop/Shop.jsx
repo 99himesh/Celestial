@@ -91,7 +91,7 @@ const Shop = () => {
         </div>
         <div className="md:px-20 px-5 py-5">
           <ProductListing item={paginateData} />
-          {paginateData.length > 0 ? <div className="paginate flex justify-end py-10">
+          {paginateData?.length > 0 ? <div className="paginate flex justify-end py-10">
             <Pagination current={current} onChange={currentPageHandler} total={item?.length} />
           </div> : <h1 className="text-center text-xl">There is no data </h1>}
         </div>
