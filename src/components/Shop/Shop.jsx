@@ -46,17 +46,17 @@ const Shop = () => {
         const popularData = await getProductApiSort(popularity)
         setPaginateData(popularData);
         break;
-      case "high":
+      case "newest":
         const low = { _sort: "price", _order: "asc" }
         const lowData = await getProductApiSort(low)
         setPaginateData(lowData);
         break
-      case "newest":
+      case "low":
         const high = { _sort: "price", _order: "desc" }
         const highData = await getProductApiSort(high)
         setPaginateData(highData);
         break;
-      case "low":
+      case "high":
         const newest = { _sort: "date", _order: "asc" }
         const newestData = await getProductApiSort(newest)
         setPaginateData(newestData);
@@ -89,7 +89,7 @@ const Shop = () => {
             />
           </div>
         </div>
-        <div className="md:px-20 px-5 py-5">
+        <div className="md:px-20 px-5 py-10 bg-[#eee5db] ">
           <ProductListing item={paginateData} />
           {paginateData?.length > 0 ? <div className="paginate flex justify-end py-10">
             <Pagination current={current} onChange={currentPageHandler} total={item?.length} />
