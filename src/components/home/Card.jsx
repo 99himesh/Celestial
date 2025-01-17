@@ -36,7 +36,7 @@ const Card = ({item}) => {
  },[])
   return (  
     <>
-      <div onMouseEnter={()=>{setThumbnailButton(true)}} onMouseLeave={()=>{setThumbnailButton(false)}}  className="w-full max-w-sm bg-[214344] border border-gray-200 rounded-lg shadow dark:bg-gray-800 mx-4 dark:border-gray-700">
+      <div onMouseEnter={()=>{setThumbnailButton(true)}} onMouseLeave={()=>{setThumbnailButton(false)}}  className="w-[90%] bg-[214344] border border-gray-200 rounded-lg shadow dark:bg-gray-800 mx-4 dark:border-gray-700">
        <div className=" relative">
        <div className="absolute flex flex-col gap-2 right-5 top-5">
        <Tooltip placement="left" title={"Add to Wishlist"}>  <div className="bg-[#214344] rounded-full p-2 cursor-pointer">
