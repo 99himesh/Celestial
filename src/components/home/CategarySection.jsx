@@ -53,6 +53,7 @@ const CategarySection = () => {
           <div><Link className='text-[16px]  font-semibold  text-gray-600' to="/">View All</Link></div>
         </div>
         </div>
+        
        {categary==="men" ?<MensProduct /> : <WomenProducts />}
        <div className='py-20'>
        <Testimonial/>
