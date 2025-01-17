@@ -1,0 +1,8 @@
+{
+    "routes": [
+      {
+        "source": "https://dummy-21c5.onrender.com/:path",
+        "destination": "https://dummy-21c5.onrender.com/:path"
+      }
+    ]
+  }
