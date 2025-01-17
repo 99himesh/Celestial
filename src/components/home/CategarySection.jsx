@@ -8,6 +8,7 @@ import { addProducts } from '../../feature/product/productSlice';
 import SubCategary from './SubCategary';
 import { Link } from 'react-router';
 import Testimonial from './Testimonial';
+import Loading from '../loading/Loading';
 const CategarySection = () => {
   const [loading,setLoading]=useState(true)  
   const [categary,setCategary]=useState("men");
@@ -24,7 +25,7 @@ const CategarySection = () => {
   }, [])
   const buttonactive={background:"#214344",color:"#f0d5a0",padding:"13px 0",fontWeight:"450"}
   const buttonInActive={color:"#214344",border:"3px solid #214344",padding:"10px 0"}
-  if(loading) return <>jhghjgh</>
+  if(loading) return<Loading/>
   return (
     <>
       <div className="bg-[#efe6dc] px-5">

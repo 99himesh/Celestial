@@ -61,7 +61,7 @@ const MensProduct=()=>{
   }, [])
  
       return (
-        <div className="w-full md:px-20 pt-10 ">
+        <div className="w-full px-5 md:px-20 pt-10 ">
           <Slider {...settings}>
             {mensData.map((item) => (
               <div key={item.id} style={{  padding: "10px", textAlign: "center"}}>
