@@ -6,12 +6,14 @@ import { getProductApi, getProductApiPaginate, getProductApiSort } from "../../f
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addProducts } from "../../feature/product/productSlice";
+import Loading from "../loading/Loading";
 const Shop = () => {
+  const [loading,setLoading]=useState(true);
   const dispatch = useDispatch()
   const [current, setCurrent] = useState();
   const [paginateData, setPaginateData] = useState([])
   const [sort, setSort] = useState("popularity")
-  const item = useSelector(state => state.product.products)
+  const item = useSelector(state => state.product?.products)
 
   const currentPageHandler = async (page) => {
     const pagination = { _start: page * 10, _end: (page + 1) * 10, limit: 10, }
@@ -20,11 +22,13 @@ const Shop = () => {
   };
   const getAllProduct = async () => {
     const data = await getProductApi();
+    if(data) setLoading(false)
     dispatch(addProducts(data))
   }
   const getProducts = async () => {
     const pagination = { _start: 10, _end: 20, limit: 100, }
     const data = await getProductApiPaginate(pagination)
+    if(data) setLoading(false)
     setPaginateData(data)
   }
   useEffect(() => {
@@ -59,7 +63,7 @@ const Shop = () => {
         break;
     }
   }
-
+ if(loading) return <Loading/>
   return (
     <Row className="pt-[130px] bg-[]">
       <Col>
