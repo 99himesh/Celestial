@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addProducts } from "../../feature/product/productSlice";
 import Loading from "../loading/Loading";
+import CustomFilter from "./CustomFlter";
 const Shop = () => {
   const [loading,setLoading]=useState(true);
   const dispatch = useDispatch()
@@ -67,15 +68,9 @@ const Shop = () => {
   return (
     <Row className="pt-[130px] bg-[]">
       <Col>
-        <div className="flex flex-wrap gap-7 items-center py-3 md:px-20 px-5 border max-md:justify-between">
+        <div className="flex fixed w-full flex-wrap gap-7 bg-[#fff] z-10 justify-between items-center py-3 md:px-20 px-5 border max-md:justify-between">
           <Typography.Text className="text-md font-semibold " level={2}>Sort By</Typography.Text>
-          <div className="flex flex-wrap gap-7 max-md:hidden">
-            <Typography.Text onClick={() => { sortHandler("popularity") }} style={sort === "popularity" && { color: "#214344", borderBottom: "2px solid #214344" }} className="text-sm cursor-pointer pb-2">Popularity</Typography.Text>
-            <Typography.Text onClick={() => { sortHandler("low") }} style={sort === "low" && { color: "#214344", borderBottom: "2px solid #214344" }} className="text-sm cursor-pointer bb-2" >Price --Low to High</Typography.Text>
-            <Typography.Text onClick={() => { sortHandler("high") }} style={sort === "high" && { color: "#214344", borderBottom: "2px solid #214344" }} className="text-sm cursor-pointer pb-2" >Price --High to Low</Typography.Text>
-            <Typography.Text onClick={() => { sortHandler("newest") }} style={sort === "newest" && { color: "#214344", borderBottom: "2px solid #214344" }} className="text-sm cursor-pointer pb-2" >Newest First</Typography.Text>
-          </div>
-          <div className="md:hidden">
+          <div className="">
             <Select
               defaultValue="lucy"
               style={{ width: 120 }}
@@ -89,7 +84,11 @@ const Shop = () => {
             />
           </div>
         </div>
-        <div className="md:px-20 px-5 py-10 bg-[#eee5db] ">
+        <div className="md:px-20 px-5 pt-10 bg-[#eee5db] ">
+          <div className="py-10">
+            <CustomFilter/>
+
+          </div>
           <ProductListing item={paginateData} />
           {paginateData?.length > 0 ? <div className="paginate flex justify-end py-10">
             <Pagination current={current} onChange={currentPageHandler} total={item?.length} />

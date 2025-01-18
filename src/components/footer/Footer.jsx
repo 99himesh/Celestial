@@ -16,8 +16,8 @@ const Footer=()=>{
             <div className="">
                 <h6 className="text-[24px] font-bold text-[#F0D5A0]">Let Us Help You</h6>
                 <div className="flex flex-col gap-3 pt-10">
-                    <Link className="text-[#fff] hover:text-[#fff] text-[20px] font-semibold">Home</Link>
-                    <Link className="text-[#fff] hover:text-[#fff] text-[20px] font-semibold">Shop</Link>
+                    <Link to={"/"} className="text-[#fff] hover:text-[#fff] text-[20px] font-semibold">Home</Link>
+                    <Link to={"/shop"} className="text-[#fff] hover:text-[#fff] text-[20px] font-semibold">Shop</Link>
                     <Link className="text-[#fff] hover:text-[#fff] text-[20px] font-semibold">Cart</Link>
                     <Link className="text-[#fff] hover:text-[#fff] text-[20px] font-semibold">Orders</Link>
                     <Link className="text-[#fff] hover:text-[#fff] text-[20px] font-semibold">About Us</Link>
