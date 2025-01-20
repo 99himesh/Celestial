@@ -9,6 +9,7 @@ import CardModal from "./CardModal";
 import { addToCart } from "../../feature/product/productSlice";
 import { useDispatch, useSelector } from "react-redux";
 import image from "../../assets/girl.jpg"
+import ringimage from "../../assets/rings.jpg"
 import { WishListIcon } from "../../icons/icon";
 // This is my card .start here
 const Card = ({item}) => {
@@ -50,8 +51,9 @@ const Card = ({item}) => {
         </div>
 
     <Link to={`/product/${item?.id}`}>
-     <div className="hover:border-[7px] border-[#214344] hover:rounded-t-2xl">
-        <img className=" rounded-t-2xl w-full" src={image} alt="product image" />
+     <div className="hover:border-[7px] border-[#214344] hover:rounded-t-3xl h-[400px] ">
+       {!thumbnailButton && <img className=" rounded-t-2xl w-full object-fit transition duration-150 ease-in-out" src={image} alt="product image " />}
+       {thumbnailButton && <img className=" rounded-t-2xl w-full h-[400px] transition duration-150 ease-in-out" src={ringimage} alt="product image" />}
         </div>
         </Link>
         <div className="px-3 py-5 flex flex-col bg-[#214344]  rounded-b-3xl">
