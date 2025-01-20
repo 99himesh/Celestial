@@ -7,7 +7,7 @@ const ProductListing=({item})=>{
         {item?.map((item,idx)=>{
             return(
              <Col key={idx} xl={8} lg={8} md={12} sm={24} xs={24}>
-             <Card item={item}/>
+             <Card item={item} shop="shop"/>
              </Col>
             )
         })}

@@ -12,7 +12,7 @@ import image from "../../assets/girl.jpg"
 import ringimage from "../../assets/rings.jpg"
 import { WishListIcon } from "../../icons/icon";
 // This is my card .start here
-const Card = ({item}) => {
+const Card = ({item,shop}) => {
   const [thumbnailButton,setThumbnailButton]=useState(false)
   const dispatch=useDispatch();
   const [cardId,setCardId]=useState(null)
@@ -37,7 +37,7 @@ const Card = ({item}) => {
  },[])
   return (  
     <>
-      <div onMouseEnter={()=>{setThumbnailButton(true)}} onMouseLeave={()=>{setThumbnailButton(false)}}  className="w-[95%] mx-auto bg-[214344] border border-gray-200 rounded-lg shadow dark:bg-gray-800  dark:border-gray-700">
+      <div onMouseEnter={()=>{shop && setThumbnailButton(true)}} onMouseLeave={()=>{shop && setThumbnailButton(false)}}  className="w-[95%] mx-auto bg-[214344] border border-gray-200 rounded-lg shadow dark:bg-gray-800  dark:border-gray-700">
        <div className=" relative">
        <div className="absolute flex flex-col gap-2 right-5 top-5">
        <Tooltip placement="left" title={"Add to Wishlist"}>  <div className="bg-[#214344] rounded-full p-2 cursor-pointer">
@@ -53,7 +53,7 @@ const Card = ({item}) => {
     <Link to={`/product/${item?.id}`}>
      <div className="hover:border-[7px] border-[#214344] hover:rounded-t-3xl h-[400px] ">
        {!thumbnailButton && <img className=" rounded-t-2xl w-full object-fit transition duration-150 ease-in-out" src={image} alt="product image " />}
-       {thumbnailButton && <img className=" rounded-t-2xl w-full h-[400px] transition duration-150 ease-in-out" src={ringimage} alt="product image" />}
+       {thumbnailButton &&  <img className=" rounded-t-2xl w-full h-[400px] transition duration-150 ease-in-out" src={ringimage} alt="product image" />}
         </div>
         </Link>
         <div className="px-3 py-5 flex flex-col bg-[#214344]  rounded-b-3xl">
