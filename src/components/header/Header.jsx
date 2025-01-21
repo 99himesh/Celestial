@@ -4,12 +4,24 @@ import { useState } from "react";
 import EasyMenuHeader from "./EasyMenuHeader";
 import { useSelector } from "react-redux";
 import headerImage from "../../assets/header.webp"
+import CustomDrawer from "../CustomDrawer";
     // This is my main Header. start here
 const Header=()=>{
     const [open, setOpen] = useState(false);
+    const [cartOpen, setCartOpen] = useState(false);
     const cart=useSelector(state=>state.product.cart)
-    const showDrawer = () => {
+
+      const showDrawer = () => {
         setOpen(true);
+      };
+      const onClose = () => {
+        setOpen(false);
+      };
+      const cartShowDrawer = () => {
+        setCartOpen(true);
+      };
+      const cartOnClose = () => {
+        setCartOpen(false);
       };
     return(
         <>
@@ -17,7 +29,7 @@ const Header=()=>{
             <div className="flex justify-between px-8 lg:py-3 py-1  items-center">
                
                 <div>
-                <NavLink  className="text-[#fff]  relative"><ShoppingCartOutlined style={{fontSize:"30px",color:"#F0D5A0"}} />{cart.length >0 && <div className="flex justify-center text-[#214344] items-center absolute  text-[10px] text-center -top-1 -left-5 h-[20px] w-[20px] rounded-full bg-[#000]">{ cart?.length}</div>}</NavLink>
+                <NavLink onClick={cartShowDrawer}  className="text-[#fff]  relative"><ShoppingCartOutlined style={{fontSize:"30px",color:"#F0D5A0"}} />{cart.length >0 && <div className="flex justify-center text-[#214344] items-center absolute  text-[10px] text-center -top-1 -left-5 h-[20px] w-[20px] rounded-full bg-[#000]">{ cart?.length}</div>}</NavLink>
                 </div>
                 <div>
             <Link to={"/"}><img src={headerImage} className="lg:h-[110px] h-[70px]"/></Link>
@@ -28,6 +40,8 @@ const Header=()=>{
             </div>
         </div>
         <EasyMenuHeader open={open} setOpen={setOpen} />
+        <CustomDrawer open={cartOpen} setOpen={setOpen} onClose={cartOnClose}/>
+
         </>
     )
 }

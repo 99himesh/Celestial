@@ -11,8 +11,10 @@ import { useDispatch, useSelector } from "react-redux";
 import image from "../../assets/girl.jpg"
 import ringimage from "../../assets/rings.jpg"
 import { WishListIcon } from "../../icons/icon";
+import CustomDrawer from "../CustomDrawer";
 // This is my card .start here
 const Card = ({item,shop}) => {
+  const [open, setOpen] = useState(false);
   const [thumbnailButton,setThumbnailButton]=useState(false)
   const dispatch=useDispatch();
   const [cardId,setCardId]=useState(null)
@@ -21,11 +23,15 @@ const Card = ({item,shop}) => {
   // This function work as add to cart functionality
   const addCartHandler=(item)=>{
     dispatch(addToCart(item))
+    setOpen(true)
    }
   // This function work as to show modal
   const showModal = (idx) => {
     setCardId(idx)
     setIsModalOpen(true);
+  };
+  const onClose = () => {
+    setOpen(false);
   };
   // This function calculate percentage discount
  const percentageCalculate=()=>{
@@ -51,9 +57,9 @@ const Card = ({item,shop}) => {
         </div>
 
     <Link to={`/product/${item?.id}`}>
-     <div className="hover:border-[7px] border-[#214344] hover:rounded-t-3xl h-[400px] ">
-       {!thumbnailButton && <img className=" rounded-t-2xl w-full h-[400px] transition duration-150 ease-in-out" src={image} alt="product image " />}
-       {thumbnailButton  && <img className=" rounded-t-2xl w-full h-[400px] transition duration-150 ease-in-out" src={ringimage} alt="product image" />}
+     <div className="hover:border-[7px] border-[#214344] hover:rounded-t-3xl h-[350px] ">
+       {!thumbnailButton && <img className=" rounded-t-2xl w-full h-[350px] transition duration-150 ease-in-out" src={image} alt="product image " />}
+       {thumbnailButton  && <img className=" rounded-t-2xl w-full h-[350px] transition duration-150 ease-in-out" src={ringimage} alt="product image" />}
         </div>
         </Link>
         <div className="px-3 py-5 flex flex-col bg-[#214344]  rounded-b-3xl">
@@ -83,7 +89,7 @@ const Card = ({item,shop}) => {
         </div>
       </div>
       <CardModal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen}  id={cardId}/>
-
+      <CustomDrawer open={open} setOpen={setOpen} onClose={onClose}  />
     </>
 
   )

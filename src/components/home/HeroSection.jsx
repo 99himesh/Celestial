@@ -12,9 +12,9 @@ const HeroSection=()=>{
         <source  src={video} type="video/ogg"/>
       </video>
       </div>
-      <div className="absolute md:top-[318px] top-[240px]  left-0 right-0 mx-auto  w-[60%] text-center">
+      <div className="absolute md:top-[278px] top-[240px]  left-0 right-0 mx-auto  w-[60%] text-center">
           <h1  className="md:text-[70px] text-[24px] font-semibold text-[#fff] ">Signature Collection Coming Soon </h1>
-          <button className="px-7 bg-[transparent]    md:backdrop-blur-lg py-2 rounded-full md:text-[20px] text-[14px]   text-[#fff] mt-8">Know More <RightOutlined /></button> 
+          <button className="px-7 bg-[transparent]    md:backdrop-blur-lg py-1 rounded-full md:text-[20px] text-[14px]   text-[#fff] mt-8">Know More <RightOutlined /></button> 
   
       </div>
       
