@@ -20,7 +20,7 @@ const settings = {
             slidesToShow: 3,
             slidesToScroll: 2,
             infinite: true,
-            dots: true
+            dots: false
           }
         },
         {
@@ -28,14 +28,17 @@ const settings = {
           settings: {
             slidesToShow: 2,
             slidesToScroll: 1,
-            initialSlide: 1
+            initialSlide: 1,
+            dots: false
+
           }
         },
         {
           breakpoint: 480,
           settings: {
             slidesToShow: 1,
-            slidesToScroll: 1
+            slidesToScroll: 1,
+            dots: false
           }
         }
       ]
@@ -53,11 +56,11 @@ const SubCategary=()=>{
                 <div className={`cursor-pointer  border m-5 rounded-full ${(item==="Ring"|| item==="Necklaces") && "bg-[#fff]"} `} >
                 <div key={idx} >
                     <div   className="rounded-full  flex justify-center items-center ">
-                        <div className="flex items-center justify-center  h-[220px] w-[220px] ">
-                        <div className="w-[160px] py-5 rounded-md  border border-[#abb8c3] ">
+                        <div className="flex items-center justify-center h-[100px] w-[100px]  md:h-[220px] md:w-[220px] ">
+                        <div className="px-[50px] py-5 rounded-md  border border-[#abb8c3] ">
                             <div className="relative">
                                 <div className="flex justify-between items-center px-2 blur">
-                               <img className="h-[40px] w-full" src={ringImage}/>
+                               <img className=" h-[30px] md:h-[40px] w-full" src={ringImage}/>
                                 </div>
                              <h4 className="absolute top-0 left-0 right-0 mx-auto text-center text-[#214344] blur hover:blur-0  text-[24px] font-bold">{item}</h4>
                         </div>

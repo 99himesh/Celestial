@@ -2,9 +2,9 @@ import { Col, Row } from "antd";
 
 const Testimonial=()=>{
     return(
-        <div className="textimonial md:px-20">
-            <div className="md:w-[30%] w-full mx-auto">
-            <h1 className="md:text-[55px] text-[40px] text-center md:text-start  text-[#BFA785] font-[400]">Client Reviews & Testimonials</h1>
+        <div className="textimonial md:px-20  px-10">
+            <div className="md:w-[30%]   w-[70%] mx-auto">
+            <h1 className="md:text-[55px  text-[30px] text-center md:text-start  text-[#BFA785] font-[400]">Client Reviews & Testimonials</h1>
             </div>
     <Row className="py-10" gutter={[20,20]}>
         <Col xl={8} lg={8} sm={24} xs={24} >
