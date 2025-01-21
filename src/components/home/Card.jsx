@@ -37,7 +37,7 @@ const Card = ({item,shop}) => {
  },[])
   return (  
     <>
-      <div onMouseEnter={()=>{shop && setThumbnailButton(true)}} onMouseLeave={()=>{shop && setThumbnailButton(false)}}  className="w-[95%] mx-auto bg-[214344] border border-gray-200 rounded-lg shadow dark:bg-gray-800  dark:border-gray-700">
+      <div onMouseEnter={()=>{ setThumbnailButton(true)}} onMouseLeave={()=>{ setThumbnailButton(false)}}  className="w-[95%] mx-auto bg-[214344] border border-gray-200 rounded-lg shadow dark:bg-gray-800  dark:border-gray-700">
        <div className=" relative">
        <div className="absolute flex flex-col gap-2 right-5 top-5">
        <Tooltip placement="left" title={"Add to Wishlist"}>  <div className="bg-[#214344] rounded-full p-2 cursor-pointer">
@@ -52,8 +52,8 @@ const Card = ({item,shop}) => {
 
     <Link to={`/product/${item?.id}`}>
      <div className="hover:border-[7px] border-[#214344] hover:rounded-t-3xl h-[400px] ">
-       {!thumbnailButton && <img className=" rounded-t-2xl w-full object-fit transition duration-150 ease-in-out" src={image} alt="product image " />}
-       {thumbnailButton &&  <img className=" rounded-t-2xl w-full h-[400px] transition duration-150 ease-in-out" src={ringimage} alt="product image" />}
+       {!thumbnailButton && <img className=" rounded-t-2xl w-full h-[400px] transition duration-150 ease-in-out" src={image} alt="product image " />}
+       {thumbnailButton  && <img className=" rounded-t-2xl w-full h-[400px] transition duration-150 ease-in-out" src={ringimage} alt="product image" />}
         </div>
         </Link>
         <div className="px-3 py-5 flex flex-col bg-[#214344]  rounded-b-3xl">
