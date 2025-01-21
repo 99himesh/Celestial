@@ -1,4 +1,4 @@
-import { Col, Row, Typography } from "antd";
+import { Col, Drawer, Row, Typography } from "antd";
 import { Pagination } from 'antd';
 import ProductListing from "./ProductListing";
 import { Select } from 'antd';
@@ -8,19 +8,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { addProducts } from "../../feature/product/productSlice";
 import Loading from "../loading/Loading";
 import CustomFilter from "./CustomFlter";
+import Sorting from "./sorting";
 const Shop = () => {
+  const [isSticky, setIsSticky] = useState(false)
   const [loading,setLoading]=useState(true);
+  const [open, setOpen] = useState(false);
   const dispatch = useDispatch()
   const [current, setCurrent] = useState();
   const [paginateData, setPaginateData] = useState([])
-  const [sort, setSort] = useState("popularity")
   const item = useSelector(state => state.product?.products)
-
-  const currentPageHandler = async (page) => {
-    const pagination = { _start: page * 10, _end: (page + 1) * 10, limit: 10, }
-    const getData = await getProductApiPaginate(pagination)
-    setPaginateData(getData)
-  };
+ 
   const getAllProduct = async () => {
     const data = await getProductApi();
     if(data) setLoading(false)
@@ -32,70 +29,71 @@ const Shop = () => {
     if(data) setLoading(false)
     setPaginateData(data)
   }
+  console.log(paginateData);
+  const showDrawer = () => {
+    setOpen(true);
+  };
+  const onClose = () => {
+    setOpen(false);
+  };
+  useEffect(() => {
+    const handleScroll = () => {
+      const stickyElement = document.getElementById("stickyContainer");
+      const rect = stickyElement.getBoundingClientRect();
+      setIsSticky(rect.top <= 120); // Match the `top-[120px]` value
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
   useEffect(() => {
     getProducts();
     getAllProduct()
   }, [])
-  const selectHandle = (value) => {
-    sortHandler(value)
-  };
-  const sortHandler = async (id) => {
-    setSort(id)
-    switch (sort) {
-      case "popularity":
-        const popularity = { _sort: "rating", _order: "asc" }
-        const popularData = await getProductApiSort(popularity)
-        setPaginateData(popularData);
-        break;
-      case "newest":
-        const low = { _sort: "price", _order: "asc" }
-        const lowData = await getProductApiSort(low)
-        setPaginateData(lowData);
-        break
-      case "low":
-        const high = { _sort: "price", _order: "desc" }
-        const highData = await getProductApiSort(high)
-        setPaginateData(highData);
-        break;
-      case "high":
-        const newest = { _sort: "date", _order: "asc" }
-        const newestData = await getProductApiSort(newest)
-        setPaginateData(newestData);
-        break;
-    }
-  }
+  
  if(loading) return <Loading/>
   return (
+    <>
+    
     <Row className="pt-[130px] bg-[]">
       <Col>
-        <div className="flex fixed w-full flex-wrap gap-7 bg-[#fff] z-10 justify-between items-center py-3 md:px-20 px-5 border max-md:justify-between">
-          <Typography.Text className="text-md font-semibold " level={2}>Sort By</Typography.Text>
-          <div className="">
-            <Select
-              defaultValue="lucy"
-              style={{ width: 120 }}
-              onChange={(e) => { selectHandle(e) }}
-              options={[
-                { value: 'popularity', label: 'Popularity' },
-                { value: 'low', label: 'Low to High' },
-                { value: 'high', label: 'Hight to Low' },
-                { value: 'newest', label: 'Newest First' },
-              ]}
-            />
-          </div>
-        </div>
-        <div className="md:px-20 px-5 pt-10 bg-[#eee5db] ">
-          <div className="py-10">
-            <CustomFilter/>
+       
+        <div className="md:px-20 px-5 pt-10 bg-[#eee5db] cursor-pointer ">
+          <div className="pt-10 " onClick={(e)=>{showDrawer(e)}}>
+            <CustomFilter />
 
           </div>
+          </div>
+          <div     id="stickyContainer"
+      className={`sticky w-full top-[120px] z-10 transition-colors bg-[#eee5db]c px-5 pt-5 ${
+        isSticky ? "!bg-[#214344]" : "bg-[#eee5db]"
+      }`}>
+          
+            <Sorting setPaginateData={setPaginateData} item={item} paginateData={paginateData}/>
+          </div>
+          <div className="px-20 bg-[#eee5db]">
           <ProductListing item={paginateData} />
-          {paginateData?.length > 0 ? <div className="paginate flex justify-end py-10">
-            <Pagination current={current} onChange={currentPageHandler} total={item?.length} />
-          </div> : <h1 className="text-center text-xl">There is no data </h1>}
-        </div>
+          </div>
+         
       </Col>
     </Row>
+    <Drawer
+        title="Drawer with extra actions"
+        placement={"left"}
+        width={500}
+        onClose={onClose}
+        open={open}
+      
+      >
+        <p>Some contents...</p>
+        <p>Some contents...</p>
+        <p>Some contents...</p>
+      </Drawer>
+    </>
+  
+    
   )
 }
 

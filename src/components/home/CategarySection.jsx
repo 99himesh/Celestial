@@ -52,7 +52,7 @@ const CategarySection = () => {
             <h4 className='text-[24px] font-bold '>All Products</h4>
           <p className='text-[16px] font-semibold text-gray-500'>Dont miss out on this weeks deals</p>
           </div>
-          <div><Link className='text-[16px]  font-semibold  text-gray-600' to="/">View All</Link></div>
+          <div><Link  className='text-[16px]  font-semibold  text-gray-600' to="/shop">View All</Link></div>
         </div>
         </div>
         
