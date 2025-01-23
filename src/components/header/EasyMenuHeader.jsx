@@ -78,7 +78,7 @@ const EasyMenuHeader = ({ open, setOpen }) => {
             <NavLink className="text-[#214344] text-[16px] font-[600] hover:text-[#214344]">  wishlist</NavLink>
             <NavLink className="text-[#214344] text-[16px] font-[600] hover:text-[#214344]"> Cart</NavLink>
           </div>
-          <div>kknk</div>
+          {/* <div>kknk</div> */}
         </div>
       </div>
     </Drawer>
