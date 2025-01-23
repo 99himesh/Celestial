@@ -5,7 +5,7 @@ import { Flex, Progress } from 'antd';
 import { useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { getProductApi } from "../../feature/product/productApi";
-import { addProducts, addToCart } from "../../feature/product/productSlice";
+import { addProducts } from "../../feature/product/productSlice";
 import 'react-inner-image-zoom/lib/InnerImageZoom/styles.css'
 import girlImage from "../../assets/girl.jpg"
 // product details page start here
@@ -25,7 +25,7 @@ const ProductDetails = () => {
     setDiscountPercentage(percentage);
   }
   const addCartHandler = (item) => {
-    dispatch(addToCart(item))
+    // dispatch(addToCart(item))
   }
   useEffect(() => {
     percentageCalculate();
