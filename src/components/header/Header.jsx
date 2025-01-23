@@ -36,7 +36,7 @@ const Header=()=>{
                 <div  onClick={cartShowDrawer}>
           <WishListIcon   />
           </div>
-                <NavLink onClick={cartShowDrawer}  className="text-[#fff]  relative"><ShopingBag />{cart?.length >0 && <div className="flex justify-center  text-[#214344] items-center absolute  text-[10px] text-center top-1 -left-5 h-[20px] w-[20px] rounded-full bg-[#000]">{ cart?.length}</div>}</NavLink>
+                <NavLink onClick={cartShowDrawer}  className="text-[#fff]  relative"><ShopingBag />{cart?.length >0 && <div className="flex justify-center  text-[#214344] items-center absolute  text-[10px] text-center top-1 -left-5 h-[20px] w-[20px] rounded-full bg-[#F0D5A0]">{ cart?.length}</div>}</NavLink>
                 </div>
                 <div>
             <Link to={"/"}><img src={headerImage} className="lg:h-[110px] h-[70px]"/></Link>
