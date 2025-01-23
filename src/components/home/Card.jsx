@@ -6,12 +6,16 @@ import { EyeFilled, ReloadOutlined, ShoppingCartOutlined } from '@ant-design/ico
 import { Flex, Progress } from 'antd';
 import {Link} from "react-router-dom"
 import CardModal from "./CardModal";
-import { addToCart } from "../../feature/product/productSlice";
+// import { addToCart } from "../../feature/product/productSlice";
 import { useDispatch, useSelector } from "react-redux";
 import image from "../../assets/girl.jpg"
 import ringimage from "../../assets/rings.jpg"
 import { WishListIcon } from "../../icons/icon";
 import CustomDrawer from "../CustomDrawer";
+import { addToCartData } from "../../feature/categary/cartApi";
+import { addToCart } from "../../feature/categary/cartSlice";
+import Cart from "../cart/Cart";
+import { addToWishlistData } from "../../feature/wishlist/wishlistApi";
 // This is my card .start here
 const Card = ({item,shop}) => {
   const [open, setOpen] = useState(false);
@@ -21,8 +25,14 @@ const Card = ({item,shop}) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [discountPercentage,setDiscountPercentage]=useState();
   // This function work as add to cart functionality
-  const addCartHandler=(item)=>{
-    dispatch(addToCart(item))
+  const addCartHandler=async(item)=>{
+    try {
+      const res=await addToCartData(item)
+      
+    } catch (error) {
+      console.log(error);
+    }
+
     setOpen(true)
    }
   // This function work as to show modal
@@ -38,6 +48,20 @@ const Card = ({item,shop}) => {
   const percentage=Math.floor(((item?.discountPrice-item?.price)/item?.discountPrice)*100)
   setDiscountPercentage(percentage);
  }
+const addToWishlistHandler=async(item)=>{
+  try {
+    const res=await addToWishlistData(item)
+    console.log(res);
+    
+  } catch (error) {
+    console.log(error);
+    
+    
+  }
+  setOpen(true)
+}
+
+
  useEffect(()=>{
   percentageCalculate()
  },[])
@@ -45,14 +69,14 @@ const Card = ({item,shop}) => {
     <>
       <div onMouseEnter={()=>{ setThumbnailButton(true)}} onMouseLeave={()=>{ setThumbnailButton(false)}}  className="w-[95%] mx-auto bg-[214344] border border-gray-200 rounded-lg shadow dark:bg-gray-800  dark:border-gray-700">
        <div className=" relative">
-       <div className="absolute flex flex-col gap-2 right-5 top-5">
+       <div className="absolute flex flex-col gap-2 right-5 top-5" onClick={()=>{addToWishlistHandler(item)}}>
        <Tooltip placement="left" title={"Add to Wishlist"}>  <div className="bg-[#214344] rounded-full p-2 cursor-pointer">
           <WishListIcon />
           </div>
           </Tooltip>
-             {thumbnailButton && <Tooltip placement="left" title={"Compare"}> <button  className="text-[#fff] bg-[#214344] p-2 rounded-full text-sm"><ReloadOutlined  style={{fontSize:"20px" ,color:"#F0D5A0"}} /></button></Tooltip>}
+             {thumbnailButton &&<Tooltip placement="left" title={"Compare"}> <button  className="text-[#fff] bg-[#214344] p-2 rounded-full text-sm"><ReloadOutlined   style={{fontSize:"20px" ,color:"#F0D5A0"}} /></button></Tooltip>}
              {thumbnailButton &&<Tooltip placement="left" title={"Quick View"}> <button onClick={()=>{showModal(item?.id)}} className="text-[#fff] bg-[#214344] p-2 rounded-full text-sm"><EyeFilled  style={{fontSize:"20px" ,color:"#F0D5A0"}}/></button></Tooltip>}
-              {thumbnailButton && <Tooltip placement="left" title={"Cart"}> <button onClick={()=>{addCartHandler(item)}} className="text-white bg-[#214344] hover:bg-[#214344]  text-sm  p-2  rounded-full text-center"><ShoppingCartOutlined  style={{fontSize:"20px" ,color:"#F0D5A0"}} /></button></Tooltip>}
+              {thumbnailButton &&<Tooltip placement="left" title={"Cart"}> <button  onClick={()=>{addCartHandler(item)}} className="text-white bg-[#214344] hover:bg-[#214344]  text-sm  p-2  rounded-full text-center"><ShoppingCartOutlined  style={{fontSize:"20px" ,color:"#F0D5A0"}} /></button></Tooltip>}
         </div>
         </div>
 
@@ -77,11 +101,11 @@ const Card = ({item,shop}) => {
               <div className="flex justify-between">
                 <div className="flex gap-1">
               <Typography.Text className="font-semibold text-[14px] text-[#F0D5A0] ">Sold : </Typography.Text>
-              <Typography.Text className="font-bold text-[14px] text-[#fff] ">{item.bookedStock}</Typography.Text>
+              <Typography.Text className="font-bold text-[14px] text-[#fff] ">{item?.bookedStock}</Typography.Text>
               </div>
              <div className="flex gap-1">            
                 <Typography.Text className="font-semibold text-[#F0D5A0]">Available :</Typography.Text>
-              <Typography.Text className="font-bold text-[14px] text-[#fff] ">{item.availableStock}</Typography.Text>
+              <Typography.Text className="font-bold text-[14px] text-[#fff] ">{item?.availableStock}</Typography.Text>
               </div>
               </div>
             </Flex>
@@ -89,7 +113,7 @@ const Card = ({item,shop}) => {
         </div>
       </div>
       <CardModal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen}  id={cardId}/>
-      <CustomDrawer open={open} setOpen={setOpen} onClose={onClose}  />
+      <CustomDrawer component={<Cart/>} open={open} setOpen={setOpen} onClose={onClose}  />
     </>
 
   )

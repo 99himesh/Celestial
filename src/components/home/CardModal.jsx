@@ -4,7 +4,7 @@ import { ReloadOutlined, ShoppingCartOutlined } from '@ant-design/icons';
 import { Flex, Progress } from 'antd';
 import { Link } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
-import { addToCart } from '../../feature/product/productSlice';
+// import { addToCart } from '../../feature/product/productSlice';
 import image from "../../assets/girl.jpg"
 import { WishListIcon } from "../../icons/icon";
 // This is my cardModal start here
@@ -26,7 +26,7 @@ const CardModal = ({ isModalOpen, setIsModalOpen, id }) => {
     setIsModalOpen(false);
   };
   const addCartHandler = (item) => {
-    dispatch(addToCart(item))
+    // dispatch(addToCart(item))
   }
   useEffect(() => {
     percentageCalculate();
