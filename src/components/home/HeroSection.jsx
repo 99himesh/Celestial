@@ -5,7 +5,7 @@ import { RightOutlined } from "@ant-design/icons";
 const HeroSection=()=>{
   // const video="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4"
     return(
-      <div className="pt-[134px] relative bg-[#efe6dc]">
+      <div className="pt-[110 px] relative bg-[#efe6dc]">
         <div className="max-lg:invisible">
         <video  className="w-full h-[500px]  md:h-[700px] object-cover"  muted loop autoPlay>
         <source    src={video} type="video/mp4"/>

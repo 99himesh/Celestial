@@ -49,7 +49,7 @@ useEffect(()=>{
         <>
         <div className="header fixed w-full z-[999] bg-[#214344]">
           
-            <div className="flex justify-between px-8 lg:py-3 py-1  items-center">
+            <div className="flex justify-between px-8    items-center">
            
                 <div className="flex md:gap-10 gap-5 items-center cursor-pointer">
                 <div  onClick={cartShowDrawer}>

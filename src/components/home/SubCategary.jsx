@@ -53,15 +53,17 @@ const SubCategary=()=>{
     return (
         <div className="md:px-3 px-0  ">
 
-            <div  className="bg-[#214344] py-3 slider-container ">
+            <div  className="bg-[#efe6dc] py-3 slider-container ">
         <Slider {...settings} >
 
            {subCategaryData.map((item,idx)=>{
             return(
                 <div
-                className=" cursor-pointer "
+                className=" cursor-pointer  "
                 style={{
                   display: 'flex',
+                  margin:"0 auto",
+                  width:"100%",
                   justifyContent: 'center',
                   alignItems: 'center',
                   height: '100vh',
@@ -69,7 +71,7 @@ const SubCategary=()=>{
                 }}
               >
                 <Card
-                className={`2xl ${idx==3 || idx===5?"bg-[#fff]" :"bg-[#214344]"} `}
+                className={`2xl "bg-[#fff] "  `}
                   style={{
                     borderRadius: '50%',
                     border:"2px solid #747676",
@@ -92,7 +94,7 @@ const SubCategary=()=>{
                     style={{
                       width: 150,
                       height: 70,
-                      backgroundColor:(idx==3 || idx===5) ? '#fff':"#214344",
+                      backgroundColor: '#fff',
                       display: 'flex',
                       justifyContent: 'center',
                       alignItems: 'center',
@@ -102,8 +104,8 @@ const SubCategary=()=>{
                     }}
                   >
                    <div className="absolute flex items-center   ">
-                    <img className="h-[100px] w-[100px] blur-sm " src={"https://zoci.in/wp-content/uploads/2024/10/2.png"}/>
-                    <h4 className="absolute left-0 right-0 mx-auto text-[20px] text-[#214344] font-bold blur hover:blur-0   ">{item}</h4>
+                    <img className="h-[70px] w-[200px]  " src={ringImage}/>
+                    <h4 className="absolute left-0 right-0 mx-auto text-[20px] text-[#214344] font-bold hidden hover:blur-0   ">{item}</h4>
                    </div>
                   </div>
                 </Card>
