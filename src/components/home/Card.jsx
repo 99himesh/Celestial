@@ -16,6 +16,7 @@ import { addToCartData } from "../../feature/categary/cartApi";
 import { addToCart } from "../../feature/categary/cartSlice";
 import Cart from "../cart/Cart";
 import { addToWishlistData } from "../../feature/wishlist/wishlistApi";
+import video from "../../assets/video.mp4"
 // This is my card .start here
 const Card = ({item,shop}) => {
   const [open, setOpen] = useState(false);
@@ -81,12 +82,15 @@ const addToWishlistHandler=async(item)=>{
         </div>
 
     <Link to={`/product/${item?.id}`}>
-     <div className="hover:border-[7px] border-[#214344] hover:rounded-t-3xl h-[350px] ">
+     <div className=" border-[#214344] hover:rounded-t-3xl h-[350px] ">
        {!thumbnailButton && <img className=" rounded-t-2xl w-full h-[350px] transition duration-150 ease-in-out" src={image} alt="product image " />}
-       {thumbnailButton  && <img className=" rounded-t-2xl w-full h-[350px] transition duration-150 ease-in-out" src={ringimage} alt="product image" />}
+       {thumbnailButton  && <div className="w-full rounded"> <video  className="w-full h-[350px] object-cover"  muted loop autoPlay>
+               <source    src={video?? "...loading"} alt="...Loading" type="video/mp4"/>
+               <source  src={video} type="video/ogg"/>
+             </video></div>}
         </div>
         </Link>
-        <div className="px-3 py-5 flex flex-col bg-[#214344]  rounded-b-3xl">
+        <div className="px-3 py-5 flex flex-col bg-[#4e6362]  rounded-b-3xl">
           <div>
           <h5 className="text-[24px] font-semibold tracking-tight  text-white">{item?.title}</h5>
           </div>
