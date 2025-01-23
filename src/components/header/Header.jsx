@@ -1,18 +1,21 @@
 import { Link, NavLink } from "react-router"
 import {MenuOutlined,ShoppingCartOutlined  } from '@ant-design/icons';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import EasyMenuHeader from "./EasyMenuHeader";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import headerImage from "../../assets/header.webp"
 import CustomDrawer from "../CustomDrawer";
 import Cart from "../cart/Cart";
 import { ShopingBag, WishListIcon } from "../../icons/icon";
 import { CiSearch } from "react-icons/ci";
+import { getCartData } from "../../feature/categary/cartApi";
+import { addToCart } from "../../feature/categary/cartSlice";
     // This is my main Header. start here
 const Header=()=>{
     const [open, setOpen] = useState(false);
     const [cartOpen, setCartOpen] = useState(false);
-    const cart=useSelector(state=>state.cart.cart)
+    const dispatch=useDispatch();
+    const cart=useSelector(state=>state.cart?.cart)
 
       const showDrawer = () => {
         setOpen(true);
@@ -26,6 +29,22 @@ const Header=()=>{
       const cartOnClose = () => {
         setCartOpen(false);
       };
+const getDataCart=async()=>{
+  try {
+    const res=await getCartData();
+    console.log(res);
+    
+    dispatch(addToCart(res))
+    
+  } catch (error) {
+    
+  }
+}
+
+useEffect(()=>{
+  getDataCart()
+},[])
+
     return(
         <>
         <div className="header fixed w-full z-[999] bg-[#214344]">
