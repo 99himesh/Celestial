@@ -81,7 +81,7 @@ const addToWishlistHandler=async(item)=>{
         </div>
         </div>
 
-    <Link to={`/product/${item?.id}`}>
+  
      <div className=" border-[#214344] hover:rounded-t-3xl h-[350px] ">
        {!thumbnailButton && <img className=" rounded-t-2xl w-full h-[350px] transition duration-150 ease-in-out" src={image} alt="product image " />}
        {thumbnailButton  && <div className="w-full rounded"> <video  className="w-full h-[350px] object-cover"  muted loop autoPlay>
@@ -89,7 +89,7 @@ const addToWishlistHandler=async(item)=>{
                <source  src={video} type="video/ogg"/>
              </video></div>}
         </div>
-        </Link>
+        <Link to={`/product/${item?.id}`}>
         <div className="px-3 py-5 flex flex-col bg-[#4e6362]  rounded-b-3xl">
           <div>
           <h5 className="text-[24px] font-semibold tracking-tight  text-white">{item?.title}</h5>
@@ -115,6 +115,8 @@ const addToWishlistHandler=async(item)=>{
             </Flex>
           </div>
         </div>
+        </Link>
+
       </div>
       <CardModal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen}  id={cardId}/>
       <CustomDrawer component={<Cart/>} open={open} setOpen={setOpen} onClose={onClose}  />
