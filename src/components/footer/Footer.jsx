@@ -1,6 +1,6 @@
 import { Col, Row } from "antd";
 import { Link } from "react-router";
-import footerImage from "../../assets/header.webp"
+import footerImage from "../../assets/header.png"
 import { FacebookOutlined, InstagramOutlined, TwitterOutlined, WhatsAppOutlined } from "@ant-design/icons";
 const Footer=()=>{
     return(
@@ -9,7 +9,7 @@ const Footer=()=>{
         <Row >
             <Col xl={6} lg={6} md={8} sm={12} xs={24}>
             <div className="flex h-full justify-end  items-center px-10">
-            <img className="h-[130px]" src={footerImage}/>
+            <img className="" src={footerImage}/>
             </div>
             </Col>
             <Col xl={6} lg={6} md={8} sm={12} xs={24}>

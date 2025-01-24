@@ -37,8 +37,6 @@ const EasyMenuHeader = ({ open, setOpen }) => {
               </div>
             </div>
 
-
-
             <div className='flex-col flex  items-center  '>
               <Tooltip placement="left" title={"Cart"}> <button className={`text-white    text-sm  p-2  rounded-full text-center"`}><ShopingBag style={{ fontSize: "24px", color: "#F0D5A0" }} /></button></Tooltip>
               <Tooltip placement="left" title={"Add to Wishlist"}>  <div className="bg-[#214344] rounded-full p-2 cursor-pointer">
@@ -62,6 +60,7 @@ const EasyMenuHeader = ({ open, setOpen }) => {
 
             </div>
             <div className='pt-16 flex flex-col gap-3'>
+              
               <FaInstagram style={{ fontSize: "20px", color: "#F0D5A0" }} />
               <FaFacebook style={{ fontSize: "20px", color: "#F0D5A0" }} />
               <FaPinterestP style={{ fontSize: "20px", color: "#F0D5A0" }} />
@@ -72,7 +71,9 @@ const EasyMenuHeader = ({ open, setOpen }) => {
         </Sider>
         <div className='flex flex-col justify-between px-10 py-20 '>
           <div className="flex flex-col gap-2 ">
-            <input className=' bg-[#efe6dc]  border-none   focus:border-none active:border-none' />
+            <div className=''>
+            <input className=' bg-[#fff] rounded px-10 py-2 w-[300px]    ' />
+            </div>
             <NavLink className="text-[#214344] text-[16px] font-[600] hover:text-[#214344]" to={"/"} > Home</NavLink>
             <NavLink className="text-[#214344] text-[16px] font-[600] hover:text-[#214344]" to={"/shop"} >About</NavLink>
             <NavLink className="text-[#214344] text-[16px] font-[600] hover:text-[#214344]">  wishlist</NavLink>

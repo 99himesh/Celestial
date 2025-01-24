@@ -3,6 +3,8 @@
 import Slider from "react-slick";
 import ringImage from "../../assets/rings.jpg";
 import { Card } from "antd";
+import diamond from "../../assets/diamond.webp"
+import { useState } from "react";
 const subCategaryData=["Earing","Bracelets","Ring","Pendents","Necklaces","Band","Watch","Jackets"];
 const settings = {
     className:"center",
@@ -49,7 +51,11 @@ const settings = {
         }
       ]
   };
+
+
+  
 const SubCategary=()=>{
+  const [hoverSub,setHoverSub]=useState();
     return (
         <div className="md:px-3 px-0  ">
 
@@ -59,7 +65,9 @@ const SubCategary=()=>{
            {subCategaryData.map((item,idx)=>{
             return(
                 <div
-                className=" cursor-pointer  "
+                onMouseEnter={() => setHoverSub(true)}
+                onMouseLeave={() => setHoverSub(false)}
+                className="cursor-pointer"
                 style={{
                   display: 'flex',
                   margin:"0 auto",
@@ -91,9 +99,10 @@ const SubCategary=()=>{
                   }}
                 >
                   <div
+                  
                     style={{
-                      width: 150,
-                      height: 70,
+                      width: "150px",
+                      height: "70px",
                       backgroundColor: '#fff',
                       display: 'flex',
                       justifyContent: 'center',
@@ -103,9 +112,11 @@ const SubCategary=()=>{
                       position:"relative"
                     }}
                   >
-                   <div className="absolute flex items-center   ">
-                    <img className="h-[70px] w-[200px]  " src={ringImage}/>
-                    <h4 className="absolute left-0 right-0 mx-auto text-[20px] text-[#214344] font-bold hidden hover:blur-0   ">{item}</h4>
+                   <div className="absolute flex items-center  justify-center   ">
+                  {!hoverSub ?  <div className="w-[140px] h-[70px] flex items-center justify-center">
+                    <img className="w-full h-[66px] " src={diamond}/>
+                    </div>:
+                    <h4 className="absolute left-0 right-0 mx-auto flex justify-center text-[20px]   text-[#214344] font-bold    ">{item}</h4>}
                    </div>
                   </div>
                 </Card>

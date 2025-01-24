@@ -35,11 +35,11 @@ const CategarySection = () => {
         <h3 className=' text-[#214344] font-[500]  md:text-[20px] text-[12px] text-center'>Browse through your favorite categories. We’ve got them all!
         </h3>
         </div>
-        <div className='flex  max-md:gap-10 justify-around py-[68px]'>
+        <div className='flex  max-md:gap-10 justify-around py-[68px] px-2'>
         <div>
-          <button onClick={()=>{setCategary("men")}} style={categary=="men" ? buttonactive:buttonInActive} className='cursor-pointer text-center py-[5px] md:py-[15px]  text-[16px] md:text-[25px] px-[50px] md:px-[120px]  rounded-full'>Women's</button>
+          <button onClick={()=>{setCategary("men")}} style={categary=="men" ? buttonactive:buttonInActive} className='cursor-pointer text-center py-[5px] md:py-[10px]  text-[16px] md:text-[25px]  md:w-[320px] w-[150px]  rounded-full'>Women's</button>
           </div>
-          <button onClick={()=>{setCategary("women")}} style={categary=="women" ? buttonactive:buttonInActive} className='cursor-pointer text-center py-[3px] md:py-[13px] md:text-[25px] text-[16px] md:px-[120px] px-[60px] min-w-[150px]   rounded-full'>Men's</button>
+          <button onClick={()=>{setCategary("women")}} style={categary=="women" ? buttonactive:buttonInActive} className='cursor-pointer text-center py-[3px] md:py-[8px] md:text-[25px] text-[16px]  md:w-[320px] w-[150px] rounded-full'>Men's</button>
         </div>
         </div>
 

@@ -4,5 +4,17 @@
 
 
 
+
+
+
+@font-face {
+    font-family: 'WoodfordBournePRO';
+    src: url('../assets/fonts/WoodfordBournePRO-Regular.otf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
 .ant-pagination-item{background-color: red;}
 .ant-drawer-body{padding: 0!important;}
+body{
+    font-family: 'WoodfordBournePRO';
+}
