@@ -14,7 +14,7 @@ const settings = {
     speed: 200,
     focusOnSelect: true, 
     slidesToShow: 5,
-    slidesToScroll: 3, 
+    slidesToScroll: 1, 
     autoplay: true,
     autoplaySpeed: 2000,
     arrows: false,
@@ -67,8 +67,8 @@ const SubCategary=()=>{
   }
 
     return (
-        <div className="md:px-1 px-0  subcategary py-10">
-        <div  className="   w-[95%] mx-auto">
+        <div className="md:px-1 px-0  subcategary py-10 w-full">
+        <div  className="   w-[95%] mx-auto ">
             <Slider {...settings} >
            {subCategaryData.map((item,idx)=>{
             return(
