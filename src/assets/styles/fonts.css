@@ -1,0 +1,30 @@
+@font-face {
+  font-family: 'WoodfordBournePRO';
+  src: url('../assets/fonts/WoodfordBournePRO-Regular.otf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+  
+/* 
+
+/* Define the custom font */
+/* @font-face {
+  font-family: 'WoodfordBournePRO';
+  src: url('../fonts/WoodfordBournePRO-Regular.otf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'WoodfordBournePRO';
+  src: url('../fonts/WoodfordBournePRO-Bold.otf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'WoodfordBournePRO';
+  src: url('../fonts/WoodfordBournePRO-Italic.otf') format('truetype');
+  font-weight: normal;
+  font-style: italic;
+}  */

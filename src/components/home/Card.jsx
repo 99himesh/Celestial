@@ -99,7 +99,7 @@ const addToWishlistHandler=async(item)=>{
               <span className="text-[15px] font-semibold text-[#F0D5A0] ">Rs. {item?.price}</span>
             </div>
           </div>
-          <div className="progress">
+         { thumbnailButton && <div className="progress">
             <Flex vertical>
               <Progress   showInfo={false} trailColor="white" percent={null} status="active" />
               <div className="flex justify-between">
@@ -113,7 +113,7 @@ const addToWishlistHandler=async(item)=>{
               </div>
               </div>
             </Flex>
-          </div>
+          </div>}
         </div>
         </Link>
 

@@ -1,18 +1,36 @@
  export const WishListIcon=()=>{
    return(
     <>
-   <svg  fill="#F0D5A0" height="24px" width="24px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
-        viewBox="0 0 471.701 471.701" xml:space="preserve">
-   <g>
-       <path d="M433.601,67.001c-24.7-24.7-57.4-38.2-92.3-38.2s-67.7,13.6-92.4,38.3l-12.9,12.9l-13.1-13.1
-           c-24.7-24.7-57.6-38.4-92.5-38.4c-34.8,0-67.6,13.6-92.2,38.2c-24.7,24.7-38.3,57.5-38.2,92.4c0,34.9,13.7,67.6,38.4,92.3
-           l187.8,187.8c2.6,2.6,6.1,4,9.5,4c3.4,0,6.9-1.3,9.5-3.9l188.2-187.5c24.7-24.7,38.3-57.5,38.3-92.4
-           C471.801,124.501,458.301,91.701,433.601,67.001z M414.401,232.701l-178.7,178l-178.3-178.3c-19.6-19.6-30.4-45.6-30.4-73.3
-           s10.7-53.7,30.3-73.2c19.5-19.5,45.5-30.3,73.1-30.3c27.7,0,53.8,10.8,73.4,30.4l22.6,22.6c5.3,5.3,13.8,5.3,19.1,0l22.4-22.4
-           c19.6-19.6,45.7-30.4,73.3-30.4c27.6,0,53.6,10.8,73.2,30.3c19.6,19.6,30.3,45.6,30.3,73.3
-           C444.801,187.101,434.001,213.101,414.401,232.701z"/>
-   </g>
-   </svg>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      xmlSpace="preserve"
+      width="30px"
+      height="30px"
+      version="1.1"
+      style={{
+        shapeRendering: 'geometricPrecision',
+        textRendering: 'geometricPrecision',
+        imageRendering: 'optimizeQuality',
+        fillRule: 'evenodd',
+        clipRule: 'evenodd',
+      }}
+      viewBox="0 0 181.29 163.61"
+      xmlnsXlink="http://www.w3.org/1999/xlink"
+      xmlnsXodm="http://www.corel.com/coreldraw/odm/2003"
+    >
+      <defs>
+        <style type="text/css">
+          {`
+            .str0 {stroke:#F0D5A0;stroke-width:20;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:22.9256}
+            .fil0 {fill:none}
+          `}
+        </style>
+      </defs>
+      <g id="Layer_x0020_1">
+        <metadata id="CorelCorpID_0Corel-Layer" />
+        <path className="fil0 str0" d="M90.65 30.28c-22.57,-34.7 -71.82,-27.43 -81.36,4.47 -8.66,28.96 10.6,64.73 81.36,121.49 70.75,-56.76 90.01,-92.53 81.35,-121.49 -9.54,-31.9 -58.79,-39.17 -81.35,-4.47z" />
+      </g>
+    </svg>
    </>)
 }
 
@@ -37,16 +55,138 @@ export const ShopingBag=()=>{
   return (
     <>
   
-<svg style={{fontWeight:900}} fill="#F0D5A0"font--weight="bold" height="24px" width="24px" stroke-width="10"  version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
-	 viewBox="0 0 483.1 483.1" xml:space="preserve">
-<g>
-	<path d="M434.55,418.7l-27.8-313.3c-0.5-6.2-5.7-10.9-12-10.9h-58.6c-0.1-52.1-42.5-94.5-94.6-94.5s-94.5,42.4-94.6,94.5h-58.6
-		c-6.2,0-11.4,4.7-12,10.9l-27.8,313.3c0,0.4,0,0.7,0,1.1c0,34.9,32.1,63.3,71.5,63.3h243c39.4,0,71.5-28.4,71.5-63.3
-		C434.55,419.4,434.55,419.1,434.55,418.7z M241.55,24c38.9,0,70.5,31.6,70.6,70.5h-141.2C171.05,55.6,202.65,24,241.55,24z
-		 M363.05,459h-243c-26,0-47.2-17.3-47.5-38.8l26.8-301.7h47.6v42.1c0,6.6,5.4,12,12,12s12-5.4,12-12v-42.1h141.2v42.1
-		c0,6.6,5.4,12,12,12s12-5.4,12-12v-42.1h47.6l26.8,301.8C410.25,441.7,389.05,459,363.05,459z"/>
-</g>
-</svg>
+  <svg
+      xmlns="http://www.w3.org/2000/svg"
+      xmlSpace="preserve"
+      width="30px"
+      height="30px"
+      version="1.1"
+      style={{
+        shapeRendering: 'geometricPrecision',
+        textRendering: 'geometricPrecision',
+        imageRendering: 'optimizeQuality',
+        fillRule: 'evenodd',
+        clipRule: 'evenodd',
+      }}
+      viewBox="0 0 356.48 435.36"
+      xmlnsXlink="http://www.w3.org/1999/xlink"
+      xmlnsXodm="http://www.corel.com/coreldraw/odm/2003"
+    >
+      <defs>
+        <style type="text/css">
+          {`
+            .str0 {stroke:#F0D5A0;stroke-width:35.11;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:22.9256}
+            .fil0 {fill:none}
+          `}
+        </style>
+      </defs>
+      <g id="Layer_x0020_1">
+        <metadata id="CorelCorpID_0Corel-Layer" />
+        <g id="_2010213493264">
+          <path className="fil0 str0" d="M178.24 417.8l-116.49 0c-37.5,0 -53.48,-34.11 -38.78,-91.33l38.05 -186.52c4.43,-14.39 17.85,-24.87 33.71,-24.87l83.51 0 83.51 0c15.86,0 29.28,10.48 33.71,24.87l38.05 186.52c14.7,57.22 -1.28,91.33 -38.78,91.33l-116.49 0z" />
+          <path className="fil0 str0" d="M237.94 169.48l0 -92.23c0,-32.97 -26.73,-59.7 -59.7,-59.7 -32.97,0 -59.7,26.73 -59.7,59.7l0 92.23" />
+        </g>
+      </g>
+    </svg>
+    </>
+  )
+}
+
+export const MenuIcon=()=>{
+  return(
+    <>
+    
+    <svg
+            xmlns="http://www.w3.org/2000/svg"
+            xmlSpace="preserve"
+            width="35px"
+            height="14px"
+            version="1.1"
+            style={{
+                shapeRendering: 'geometricPrecision',
+                textRendering: 'geometricPrecision',
+                imageRendering: 'optimizeQuality',
+                fillRule: 'evenodd',
+                clipRule: 'evenodd'
+            }}
+            viewBox="0 0 163.66 93.79"
+            xmlnsXlink="http://www.w3.org/1999/xlink"
+            xmlnsXodm="http://www.corel.com/coreldraw/odm/2003"
+        >
+            <defs>
+                <style type="text/css">
+                    {`
+                        .str0 {
+                            stroke: #F0D5A0;
+                            stroke-width: 18.74;
+                            stroke-linecap: round;
+                            stroke-linejoin: round;
+                            stroke-miterlimit: 22.9256;
+                        }
+                        .fil0 {
+                            fill: none;
+                        }
+                    `}
+                </style>
+            </defs>
+            <g id="Layer_x0020_1">
+                <metadata id="CorelCorpID_0Corel-Layer" />
+                <g id="_2012059694864">
+                    <line className="fil0 str0" x1="9.91" y1="9.37" x2="154.29" y2="9.37" />
+                    <line className="fil0 str0" x1="9.37" y1="84.42" x2="153.76" y2="84.42" />
+                </g>
+            </g>
+        </svg>
+
+    </>
+  )
+}
+
+
+export const SerarchIcon=()=>{
+  return(
+    <>
+   <svg
+      xmlns="http://www.w3.org/2000/svg"
+      xmlSpace="preserve"
+      width="30px"
+      height="30px"
+      version="1.1"
+      style={{
+        shapeRendering: "geometricPrecision",
+        textRendering: "geometricPrecision",
+        imageRendering: "optimizeQuality",
+        fillRule: "evenodd",
+        clipRule: "evenodd",
+      }}
+      viewBox="0 0 859.94 859.93"
+    >
+      <defs>
+        <style>
+          {`
+            .str0 {stroke:#F0D5A0;stroke-width:74.45;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:22.9256}
+            .fil0 {fill:none}
+          `}
+        </style>
+      </defs>
+      <g id="Layer_1">
+        <g id="_2010215524656">
+          <circle
+            className="fil0 str0"
+            cx="349.09"
+            cy="349.09"
+            r="311.86"
+          />
+          <line
+            className="fil0 str0"
+            x1="569.61"
+            y1="569.6"
+            x2="822.71"
+            y2="822.7"
+          />
+        </g>
+      </g>
+    </svg>
     </>
   )
 }
