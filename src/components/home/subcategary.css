@@ -1,0 +1,8 @@
+.subcategary .slick-list {
+    overflow: visible !important;
+  }
+  
+  .subcategary .slick-track {
+    height: auto !important; 
+  }
+  
