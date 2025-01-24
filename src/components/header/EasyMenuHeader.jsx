@@ -7,6 +7,7 @@ import { FcLike } from 'react-icons/fc';
 import { IoMdGitCompare } from 'react-icons/io';
 import { ProfileIcon, ShopingBag, WishListIcon } from '../../icons/icon';
 import { FaFacebook, FaInstagram, FaPinterestP, FaYoutube } from "react-icons/fa";
+import closeIcon from "../../assets/closeicon.png"
 // this is my mobile nav. start here
 const siderStyle = {
   height: "full",
@@ -32,8 +33,8 @@ const EasyMenuHeader = ({ open, setOpen }) => {
         <Sider width="16%" style={siderStyle} className='h-[100vh]'>
           <div className='flex flex-col justify-between items-center gap-6 py-3'>
             <div className='flex justify-center items-center' onClick={onClose}  >
-              <div className='bg-[#F0D5A0] w-[40px] h-[40px] pt-0  rounded-full flex items-center justify-center  '>
-                <button className=' absolute top-2  text-[28px] text-[#214344]  '>x</button>
+              <div className=' w-[20px] h-[20px]  rounded-full flex items-center justify-center  '>
+                <img src={closeIcon}/>
               </div>
             </div>
 
@@ -72,7 +73,7 @@ const EasyMenuHeader = ({ open, setOpen }) => {
         <div className='flex flex-col justify-between px-10 py-20 '>
           <div className="flex flex-col gap-2 ">
             <div className=''>
-            <input className=' bg-[#fff] rounded px-10 py-2 w-[300px]    ' />
+            <input placeholder='Search your products' className=' bg-[#fff] rounded-full px-5 py-2 w-[300px]    ' />
             </div>
             <NavLink className="text-[#214344] text-[16px] font-[600] hover:text-[#214344]" to={"/"} > Home</NavLink>
             <NavLink className="text-[#214344] text-[16px] font-[600] hover:text-[#214344]" to={"/shop"} >About</NavLink>

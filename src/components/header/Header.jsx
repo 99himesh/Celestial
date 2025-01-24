@@ -13,6 +13,7 @@ import { addToCart } from "../../feature/categary/cartSlice";
 import serach from "../../assets/search.png"
 import bag from "../../assets/Bag.png"
 import wishlist from "../../assets/wishlist.png"
+import menuIcon from "../../assets/menuIcon.png"
     // This is my main Header. start here
 const Header=()=>{
     const [open, setOpen] = useState(false);
@@ -52,26 +53,26 @@ useEffect(()=>{
         <>
         <div className="header fixed w-full z-[999] bg-[#214344]">
           
-            <div className="flex justify-between md:px-[56px] px-5 py-5    items-center">
+            <div className="flex justify-between md:px-[56px] px-[30px] py-5    items-center">
            <div className="flex items-center">
                 <div className="flex md:gap-[56px]  gap-5 items-center cursor-pointer">
                 <div  onClick={cartShowDrawer} className="max-sm:hidden h-[32px] w-[31px] pt-[2px]">
           <img src={wishlist}/>
          
           </div>
-          <NavLink onClick={cartShowDrawer}  className="text-[#fff]   relative"><div className="h-[28px] w-[25px]"><img className="object-fit" src={bag}/></div>{cart?.length >0 && <div className="flex justify-center  text-[#214344] items-center absolute  text-[10px] text-center top-1 -left-5 h-[20px] w-[20px] rounded-full bg-[#F0D5A0]">{ cart?.length}</div>}</NavLink>
+          <NavLink onClick={cartShowDrawer}  className="text-[#fff]   relative"><div className="md:h-[28px] h-[20px] md:w-[25px] w-[16px]"><img className="object-fit" src={bag}/></div>{cart?.length >0 && <div className="flex justify-center  text-[#214344] items-center absolute  text-[10px] text-center top-1 -left-5 h-[20px] w-[20px] rounded-full bg-[#F0D5A0]">{ cart?.length}</div>}</NavLink>
 
                 </div>
                 </div>
                 <div>
-            <Link to={"/"}><img src={headerImage} className="lg:h-[70px] h-[70px]"/></Link>
+            <Link to={"/"}><img src={headerImage} className="lg:h-[70px] h-[35px]"/></Link>
             </div>
             <div className="flex items-center md:gap-[51px]  ">
               <div  className="max-sm:hidden h-[28px] w-[28px]">
           <img src={serach}  className="object-fit"/>
            </div>
-           <div>
-                <NavLink onClick={()=>{showDrawer()}} className="text-[#fff] ">{<MenuIcon   />}</NavLink>
+           <div className="">
+                <NavLink onClick={()=>{showDrawer()}} className="text-[#fff] ">{<div className="h-[8px] w-[18px]"><img className="object-fit" src={menuIcon}/></div>}</NavLink>
                 </div>
             </div>
             </div>

@@ -5,14 +5,16 @@ import ringImage from "../../assets/rings.jpg";
 import { Card } from "antd";
 import diamond from "../../assets/diamond.webp"
 import { useState } from "react";
+import "./subcategary.css"
 const subCategaryData=["Earing","Bracelets","Ring","Pendents","Necklaces","Band","Watch","Jackets"];
 const settings = {
     className:"center",
     dots: false,
     infinite: true,
     speed: 200,
+    focusOnSelect: true, 
     slidesToShow: 5,
-    slidesToScroll: 1, 
+    slidesToScroll: 3, 
     autoplay: true,
     autoplaySpeed: 2000,
     arrows: false,
@@ -56,16 +58,23 @@ const settings = {
   
 const SubCategary=()=>{
   const [hoverSub,setHoverSub]=useState();
+  const [hoverId,setHoverId]=useState(null)
+
+
+  const hoverSubHandler=(idx)=>{
+    setHoverSub(true)
+    setHoverId(idx)
+  }
+
     return (
-        <div className="md:px-3 px-0  ">
-
-            <div  className="bg-[#efe6dc] py-3 slider-container ">
-        <Slider {...settings} >
-
+        <div className="md:px-1 px-0  subcategary py-10">
+        <div  className="   w-[95%] mx-auto">
+            <Slider {...settings} >
            {subCategaryData.map((item,idx)=>{
             return(
-                <div
-                onMouseEnter={() => setHoverSub(true)}
+              <>
+              <div
+                onMouseEnter={() => hoverSubHandler(idx)}
                 onMouseLeave={() => setHoverSub(false)}
                 className="cursor-pointer"
                 style={{
@@ -74,17 +83,17 @@ const SubCategary=()=>{
                   width:"100%",
                   justifyContent: 'center',
                   alignItems: 'center',
-                  height: '100vh',
+                  // height: '100vh',
                   
                 }}
               >
                 <Card
-                className={`2xl "bg-[#fff] "  `}
+                className={`2xl "bg-[#fff] subCategary "  `}
                   style={{
                     borderRadius: '50%',
-                    border:"2px solid #747676",
-                    width: 200,
-                    height: 200,
+                    // border:"2px solid #747676",
+                    width: 240,
+                    height: 240,
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',
@@ -101,30 +110,30 @@ const SubCategary=()=>{
                   <div
                   
                     style={{
-                      width: "150px",
-                      height: "70px",
+                      width: 100,
+                      height: 50,
                       backgroundColor: '#fff',
                       display: 'flex',
                       justifyContent: 'center',
                       alignItems: 'center',
-                      border: '2px solid #747676',
+                      // border: '2px solid #747676',
                       borderRadius: 4,
                       position:"relative"
                     }}
                   >
                    <div className="absolute flex items-center  justify-center   ">
-                  {!hoverSub ?  <div className="w-[140px] h-[70px] flex items-center justify-center">
-                    <img className="w-full h-[66px] " src={diamond}/>
-                    </div>:
-                    <h4 className="absolute left-0 right-0 mx-auto flex justify-center text-[20px]   text-[#214344] font-bold    ">{item}</h4>}
+                   <div className="w-[90px] h-[60px] flex items-center justify-center">
+                    <img className="w-full h-[40px] " src={diamond}/>
+                    </div>
+                    {(hoverSub &&  hoverId===idx ) && <h4 className="absolute left-0 right-0 mx-auto flex justify-center text-[20px]   text-[#214344] font-bold    ">{item}</h4>}
                    </div>
                   </div>
                 </Card>
                 </div>
+                </>
             )
            })}
         </Slider>
-
         </div>
 
         </div>

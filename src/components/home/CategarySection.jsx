@@ -35,7 +35,7 @@ const CategarySection = () => {
         <h3 className=' text-[#214344] font-[500]  md:text-[20px] text-[12px] text-center'>Browse through your favorite categories. We’ve got them all!
         </h3>
         </div>
-        <div className='flex  max-md:gap-10 justify-around py-[68px] px-2'>
+        <div className='flex  max-md:gap-10 justify-around pt-[50px] px-2'>
         <div>
           <button onClick={()=>{setCategary("men")}} style={categary=="men" ? buttonactive:buttonInActive} className='cursor-pointer text-center py-[5px] md:py-[10px]  text-[16px] md:text-[25px]  md:w-[320px] w-[150px]  rounded-full'>Women's</button>
           </div>
@@ -45,7 +45,7 @@ const CategarySection = () => {
 
         <SubCategary/>
         <div>
-        <h3 className='pt-20 text-[#214344] md:font-[500] md:text-[65px] text-[20px] text-center'>Top Sellers</h3>
+        <h3 className=' text-[#214344] md:font-[500] md:text-[65px] text-[20px] text-center'>Top Sellers</h3>
         <h3 className=' text-[#214344] font-[500] text-[20px] text-center'>Our Most Loved Products</h3>
         <div className='md:flex  md:gap-5 justify-start md:justify-between md:px-20 px-5 items-center pt-5'>
           <div className='md:flex  md:gap-5 items-center md:justify-start '>
@@ -57,7 +57,7 @@ const CategarySection = () => {
         </div>
         
        {categary==="men" ?<MensProduct /> : <WomenProducts />}
-       <div className='py-20'>
+       <div className='py-5'>
        <Testimonial/>
        </div>
       </div>
