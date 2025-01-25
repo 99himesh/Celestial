@@ -1,8 +1,45 @@
+
+.subcategary .slick-track {
+  height: auto !important; 
+}
+
+
+.subcategary .slick-slider {
+  height: 300px;
+  display: flex; /* Optional: Ensures child items are aligned properly */
+}
+.subcategary .slick-slide {
+  margin: 0 10px; /* Add horizontal space between slides */
+}
+
+/* Target the inner list that contains the slides */
 .subcategary .slick-list {
-    /* overflow: visible !important; */
-  }
-  
-  .subcategary .slick-track {
-    height: auto !important; 
-  }
-  
+  height: 100%; /* Let it inherit the height of the parent */
+  overflow: hidden; 
+}
+
+/* Target the track (slides container) */
+.subcategary .slick-track {
+  padding-top: 20px;
+  height: 100%; /* Adjust based on the parent height */
+  display: flex; /* Ensures slides are aligned horizontally */
+  align-items: center; /* Center the content vertically */
+}
+
+
+
+
+.subcategary .slick-slide {
+margin: 0 10px; /* Add horizontal space between slides */
+}
+
+.subcategary .slick-list {
+height: 100%; 
+}
+
+.subcategary .slick-track {
+padding-top: 20px;
+height: 100%; 
+display: flex;
+align-items: center;
+}
