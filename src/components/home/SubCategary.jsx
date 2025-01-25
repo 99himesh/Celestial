@@ -18,12 +18,12 @@ const settings = {
     autoplay: true,
     autoplaySpeed: 2000,
     arrows: false,
-   
+    centerMode:true,
     responsive: [
         {
           breakpoint: 1024,
           settings: {
-            slidesToShow: 3,
+            slidesToShow: 2,
             slidesToScroll: 2,
             infinite: true,
             dots: false
@@ -67,8 +67,8 @@ const SubCategary=()=>{
   }
 
     return (
-        <div className="md:px-1 px-0  subcategary py-10 w-full">
-        <div  className="   w-[95%] mx-auto ">
+        <div className="md:px-1 h-[400px] px-0  subcategary my-10 w-full">
+        <div  className="   w-[100%] mx-auto " >
             <Slider {...settings} >
            {subCategaryData.map((item,idx)=>{
             return(

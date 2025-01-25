@@ -29,7 +29,7 @@ const CategarySection = () => {
   return (
     <>
       <div className="bg-[#efe6dc]">
-        <div >
+        <div > 
           <div className='px-10'>
         <h3 className='pt-9 text-[#214344] font-[450] md:text-[65px] text-[24px] text-center'>Shop By Category</h3>
         <h3 className=' text-[#214344] font-[500]  md:text-[20px] text-[12px] text-center'>Browse through your favorite categories. We’ve got them all!
