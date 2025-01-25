@@ -13,7 +13,7 @@ import { addToCart } from "../../feature/categary/cartSlice";
 import serach from "../../assets/search.png"
 import bag from "../../assets/Bag.png"
 import wishlist from "../../assets/wishlist.png"
-import menuIcon from "../../assets/menuIcon.png"
+import menuIcon from "../../assets/Menuicon.png"
     // This is my main Header. start here
 const Header=()=>{
     const [open, setOpen] = useState(false);
