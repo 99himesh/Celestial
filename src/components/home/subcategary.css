@@ -1,8 +1,26 @@
 .subcategary .slick-list {
-    overflow: visible !important;
   }
   
   .subcategary .slick-track {
     height: auto !important; 
   }
   
+
+  .subcategary .slick-slider {
+    height: 300px; /* Set your desired height */
+    display: flex; /* Optional: Ensures child items are aligned properly */
+  }
+  
+  /* Target the inner list that contains the slides */
+  .subcategary .slick-list {
+    height: 100%; /* Let it inherit the height of the parent */
+    overflow: hidden; /* Prevent overflow issues */
+  }
+  
+  /* Target the track (slides container) */
+  .subcategary .slick-track {
+    padding-top: 20px;
+    height: 100%; /* Adjust based on the parent height */
+    display: flex; /* Ensures slides are aligned horizontally */
+    align-items: center; /* Center the content vertically */
+  }
