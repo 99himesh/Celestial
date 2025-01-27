@@ -11,7 +11,7 @@ import closeIcon from "../../assets/closeicon.png"
 import shopingCart from "../../assets/Bag.png"
 import wishList from "../../assets/wishlist.png"
 import profile from "../../assets/Profile.png"
-import similar from "../../assets/similar.png"
+import similar from "../../assets/Similar.png"
 import catalogue from "../../assets/catalogue.png"
 import api from '../../axios/axios';
 import { getProductSearch } from '../../feature/product/productApi';
