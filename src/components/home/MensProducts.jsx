@@ -21,6 +21,8 @@ const settings = {
           slidesToShow: 2,
           slidesToScroll: 2,
           infinite: true,
+         centerPadding: "60px",
+
           dots: true
         }
       },
@@ -29,14 +31,18 @@ const settings = {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          initialSlide: 1
+          initialSlide: 1,
+        centerPadding: "40px",
+
         }
       },
       {
         breakpoint: 480,
         settings: {
           slidesToShow: 1,
-          slidesToScroll: 1
+          slidesToScroll: 1,
+        centerPadding: "40px",
+
         }
       }
     ]

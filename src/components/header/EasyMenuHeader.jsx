@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { Button, Drawer, Radio, Space, Tooltip } from 'antd';
+import React, { useEffect, useState } from 'react';
+import { Button, Collapse, Drawer, Radio, Space, Tooltip } from 'antd';
 import { NavLink } from 'react-router';
-import { FileSearchOutlined, SearchOutlined, ShoppingCartOutlined } from '@ant-design/icons';
+import { FileSearchOutlined, HomeOutlined, SearchOutlined, ShoppingCartOutlined } from '@ant-design/icons';
 import Sider from 'antd/es/layout/Sider';
 import { FcLike } from 'react-icons/fc';
 import { IoMdGitCompare } from 'react-icons/io';
@@ -13,6 +13,15 @@ import wishList from "../../assets/wishlist.png"
 import profile from "../../assets/profile.png"
 import similar from "../../assets/similar.png"
 import catalogue from "../../assets/catalogue.png"
+import api from '../../axios/axios';
+import { getProductSearch } from '../../feature/product/productApi';
+import image from "../../assets/girl.jpg"
+import Catalogue from '../catalogue/Catalogue';
+import wishlist from "../../assets/wishlist.png";
+import cart from "../../assets/Bag.png"
+import Cart from '../cart/Cart';
+import WishList from '../wishlist/WishList';
+import SignIn from '../auth/SignIn';
 // this is my mobile nav. start here
 const siderStyle = {
   height: "full",
@@ -21,18 +30,23 @@ const siderStyle = {
   backgroundColor: '#214344',
 };
 const EasyMenuHeader = ({ open, setOpen }) => {
-  const [activeTab, setActiveTab] = useState("cart")
+  // const [searchInput,setSearchInput]=useState("")
+  // const [searchData,setSearchData]=useState([]);
+  const [activeTab, setActiveTab] = useState("")
   const onClose = () => {
     setOpen(false);
   };
 
 
-  const searchHandler=(e)=>{
-       
-
-  }
-
-
+  // const searchHandler=async(e)=>{
+  //   // if(e.target.value==="") setSearchData([])
+  //   setSearchInput(e?.target?.value)
+  //   const res=await getProductSearch(searchInput)
+  //      setSearchData(res)
+  // }
+// useEffect(()=>{
+//   searchHandler()
+// },[searchInput])
 
 
   return (
@@ -46,7 +60,7 @@ const EasyMenuHeader = ({ open, setOpen }) => {
       style={{ background: "#efe6dc" }}
     >
       <div className='flex'>
-        <Sider width="16%" style={siderStyle} className='h-[100vh]'>
+        <Sider width="16%" style={siderStyle} className='h-[100vh]  '>
           <div className='flex flex-col justify-between items-center gap-6 py-5 cursor-pointer' >
             <div className='flex justify-center items-center' onClick={onClose}  >
               <div className=' w-[20px] h-[20px]  rounded-full flex items-center justify-center  '>
@@ -98,25 +112,66 @@ const EasyMenuHeader = ({ open, setOpen }) => {
             </div>
           </div>
         </Sider>
-        <div className='flex flex-col justify-between px-10 py-20 '>
-          <div className="flex flex-col gap-2 ">
-            <div className=''>
-              <div className='relative'>
+        {activeTab=="catalogue" && <Catalogue/>}
+        {activeTab=="cart" && <Cart/>}
+        {activeTab=="wishlist" && <WishList/>}
+        {activeTab=="profile" && <SignIn/>}
+     
+      
+
+        <div className=' pt-10'>
+        
+           
+             {activeTab==="" && <div className='px-10 '><div className='relative '>
               <input placeholder='Search your products'  onChange={(e)=>{searchHandler(e)}} className=' bg-[#fff] rounded-full px-5 py-2 md:w-[300px]    ' />
+
               <div className='absolute top-2 right-2'><SearchOutlined style={{fontSize:"20px"}} /></div>
-              </div>
-            </div>
-            <NavLink className="text-[#214344] text-[16px] font-[600] hover:text-[#214344]" to={"/"} > Home</NavLink>
-            <NavLink className="text-[#214344] text-[16px] font-[600] hover:text-[#214344]" to={"/shop"} >Shop</NavLink>
-            <NavLink className="text-[#214344] text-[16px] font-[600] hover:text-[#214344]">  wishlist</NavLink>
+              </div></div>}
+           
+          {/* {searchData.length!=0 && activeTab=="" &&  <div className='h-[300px] w-[200px]  overflow-auto'>
+              {searchData.map((item,idx)=>{
+                return(
+                  <div key={idx} className='flex gap-5'>
+                       <div className='h-[200px] w-[200px] rounded'>
+                        <img src={image}/>
+                       </div>
+                       <div>
+                        <h6>{item.title}</h6>
+                       </div>
+
+                  </div>
+                )
+              })}
+              </div>} */} 
+              { activeTab=="" &&  <div className='flex flex-col px-10 pt-5 gap-2'>
+            <NavLink className="text-[#214344] text-[16px] font-[600] hover:text-[#214344]" to={"/"} ><HomeOutlined /> Home</NavLink>
+            <NavLink className="text-[#214344] text-[16px] font-[600] hover:text-[#214344]"  >
+            
+            <Collapse
+            size="small"
+            showArrow={false}
+            expandIconPosition={"end"}
+            bordered={false}
+            collapsible={"disable"}
+      items={[{ key: '1', label: 'Shop', children:<div className='flex flex-col gap-2'>
+        <p>Pendents</p>
+        <p>Rings</p>
+        <p>Bracelets</p>
+        <p>Earings</p>
+        <p>Necklaces</p>
+
+
+      </div> }]}
+    />
+            </NavLink>
+            <NavLink className="text-[#214344] text-[16px] font-[600] hover:text-[#214344]"> Wishlist</NavLink>
             <NavLink className="text-[#214344] text-[16px] font-[600] hover:text-[#214344]"> Cart</NavLink>
             <NavLink className="text-[#214344] text-[16px] font-[600] hover:text-[#214344]"> About us</NavLink>
+            </div>}
+         
           </div>
-          <div>
-            
-          </div>
+         
         </div>
-      </div>
     </Drawer>
   )
 }

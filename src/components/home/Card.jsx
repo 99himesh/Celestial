@@ -104,7 +104,7 @@ const addToWishlistHandler=async(item)=>{
               <span className="text-[15px] font-semibold text-[#F0D5A0] ">Rs. {item?.price}</span>
             </div>
           </div>
-         { thumbnailButton && <div className="absolute w-[90%] bottom-2">
+         { <div className="absolute w-[90%] bottom-2">
             <Flex vertical>
               <Progress   showInfo={false} trailColor="white" percent={null} status="active" />
               <div className="flex justify-between">
