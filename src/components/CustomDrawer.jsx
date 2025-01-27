@@ -32,8 +32,10 @@ const CustomDrawer=({component,open,onClose,title,placement,width})=>{
         width={width ?? 500}
         onClose={onClose}
         open={open}
-        headerStyle={{background:"#214344"}}
-        bodyStyle={{background:"#fff"}}
+        styles={{
+          body:{background:"#fff"},
+          header:{background:"#214344"}
+        }}
         
       >
     {activeDrawer=="cart" ? <Cart/> :

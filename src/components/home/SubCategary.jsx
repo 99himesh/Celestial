@@ -77,6 +77,7 @@ const SubCategary=()=>{
             return(
               <>
               <div
+              key={item}
                 onMouseEnter={() => hoverSubHandler(idx)}
                 onMouseLeave={() => setHoverSub(false)}
                 className="cursor-pointer"
@@ -102,12 +103,14 @@ const SubCategary=()=>{
                     alignItems: 'center',
                     textAlign: 'center',
                   }}
-                  bodyStyle={{
+                  styles={{
+                    body:{
                     padding: 0,
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',
                     height: '100%',
+                    }
                   }}
                 >
                   <div
