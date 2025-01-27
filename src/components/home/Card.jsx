@@ -17,6 +17,7 @@ import { addToCart } from "../../feature/categary/cartSlice";
 import Cart from "../cart/Cart";
 import { addToWishlistData } from "../../feature/wishlist/wishlistApi";
 import video from "../../assets/video.mp4"
+import wishlist from "../../assets/wishlist.png"
 // This is my card .start here
 const Card = ({item,shop}) => {
   const [open, setOpen] = useState(false);
@@ -50,6 +51,8 @@ const Card = ({item,shop}) => {
   setDiscountPercentage(percentage);
  }
 const addToWishlistHandler=async(item)=>{
+  console.log(item,"jhh");
+  
   try {
     const res=await addToWishlistData(item)
     console.log(res);
@@ -68,38 +71,40 @@ const addToWishlistHandler=async(item)=>{
  },[])
   return (  
     <>
-      <div onMouseEnter={()=>{ setThumbnailButton(true)}} onMouseLeave={()=>{ setThumbnailButton(false)}}  className="w-[95%] mx-auto bg-[214344] border border-gray-200 rounded-lg shadow dark:bg-gray-800  dark:border-gray-700">
+      <div onMouseEnter={()=>{ setThumbnailButton(true)}} onMouseLeave={()=>{ setThumbnailButton(false)}}  className="w-[80%] mx-auto  bg-[214344] border border-gray-200 rounded-lg shadow dark:bg-gray-800  dark:border-gray-700">
        <div className=" relative">
-       <div className="absolute flex flex-col gap-2 right-5 top-5" onClick={()=>{addToWishlistHandler(item)}}>
+       <div className=" border-[#214344] hover:rounded-t-xl h-[330px]  ">
+       {!thumbnailButton && <img className=" rounded-t-2xl w-full  h-full object-cover transition duration-150 ease-in-out" src={image} alt="product image " />}
+       {thumbnailButton  && <div className="w-full   border-[3px] border-[#214344] rounded-t-[18px]"> <video  className="w-full h-[360px] rounded-t-2xl object-cover"  muted loop autoPlay>
+               <source    src={video?? "...loading"} alt="...Loading" type="video/mp4"/>
+               <source  src={video} type="video/ogg"/>
+             </video></div>}
+        </div>
+       <div className="absolute flex flex-col gap-2 right-5 top-5 h-[35px] w-[35px] cursor-pointer" onClick={()=>{addToWishlistHandler(item)}}>
        <Tooltip placement="left" title={"Add to Wishlist"}>  <div className="bg-[#214344] rounded-full p-2 cursor-pointer">
-          <WishListIcon />
+          {/* <WishListIcon /> */}<img src={wishlist}/>
           </div>
           </Tooltip>
-             {thumbnailButton &&<Tooltip placement="left" title={"Compare"}> <button  className="text-[#fff] bg-[#214344] p-2 rounded-full text-sm"><ReloadOutlined   style={{fontSize:"20px" ,color:"#F0D5A0"}} /></button></Tooltip>}
+             {/* {thumbnailButton &&<Tooltip placement="left" title={"Compare"}> <button  className="text-[#fff] bg-[#214344] p-2 rounded-full text-sm"><ReloadOutlined   style={{fontSize:"20px" ,color:"#F0D5A0"}} /></button></Tooltip>} */}
              {thumbnailButton &&<Tooltip placement="left" title={"Quick View"}> <button onClick={()=>{showModal(item?.id)}} className="text-[#fff] bg-[#214344] p-2 rounded-full text-sm"><EyeFilled  style={{fontSize:"20px" ,color:"#F0D5A0"}}/></button></Tooltip>}
               {thumbnailButton &&<Tooltip placement="left" title={"Cart"}> <button  onClick={()=>{addCartHandler(item)}} className="text-white bg-[#214344] hover:bg-[#214344]  text-sm  p-2  rounded-full text-center"><ShoppingCartOutlined  style={{fontSize:"20px" ,color:"#F0D5A0"}} /></button></Tooltip>}
         </div>
         </div>
 
   
-     <div className=" border-[#214344] hover:rounded-t-3xl h-[350px] ">
-       {!thumbnailButton && <img className=" rounded-t-2xl w-full h-[350px] transition duration-150 ease-in-out" src={image} alt="product image " />}
-       {thumbnailButton  && <div className="w-full rounded"> <video  className="w-full h-[350px] object-cover"  muted loop autoPlay>
-               <source    src={video?? "...loading"} alt="...Loading" type="video/mp4"/>
-               <source  src={video} type="video/ogg"/>
-             </video></div>}
-        </div>
+    
+        <div className="relative ">
         <Link to={`/product/${item?.id}`}>
-        <div className="px-3 py-5 flex flex-col bg-[#4e6362]  rounded-b-3xl">
+        <div className={`px-3 pt-1 pb-12 flex flex-col bg-[#214344]  rounded-b-3xl`}>
           <div>
-          <h5 className="text-[24px] font-semibold tracking-tight  text-white">{item?.title}</h5>
+          <h5 className="md:text-[24px] text-[20px] font-semibold tracking-tight  text-white">{item?.title}</h5>
           </div>
           <div className="flex items-center justify-between py-2 ">
             <div className="flex gap-2 items-center ">
               <span className="text-[15px] font-semibold text-[#F0D5A0] ">Rs. {item?.price}</span>
             </div>
           </div>
-         { thumbnailButton && <div className="progress">
+         { thumbnailButton && <div className="absolute w-[90%] bottom-2">
             <Flex vertical>
               <Progress   showInfo={false} trailColor="white" percent={null} status="active" />
               <div className="flex justify-between">
@@ -116,8 +121,9 @@ const addToWishlistHandler=async(item)=>{
           </div>}
         </div>
         </Link>
-
-      </div>
+        </div>
+        </div>
+    
       <CardModal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen}  id={cardId}/>
       <CustomDrawer component={<Cart/>} open={open} setOpen={setOpen} onClose={onClose}  />
     </>

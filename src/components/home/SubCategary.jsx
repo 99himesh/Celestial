@@ -36,6 +36,8 @@ const settings = {
             slidesToScroll: 1,
             initialSlide: 1,
             dots: false,
+        autoplaySpeed: 2000,
+
             display:"flex",
 
           }
@@ -46,6 +48,7 @@ const settings = {
           settings: {
             slidesToShow: 1,
             slidesToScroll: 1,
+            autoplaySpeed: 2000,
             dots: false,
             centerMode: true,
 

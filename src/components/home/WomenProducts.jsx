@@ -11,6 +11,8 @@ const settings = {
   infinite: true,
   speed: 200,
   slidesToShow: 3,
+  centerMode: true,
+  centerPadding: "80px",
   slidesToScroll: 1, 
   autoplay: true,
   autoplaySpeed: 2000,
@@ -22,7 +24,7 @@ const settings = {
           slidesToShow: 2,
           slidesToScroll: 2,
           infinite: true,
-          dots: true
+          dots: false
         }
       },
       {
@@ -30,14 +32,20 @@ const settings = {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          initialSlide: 1
+          initialSlide: 1,
+  centerPadding: "30px",
+          dots:false
         }
       },
       {
         breakpoint: 480,
         settings: {
           slidesToShow: 1,
-          slidesToScroll: 1
+          slidesToScroll: 1,
+          dots:false,
+  centerPadding: "40px",
+
+
         }
       }
     ]
@@ -57,7 +65,7 @@ const WomenProducts=()=>{
       getProduct();
     }, [])
       return (
-        <div className="w-full md:px-20 py-10 ">
+        <div className="w-full py-10 ">
           <Slider {...settings}>
             {womensData.map((item) => (
               <div key={item.id} style={{  padding: "10px", textAlign: "center"}}>
