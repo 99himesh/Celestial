@@ -57,22 +57,18 @@ const Shop = () => {
   return (
     <>
     
-    <Row className="pt-[130px] bg-[]">
+    <Row className="pt-[110px] bg-[]">
       <Col>
        
         <div className="md:px-20 px-5 pt-10 bg-[#eee5db] cursor-pointer ">
           <div className="pt-10 " onClick={(e)=>{showDrawer(e)}}>
-            <CustomFilter />
+            {/* <CustomFilter /> */}
 
           </div>
           </div>
-          <div     id="stickyContainer"
-      className={`sticky w-full top-[120px] z-10 transition-colors bg-[#eee5db]c px-5 pt-5 ${
-        isSticky ? "!bg-[#214344]" : "bg-[#eee5db]"
-      }`}>
+         
           
-            <Sorting setPaginateData={setPaginateData} item={item} paginateData={paginateData}/>
-          </div>
+            {/* <Sorting setPaginateData={setPaginateData} item={item} paginateData={paginateData}/> */}
           <div className="px-20 bg-[#eee5db]">
           <ProductListing item={paginateData} />
           </div>

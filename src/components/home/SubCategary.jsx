@@ -36,6 +36,8 @@ const settings = {
             slidesToScroll: 1,
             initialSlide: 1,
             dots: false,
+        autoplaySpeed: 2000,
+
             display:"flex",
 
           }
@@ -46,6 +48,7 @@ const settings = {
           settings: {
             slidesToShow: 1,
             slidesToScroll: 1,
+            autoplaySpeed: 2000,
             dots: false,
             centerMode: true,
 
@@ -74,6 +77,7 @@ const SubCategary=()=>{
             return(
               <>
               <div
+              key={item}
                 onMouseEnter={() => hoverSubHandler(idx)}
                 onMouseLeave={() => setHoverSub(false)}
                 className="cursor-pointer"
@@ -99,12 +103,14 @@ const SubCategary=()=>{
                     alignItems: 'center',
                     textAlign: 'center',
                   }}
-                  bodyStyle={{
+                  styles={{
+                    body:{
                     padding: 0,
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',
                     height: '100%',
+                    }
                   }}
                 >
                   <div

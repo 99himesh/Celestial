@@ -13,6 +13,7 @@ const CustomDrawer=({component,open,onClose,title,placement,width})=>{
     return(
         <>
          <Drawer
+        //  autoFocus={true}
         title={<div className="flex justify-between">
           <div onClick={onClose}><CloseCircleOutlined style={{background:"#fff" ,fontSize:"40px",borderRadius:"50%"}}/></div>
           <div className="flex items-center gap-3">
@@ -31,7 +32,10 @@ const CustomDrawer=({component,open,onClose,title,placement,width})=>{
         width={width ?? 500}
         onClose={onClose}
         open={open}
-        headerStyle={{background:"#214344"}}
+        styles={{
+          body:{background:"#fff"},
+          header:{background:"#214344"}
+        }}
         
       >
     {activeDrawer=="cart" ? <Cart/> :

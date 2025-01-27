@@ -28,3 +28,12 @@ export const getProductApiSort=async(apiend)=>{
     }
 
 }
+export const getProductSearch=async(apiend)=>{        
+    try {
+        const res=await api.get(`/products?_limit=10&${apiend}`);
+        return await res.data;   
+    } catch (error) {    
+        throw error;
+    }
+
+}

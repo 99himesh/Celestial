@@ -74,7 +74,7 @@ const Footer=()=>{
                 <InstagramOutlined style={{fontSize:"24px",color:"#F0D5A0"}} />
                 <WhatsAppOutlined style={{fontSize:"24px",color:"#F0D5A0"}} />
                 <TwitterOutlined style={{fontSize:"24px",color:"#F0D5A0"}} />
-                <InstagramOutlined style={{fontSize:"24px",color:"#F0D5A0"}} />
+                {/* <InstagramOutlined style={{fontSize:"24px",color:"#F0D5A0"}} /> */}
              </div>
              <div className="flex flex-wrap md:justify-between justify-center max-md:gap-5 md:px-20 px-5  w-full py-7"  style={{fontFamily:"WoodfordBournePRO"}}>
                 <div>
