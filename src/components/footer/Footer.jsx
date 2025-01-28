@@ -3,6 +3,7 @@ import { Link } from "react-router";
 import footerImage from "../../assets/header.png"
 import { FacebookOutlined, InstagramOutlined, TwitterOutlined, WhatsAppOutlined } from "@ant-design/icons";
 const Footer=()=>{
+    const year=new Date().getFullYear()
     return(
       <div className="footer bg-[#214344]  pt-20 ">
         <div className="md:px-20 px-5 " >
@@ -78,7 +79,7 @@ const Footer=()=>{
              </div>
              <div className="flex flex-wrap md:justify-between justify-center max-md:gap-5 md:px-20 px-5  w-full py-7"  style={{fontFamily:"WoodfordBournePRO"}}>
                 <div>
-                <h6 className="text-[#fff] text-[14px] font-semibold">COPYRIGHT © 2024 ZOCI ALL RIGHTS RESERVED</h6>
+                <h6 className="text-[#fff] text-[14px] font-semibold">COPYRIGHT © {year} ZOCI ALL RIGHTS RESERVED</h6>
                 </div>
                 <div>
                 <h6 className="text-[#fff] text-[14px] font-semibold">DESIGN & DEVELOPED BY TAP FOR TECH</h6>
