@@ -18,7 +18,6 @@
     "json-server": "^1.0.0-beta.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-fullscreen-image": "^0.0.3",
     "react-icons": "^5.4.0",
     "react-inner-image-zoom": "^3.0.2",
     "react-loader-spinner": "^6.1.6",
