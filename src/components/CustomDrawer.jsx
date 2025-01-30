@@ -8,7 +8,7 @@ import { useState } from "react";
 import wishList from "../assets/wishlist.png"
 import  similer from "../assets/Similar.png"
 import WishList from "./wishlist/WishList";
-import closeIcon from "../assets/closeIcon.png"
+import closeIcon from "../assets/closeicon.png"
 
 const CustomDrawer=({component,open,onClose,title,placement,width})=>{
   const [activeDrawer,setActiveDrawer]=useState("cart")
