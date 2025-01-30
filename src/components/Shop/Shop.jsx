@@ -9,6 +9,7 @@ import { addProducts } from "../../feature/product/productSlice";
 import Loading from "../loading/Loading";
 import CustomFilter from "./CustomFlter";
 import Sorting from "./sorting";
+import { TbPointFilled } from "react-icons/tb";
 const Shop = () => {
   const [isSticky, setIsSticky] = useState(false)
   const [loading,setLoading]=useState(true);
@@ -16,8 +17,7 @@ const Shop = () => {
   const dispatch = useDispatch()
   const [current, setCurrent] = useState();
   const [paginateData, setPaginateData] = useState([])
-  const item = useSelector(state => state.product?.products)
- 
+  const item = useSelector(state => state.product?.products)  
   const getAllProduct = async () => {
     const data = await getProductApi();
     if(data) setLoading(false)
@@ -29,7 +29,6 @@ const Shop = () => {
     if(data) setLoading(false)
     setPaginateData(data)
   }
-  console.log(paginateData);
   const showDrawer = () => {
     setOpen(true);
   };
@@ -57,36 +56,38 @@ const Shop = () => {
   return (
     <>
     
-    <Row className="pt-[110px] bg-[]">
-      <Col>
-       
-        <div className="md:px-20 px-5 pt-10 bg-[#eee5db] cursor-pointer ">
-          <div className="pt-10 " onClick={(e)=>{showDrawer(e)}}>
-            {/* <CustomFilter /> */}
+    <Row className="md:pt-[110px] pt-[70px] ">
+      <div className="flex flex-wrap justify-between items-center w-[100%]   md:px-10 px-5  py-2 fixed z-10 bg-[#fff]">
+        <div>
+      <div className="flex flex-wrap gap-1 items-center ">      
+            <h3 className="text-[#214344] text-[14px]">Home </h3>
+            <TbPointFilled />
+            <p className="text-[#214344] text-[16px] font-[400]">Pendents</p>
 
+        </div>
+        {/* <h2 className="text-[#214344] text-[26px] font-semibold">Pendents</h2> */}
+        </div>
+        <div>
+      <Sorting setPaginateData={setPaginateData} item={item} paginateData={paginateData}/>
+
+        </div>
+
+      </div>
+
+      <Col span={24}>
+       
+        <div className="md:px-20 px-5 pt-20 bg-[#eee5db] cursor-pointer ">
+          <div className="py-5 cursor-pointer" >
+            <CustomFilter />
           </div>
-          </div>
-         
-          
-            {/* <Sorting setPaginateData={setPaginateData} item={item} paginateData={paginateData}/> */}
-          <div className="px-20 bg-[#eee5db]">
+          </div> 
+          <div className="px-10 bg-[#eee5db]  py-20">
           <ProductListing item={paginateData} />
           </div>
          
       </Col>
     </Row>
-    <Drawer
-        title="Drawer with extra actions"
-        placement={"left"}
-        width={500}
-        onClose={onClose}
-        open={open}
-      
-      >
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-      </Drawer>
+   
     </>
   
     

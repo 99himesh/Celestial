@@ -33,10 +33,8 @@ const Header=()=>{
       };
 const getDataCart=async()=>{
   try {
-    const res=await getCartData();
-    console.log(res);
-    
-    dispatch(addToCart(res))
+    const res=await getCartData();    
+    dispatch(addToCart(res?.data?.cartItems))
     
   } catch (error) {
     

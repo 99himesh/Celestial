@@ -1,4 +1,4 @@
-import { Progress, Typography } from "antd";
+import { Button, Progress, Typography } from "antd";
 import { DeleteOutlined } from "@ant-design/icons";
 import image from "../../assets/women.jpg"
 import { addToCartData, deleteCartData, getCartData } from "../../feature/categary/cartApi";
@@ -7,24 +7,31 @@ import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../feature/categary/cartSlice";
 import { addToWishList } from "../../feature/wishlist/wishlistSlice";
 import { deleteWishlistData, getWishlistData } from "../../feature/wishlist/wishlistApi";
+import { useNavigate } from "react-router";
 const WishList=()=>{
     const dispatch=useDispatch();
     const [deleteUpdate,setDeleteUpdate]=useState(false)
     const wishlistData=useSelector(state=>state?.wish.wishlist)
-    console.log(wishlistData);
+    const navigate=useNavigate();
+    const user=localStorage.getItem("userId")
    
     const getwishlistDataHandler=async()=>{
         try {
-            const data=await getWishlistData()
-            dispatch(addToWishList(data))
+            const data=await getWishlistData(user)
+            console.log(data.wishlist   );
+            
+            dispatch(addToWishList(data.wishlist))
         } catch (error) {   
         }
     }
    
-    const deleteWishlistHandler=async(id)=>{
-        debugger
+    const deleteWishlistHandler=async(item)=>{
+        console.log(item);
+        
+      const items={userId:user,prodId: item.prodId }
+        
         try {
-        const data=await deleteWishlistData(id)  
+        const data=await deleteWishlistData(items)  
         setDeleteUpdate(true)   
         } catch (error) {
             throw error;
@@ -33,10 +40,11 @@ const WishList=()=>{
     }
     useEffect(()=>{
         getwishlistDataHandler();
-    },[deleteUpdate])
+    },[deleteUpdate,dispatch])
     return(
         <>
-          <div className="cart bg-[#efe6dc]   px-5  py-10">
+          <div className="cart    px-5  py-10 bg-[#efe6dc] h-[100%]">
+            <div className="overflow-y-auto ">
             <h4 className="text-start font-[400] text-[16px]">Congrats! You are eligible for more to enjoy FREE Shipping</h4>
             <Progress   />
         { wishlistData?.map((item,idx)=>{
@@ -54,13 +62,20 @@ const WishList=()=>{
         </div>
         </div>
         
-        <div className="pt-2 cursor-pointer" onClick={()=>{deleteWishlistHandler(item?.id)}}>
+        <div className="pt-2 cursor-pointer" onClick={()=>{deleteWishlistHandler(item)}}>
         <DeleteOutlined  style={{fontSize:"30px"}}/>
         </div>
+      
        </div>
         )
             
         })}
+              <div className="pt-5">
+
+<Button className="w-full rounded-full bg-[#214344] font-semibold text-[#fff] hover:!text-[#214344] hover:!border-[#214344]" onClick={()=>{navigate("/wishlist")}}>Open WishList Page</Button>
+</div>
+</div>
+    
          </div>
         </>
     )

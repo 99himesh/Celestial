@@ -3,10 +3,8 @@ import React from 'react';
 import { Button, Checkbox, Form, Input } from 'antd';
 const  SignIn=()=>{
     const onFinish = (values) => {
-        console.log('Success:', values);
       };
       const onFinishFailed = (errorInfo) => {
-        console.log('Failed:', errorInfo);
       };
     return(
         <div className='px-5  w-[100%] flex flex-col  items-center justify-start pt-10'>

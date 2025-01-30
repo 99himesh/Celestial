@@ -52,8 +52,6 @@ const settings = {
 };
 
 const WomenProducts=()=>{
-  console.log("WoMens product");
-
   const dispatch=useDispatch();
   const data=useSelector(state=>state.product.products)
   const womensData=data.filter((item,id)=>item.category==="Women"); 
