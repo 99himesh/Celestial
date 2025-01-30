@@ -1,6 +1,7 @@
 import {  Col, Row } from "antd"
 import Card from "../home/Card";
-import ShopCard from "./shopCard";
+import ShopCard from "./ShopCard";
+// import ShopCard from "./shopCard";
 const ProductListing=({item})=>{
     return(
         <>
