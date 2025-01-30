@@ -18,7 +18,7 @@ import profileGreen from "../../assets/icons/GreenProfile.png"
 
 
 import shopingCartYellow from "../../assets/icons/shopGreen.png"
-import wishListYellow from "../../assets/icons/wishlistYellow.png"
+import wishListYellow from "../../assets/icons/wishlistyellow.png"
 import similarGreen from "../../assets/icons/similarGreen.png"
 import catalogueGreen from "../../assets/icons/catalogueGreen.png"
 import homeYellow from "../../assets/icons/homeYellow.png"
