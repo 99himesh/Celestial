@@ -13,7 +13,7 @@ const settings = {
   infinite: true,
   centerPadding: "80px",
   slidesToShow: 3,
-  speed: 500,
+  speed: 1000,
   responsive: [
       {
         breakpoint: 1024,
@@ -49,26 +49,23 @@ const settings = {
 };
 
 const MensProduct=()=>{  
-  console.log("Mens product");
   
   const dispatch=useDispatch();
-  const data=useSelector(state=>state.product.products)
-  const mensData=data.filter((item,id)=>item.category==="Men");
+  const data=useSelector(state=>state?.product?.products)
+  const mensData=data?.filter((item,id)=>item?.madefor==="Women");
   const getProduct = async () => {
     const data = await getProductApi();
     dispatch(addProducts(data))
   }
   useEffect(() => {
-    console.log("mens api");
-    
     getProduct();
   }, [])
  
       return (
         <div className=" w-[100%] pt-10 overflow-hidden">
           <Slider {...settings}>
-            {mensData.map((item) => (
-              <div key={item.id} style={{  padding: "10px", textAlign: "center"}}>
+            {mensData?.map((item,idx) => (
+              <div key={idx} style={{  padding: "10px", textAlign: "center"}}>
                 <Card item={item}/>
               </div>
             ))}

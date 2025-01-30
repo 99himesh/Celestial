@@ -73,11 +73,11 @@ const SubCategary=()=>{
         <div className="md:px-1 px-0  subcategary my-10 w-full">
         <div  className="   w-[100%] mx-auto  " >
             <Slider {...settings} >
-           {subCategaryData.map((item,idx)=>{
+           {subCategaryData?.map((item,idx)=>{
             return(
               <>
               <div
-              key={item}
+              key={idx}
                 onMouseEnter={() => hoverSubHandler(idx)}
                 onMouseLeave={() => setHoverSub(false)}
                 className="cursor-pointer"

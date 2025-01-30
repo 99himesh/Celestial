@@ -1,5 +1,5 @@
 import { Circles, Grid, Hourglass } from 'react-loader-spinner'
-
+import loader from "../../assets/loader.mp4"
 const Loading = () => {
     const loadingStyle = {
         display: 'flex',
@@ -7,15 +7,16 @@ const Loading = () => {
         justifyContent: 'center',
         alignItems: 'center',
         height: '100vh',
-        backgroundColor: '#f9f9f9',
+        backgroundColor: '#red',
         fontSize: '18px',
         color: '#555',
+        
     };
 
 
     return (
         <div style={loadingStyle}>
-            <Hourglass
+            {/* <Hourglass
                 visible={true}
                 height="80"
                 width="80"
@@ -23,7 +24,11 @@ const Loading = () => {
                 wrapperStyle={{}}
                 wrapperClass=""
                 colors={['#214344', '#F0D5A0']}
-            />
+            /> */}
+            <video width="100px" height="100px" muted loop autoPlay>
+  <source src={loader} type="video/mp4"/>
+  <source src={loader} type="video/ogg"/>
+</video>
         </div>
     )
 };
