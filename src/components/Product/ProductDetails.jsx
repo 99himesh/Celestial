@@ -11,7 +11,7 @@ import girlImage from "../../assets/girl.jpg"
 import Slider from "react-slick";
 import CustomDrawer from "../CustomDrawer";
 import startWhite from "../../assets/StarWhite.png";
-import starYellow from "../../assets/starYellow.png"
+// import starYellow from "../../assets/starYellow.png"
 import starOrange from "../../assets/starOrange.png"
 import manya from "../../assets/Manya.png";
 import "./productDetails.css"
