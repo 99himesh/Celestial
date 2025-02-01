@@ -47,15 +47,17 @@ export const getCartData=async()=>{
     }
 
 }
-export const deleteCartData=async(data)=>{  
-    debugger 
+export const deleteCartData=async(id)=>{  
+    debugger
+     const userId=localStorage.getItem("userId")
     const token=localStorage.getItem("token")
      
     try {
-        const res=await api.delete(`https://zoci-backend.onrender.com/api/user/cart/removeitem`,data,{
+        const res=await api.delete(`https://zoci-backend.onrender.com/api/user/cart/removeitem/${userId}/${id}`,{
             headers: {
+                'Authorization': `${token}` ,
                 'Content-Type': 'application/json',
-                'Authorization': `${token}` // Sending token in the header
+
             }
 
         });

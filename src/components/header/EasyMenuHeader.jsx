@@ -22,14 +22,14 @@ import wishListYellow from "../../assets/icons/wishlistyellow.png"
 import similarGreen from "../../assets/icons/similarGreen.png"
 import catalogueGreen from "../../assets/icons/catalogueGreen.png"
 import homeYellow from "../../assets/icons/homeYellow.png"
-
+import greenBag from "../../assets/icons/greenBag.png"
 import profileYellow from "../../assets/icons/profileYellow.png"
 
 
 
 
 import api from '../../axios/axios';
-import { getProductSearch } from '../../feature/product/productApi';
+import { getProductFilterApi, getProductSearch } from '../../feature/product/productApi';
 import image from "../../assets/girl.jpg"
 import Catalogue from '../catalogue/Catalogue';
 import wishlist from "../../assets/wishlist.png";
@@ -39,6 +39,9 @@ import WishList from '../wishlist/WishList';
 import SignIn from '../auth/SignIn';
 import "./header.css"
 import SignUp from '../auth/SignUp';
+import { useDispatch } from 'react-redux';
+import { addCategary, addproductToshop } from '../../feature/shop/shopSlice';
+import { TbPointFilled } from 'react-icons/tb';
 // this is my mobile nav. start here
 const siderStyle = {
   height: "full",
@@ -47,6 +50,7 @@ const siderStyle = {
   backgroundColor: '#214344',
 };
 const EasyMenuHeader = ({ open, setOpen }) => {
+  const dispatch=useDispatch();
   // const [searchInput,setSearchInput]=useState("")
   // const [searchData,setSearchData]=useState([]);
   const [activeTab, setActiveTab] = useState("home")
@@ -55,16 +59,24 @@ const EasyMenuHeader = ({ open, setOpen }) => {
   };
 
 
-  // const searchHandler=async(e)=>{
-  //   // if(e.target.value==="") setSearchData([])
-  //   setSearchInput(e?.target?.value)
-  //   const res=await getProductSearch(searchInput)
-  //      setSearchData(res)
-  // }
-// useEffect(()=>{
-//   searchHandler()
-// },[searchInput])
-
+  const filterSubcategary=async(data)=>{
+      
+    try {
+      const filters={category:data}
+      const res=await getProductFilterApi({filters});
+      console.log(res);
+      
+      dispatch(addproductToshop(res?.products)) 
+      dispatch(addCategary(data))   
+    } catch (error) {
+      console.log(error);
+      
+    }
+  
+  
+    
+     
+}
 
   return (
     <Drawer
@@ -144,7 +156,7 @@ const EasyMenuHeader = ({ open, setOpen }) => {
               <div className='absolute top-2 right-2'><SearchOutlined style={{fontSize:"20px"}} /></div>
               </div></div>} 
               { activeTab=="home" &&  <div className='flex flex-col px-10 pt-5 gap-2'>
-            <NavLink className="text-[#214344] text-[16px] font-[600] hover:text-[#214344]" to={"/"} ><HomeOutlined /> Home</NavLink>
+            <NavLink onClick={()=>{setOpen(false)}} className="text-[#214344] text-[16px] font-[600] hover:text-[#214344]" to={"/"} > <div className='flex gap-2 items-center h-[20px] w-[20px]'><img src={homeGreen}/><h6> Home</h6></div></NavLink>
             <NavLink className="text-[#214344] text-[16px] font-[600] hover:text-[#214344]"  >
             
             <Collapse
@@ -154,18 +166,17 @@ const EasyMenuHeader = ({ open, setOpen }) => {
             expandIconPosition={"end"}
             bordered={false}
             // collapsible={"disable"}
-            items={[{ key: '1', label: <h6><HomeOutlined /> Shop</h6>, children:<div className='flex flex-col gap-2'>
-            <NavLink   className={"hover:text-[#214344]"} to={"/shop"}><HomeOutlined /> Pendents</NavLink>
-            <NavLink  className={"hover:text-[#214344]"} to={"/shop"}><HomeOutlined /> Rings</NavLink>
-            <NavLink  className={"hover:text-[#214344]"} to={"/shop"}><HomeOutlined /> Bracelets</NavLink>
-            <NavLink  className={"hover:text-[#214344]"} to={"/shop"}><HomeOutlined /> Earings</NavLink>
-            <NavLink  className={"hover:text-[#214344]"} to={"/shop"}><HomeOutlined /> Necklaces</NavLink>
+            items={[{ key: '1', label: <div className='flex gap-2 items-center h-[20px] w-[20px]'><img src={shopingCartYellow}/><h6> Shop</h6></div>, children:<div className='flex flex-col gap-2'>
+            <NavLink  onClick={()=>{filterSubcategary("pendents"),setOpen(false)}}  className={"hover:text-[#214344]"} to={"/shop"}><div className='flex gap-2 items-center'><TbPointFilled />Pendents</div></NavLink>
+            <NavLink  onClick={()=>{filterSubcategary("ring"),setOpen(false)}}   className={"hover:text-[#214344]"} to={"/shop"}><div className='flex gap-2 items-center'><TbPointFilled />Rings</div></NavLink>
+            <NavLink  onClick={()=>{filterSubcategary("bracelets"),setOpen(false)}}  className={"hover:text-[#214344]"} to={"/shop"}><div className='flex gap-2 items-center'><TbPointFilled />Bracelets</div></NavLink>
+            <NavLink  onClick={()=>{filterSubcategary("earings"),setOpen(false)}}  className={"hover:text-[#214344]"} to={"/shop"}><div className='flex gap-2 items-center'><TbPointFilled />Earings</div></NavLink>
+            <NavLink  onClick={()=>{filterSubcategary("nackeless"),setOpen(false)}}  className={"hover:text-[#214344]"} to={"/shop"}><div className='flex gap-2 items-center'><TbPointFilled />Nackless</div></NavLink>
       </div> }]}
     />
             </NavLink>
-            <NavLink className="text-[#214344] text-[16px] font-[600] hover:text-[#214344]"><HomeOutlined /> Wishlist</NavLink>
-            <NavLink className="text-[#214344] text-[16px] font-[600] hover:text-[#214344]"><HomeOutlined /> Bag</NavLink>
-            <NavLink className="text-[#214344] text-[16px] font-[600] hover:text-[#214344]"><HomeOutlined /> About us</NavLink>
+            <NavLink onClick={()=>{setActiveTab("cart")}} className="text-[#214344] text-[16px] font-[600] hover:text-[#214344]"><div className='flex gap-3 items-center h-[18px] w-[18px]'><img src={greenBag}/><h6> Bag</h6></div> </NavLink>
+            <NavLink className="text-[#214344] text-[16px] font-[600] hover:text-[#214344]"><div className='flex ps-5 items-center'> About us</div></NavLink>
             </div>}
          
           </div>

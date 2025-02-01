@@ -9,6 +9,7 @@ const productSlice = createSlice({
     addProducts:(state,action)=>{
         state.products=action.payload
     },
+   
 
   },
 });

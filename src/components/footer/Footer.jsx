@@ -2,8 +2,30 @@ import { Col, Row } from "antd";
 import { Link } from "react-router";
 import footerImage from "../../assets/header.png"
 import { FacebookOutlined, InstagramOutlined, TwitterOutlined, WhatsAppOutlined } from "@ant-design/icons";
+import { useDispatch } from "react-redux";
+import { getProductFilterApi } from "../../feature/product/productApi";
+import { addCategary, addproductToshop } from "../../feature/shop/shopSlice";
 const Footer=()=>{
-    const year=new Date().getFullYear()
+    const year=new Date().getFullYear();
+    const dispatch=useDispatch();
+
+    const filterSubcategary=async(data)=>{
+      
+      try {
+        const filters={category:data}
+        const res=await getProductFilterApi({filters});
+        console.log(res);
+        
+        dispatch(addproductToshop(res?.products)) 
+        dispatch(addCategary(data))   
+      } catch (error) {
+        console.log(error);
+        
+      }
+    
+    
+      
+    }
     return(
       <div className="footer bg-[#214344]  pt-20 ">
         <div className="md:px-20 px-5 " >
@@ -35,15 +57,29 @@ const Footer=()=>{
             <div className=""   >
                 <h6 className="text-[24px]  text-[#F0D5A0]">The Collection</h6>
                 <div className="flex flex-col gap-3 pt-10 ">
-                    <Link className="text-[#fff] hover:text-[#fff] text-[20px] ">Signature Collection</Link>
-                    <Link className="text-[#fff] hover:text-[#fff] text-[20px] ">Personalized Pieces</Link>
-                    <Link className="text-[#fff] hover:text-[#fff] text-[20px] ">Regular Upkeep</Link>
-                    <Link className="text-[#fff] hover:text-[#fff] text-[20px] ">Nackles</Link>
-                    <Link className="text-[#fff] hover:text-[#fff] text-[20px] ">Earring</Link>
-                    <Link className="text-[#fff] hover:text-[#fff] text-[20px] ">Pendent</Link>
-                    <Link className="text-[#fff] hover:text-[#fff] text-[20px] ">Bracelet</Link>
-                    <Link className="text-[#fff] hover:text-[#fff] text-[20px] ">Rings</Link>
+                    <Link className="text-[#fff] hover:text-[#fff] text-[20px] cursor-pointer">Signature Collection</Link>
+                    <Link className="text-[#fff] hover:text-[#fff] text-[20px] cursor-pointer">Personalized Pieces</Link>
+                    <Link className="text-[#fff] hover:text-[#fff] text-[20px] cursor-pointer">Regular Upkeep</Link>
+                    <Link className="text-[#fff] hover:text-[#fff] text-[20px] cursor-pointer" onClick={()=>{filterSubcategary("nackeless")}}>Nackles</Link>
+                    <Link className="text-[#fff] hover:text-[#fff] text-[20px] cursor-pointer" onClick={()=>{filterSubcategary("earings")}}>Earring</Link>
+                    <Link className="text-[#fff] hover:text-[#fff] text-[20px] cursor-pointer" onClick={()=>{filterSubcategary("pendents")}}>Pendent</Link>
+                    <Link className="text-[#fff] hover:text-[#fff] text-[20px] cursor-pointer" onClick={()=>{filterSubcategary("bracelets")}}>Bracelet</Link>
+                    <Link className="text-[#fff] hover:text-[#fff] text-[20px] cursor-pointer" onClick={()=>{filterSubcategary("ring")}}>Rings</Link>
                 </div>
+
+
+{/* 
+
+
+
+ <NavLink  onClick={()=>{filterSubcategary("pendents")}}  className={"hover:text-[#214344]"} to={"/shop"}><HomeOutlined />Pendents</NavLink>
+            <NavLink  onClick={()=>{filterSubcategary("ring")}}   className={"hover:text-[#214344]"} to={"/shop"}><HomeOutlined /> Rings</NavLink>
+            <NavLink  onClick={()=>{filterSubcategary("bracelets")}}  className={"hover:text-[#214344]"} to={"/shop"}><HomeOutlined />Bracelets</NavLink>
+            <NavLink  onClick={()=>{filterSubcategary("earings")}}  className={"hover:text-[#214344]"} to={"/shop"}><HomeOutlined />Earings</NavLink>
+            <NavLink  onClick={()=>{filterSubcategary("nackeless")}}  
+*/}
+
+
             </div>
             </Col>
             <Col xl={6} lg={6} md={8} sm={12} xs={24}>
