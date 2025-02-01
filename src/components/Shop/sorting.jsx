@@ -1,12 +1,15 @@
 import { ConfigProvider, Drawer, Pagination, Select, Typography } from "antd";
 import { useState } from "react";
-import { getProductApiPaginate, getProductApiSort } from "../../feature/product/productApi";
+import { getProductApiPaginate, getProductApiSort, getProductFilterApi } from "../../feature/product/productApi";
 import { FilterIcon } from "../../icons/icon";
 import { Header } from "antd/es/layout/layout";
 import AdvanceFilter from "./AdvanceFilter";
+import { useDispatch } from "react-redux";
+import { addproductToshop } from "../../feature/shop/shopSlice";
 
 const Sorting = ({ setPaginateData, item, paginateData }) => {
   const [sort, setSort] = useState("high")
+  const dispatch=useDispatch();
   const [current, setCurrent] = useState(1);
   const [open, setOpen] = useState(false);
   const selectHandle = (value) => {
@@ -15,21 +18,41 @@ const Sorting = ({ setPaginateData, item, paginateData }) => {
   };
 
   const sortHandler = async (id) => {
-
     setSort(id)
     switch (sort) {
       case "low":
-        const high = { _sort: "price", _order: "desc" }
-        const highData = await getProductApiSort(high)
+        try {
+          const sortby = { sort: "priceDesc" }
+        const highData = await getProductFilterApi({sortby})
+        dispatch(addproductToshop(highData?.products))
+          
+        } catch (error) {
+          console.log(error);
+          
+        }
+        
+        
         // if(highData)  setLoading(false)
 
-        setPaginateData(highData);
+        // setPaginateData(highData);
         break;
       case "high":
-        const newest = { _sort: "price", _order: "asc" }
-        const newestData = await getProductApiSort(newest)
+        try {
+          const sortby = { sort: "priceAsc" }
+
+        const newestData = await getProductFilterApi({sortby})
+        dispatch(addproductToshop(newestData?.products))
+
+        console.log(newestData);
+          
+        } catch (error) {
+          console.log(error);
+          
+        }
+     
+        
         // if(newestData)  setLoading(false)
-        setPaginateData(newestData);
+        // setPaginateData(newestData);
         break;
     }
   }
@@ -51,23 +74,22 @@ const Sorting = ({ setPaginateData, item, paginateData }) => {
           <div className="cursor-pointer" onClick={showDrawer}>
           <FilterIcon color={"#000"} />
           </div>
-       
-<ConfigProvider
-  theme={{
-    components: {
-      Select: {
-        colorPrimary: "#214344",  // Theme color
-        borderRadius: 8,          // Rounded edges
-        controlItemBgHover: "#1a2d2d", // Hover effect
-        controlItemBgActive: "#fff", // Active state
-        colorText: "#122424",        // Text color
-        borderColor: "transparent", // Remove border
-        optionSelectedColor: "#fff", // Selected text color
-        optionSelectedBg: "#1a2d2d" // Selected background
-      }
-    }
-  }}
->
+          <ConfigProvider
+            theme={{
+              components: {
+                Select: {
+                  colorPrimary: "#214344",  // Theme color
+                  borderRadius: 8,          // Rounded edges
+                  controlItemBgHover: "#1a2d2d", // Hover effect
+                  controlItemBgActive: "#fff", // Active state
+                  colorText: "#122424",        // Text color
+                  borderColor: "transparent", // Remove border
+                  optionSelectedColor: "#fff", // Selected text color
+                  optionSelectedBg: "#1a2d2d" // Selected background
+                }
+              }
+            }}
+          >
   <Select
   className=""
     defaultValue="default"
@@ -80,7 +102,6 @@ const Sorting = ({ setPaginateData, item, paginateData }) => {
     ]}
   />
 </ConfigProvider>
-
         </div>
       </div>
 

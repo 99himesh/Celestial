@@ -33,12 +33,12 @@ const Cart=()=>{
         getCartDataHandler();
     },[dataUpdated])
     const deleteCartHandler=async(items)=>{
+        const id=items.productId._id;
         
     
-       const itemData= {userId:items.userId, productId:items._id}
         
         try {
-        const data=await deleteCartData(itemData)  
+        const data=await deleteCartData(id)  
         setDataUpdated((prev) => !prev);   
         } catch (error) {
             throw error;

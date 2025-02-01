@@ -19,7 +19,8 @@ import { addToCart } from "../../feature/categary/cartSlice";
 import Cart from "../cart/Cart";
 import { addToWishlistData } from "../../feature/wishlist/wishlistApi";
 import video from "../../assets/video.mp4"
-import wishlist from "../../assets/wishlist.png"
+import wishlist from "../../assets/wishlist.png";
+import bag from "../../assets/icons/bagYellow.png"
 // This is my card .start here
 const ShopCard = ({item,shop}) => {
   const [open, setOpen] = useState(false);
@@ -30,8 +31,16 @@ const ShopCard = ({item,shop}) => {
   const [discountPercentage,setDiscountPercentage]=useState();
   // This function work as add to cart functionality
   const addCartHandler=async(item)=>{
+    const token=localStorage.getItem("token")
+    const user=localStorage.getItem("userId")
+    const data={
+      userId:user,
+      productId: item._id,
+      quantity:item.quantity,
+      price:item.price
+    }    
     try {
-      const res=await addToCartData(item)
+      const res=await addToCartData(data,token)
       
     } catch (error) {
       console.log(error);
@@ -86,7 +95,7 @@ const addToWishlistHandler=async(item)=>{
           </div>
           </Tooltip>
              {/* {thumbnailButton &&<Tooltip placement="left" title={"Compare"}> <button  className="text-[#fff] bg-[#214344] p-2 rounded-full text-sm"><ReloadOutlined   style={{fontSize:"20px" ,color:"#F0D5A0"}} /></button></Tooltip>} */}
-             {thumbnailButton &&<Tooltip placement="left" title={"Cart"}> <button  onClick={()=>{addCartHandler(item)}} className="text-white bg-[#214344] hover:bg-[#214344]  text-sm  p-2  rounded-full text-center"><ShoppingCartOutlined  style={{fontSize:"20px" ,color:"#F0D5A0"}} /></button></Tooltip>}
+             {thumbnailButton &&<Tooltip placement="left" title={"Cart"}> <button  onClick={()=>{addCartHandler(item)}} className="text-white bg-[#214344] hover:bg-[#214344]  text-sm  p-2  rounded-full text-center"><img className="h-[20px] w-[20px]" src={bag}/></button></Tooltip>}
            
              {thumbnailButton &&<Tooltip placement="left" title={"Share"}> <button onClick={()=>{showModal(item?.id)}} className="text-[#fff] bg-[#214344] p-2 rounded-full text-sm"><ShareAltOutlined  style={{fontSize:"20px" ,color:"#F0D5A0"}} /></button></Tooltip>}
         </div>

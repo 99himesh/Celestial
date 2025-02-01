@@ -58,10 +58,12 @@ const  SignUp=()=>{
                 // password:input.password
             
             })
+            console.log(res);
+            
           if(res.status){            
             dispatch(loginSuccess({token:res.data.token,users:res.data}))
-            localStorage.setItem("token",res.data.token)
-            localStorage.setItem("userId",res.data._id)
+            localStorage.setItem("token",res.data?.token)
+            localStorage.setItem("userId",res.data?._id)
 
           }
      

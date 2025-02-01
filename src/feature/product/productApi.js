@@ -19,6 +19,31 @@ export const getProductApi=async()=>{
     }
 
 }
+
+
+
+export const getProductFilterApi = async ({ page, limit, sortby, filters }) => {
+    console.log(sortby);
+    
+    try {
+      const params = {
+        page,
+        limit,
+        ...sortby,
+        ...filters, // Spread filters dynamically
+      };
+  
+      const response = await api.get("https://zoci-backend.onrender.com/api/product/getAllProduct", { params });
+  
+      return response.data;
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+  
+
+
+
 export const getProductApiPaginate=async(apiend)=>{    
     try {
         const res=await api.get(`https://zoci-backend.onrender.com/api/product/getAllProduct`);
