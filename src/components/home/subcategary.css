@@ -5,7 +5,7 @@
 
 
 .subcategary .slick-slider {
-  height: 300px;
+  height: 350px;
   display: flex; /* Optional: Ensures child items are aligned properly */
 }
 .subcategary .slick-slide {
@@ -39,7 +39,7 @@ height: 100%;
 
 .subcategary .slick-track {
 padding-top: 20px;
-height: 500px; 
+/* height: 500px!important;  */
 display: flex;
 align-items: center;
 }

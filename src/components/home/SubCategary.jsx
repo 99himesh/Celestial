@@ -99,8 +99,8 @@ const SubCategary=()=>{
                   style={{
                     borderRadius: '50%',
                     // border:"2px solid #747676",
-                    width: 260,
-                    height: 260,
+                    width: 275,
+                    height: 275,
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',
