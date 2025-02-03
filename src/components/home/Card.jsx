@@ -91,7 +91,7 @@ const Card = ({ item, shop }) => {
         onMouseLeave={() => {
           setThumbnailButton(false);
         }}
-        className="w-[82%] mx-auto       border border-gray-200 rounded-xl "
+        className="w-[85%] mx-auto       border border-gray-200 rounded-xl "
       >
         <div className=" relative">
           <div className=" border-[#214344]  hover:rounded-t-[20px] h-[360px]  ">
