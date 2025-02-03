@@ -69,8 +69,7 @@ useEffect(()=>{
 
     return(
         <>
-        <div className={`header fixed w-full z-[999] bg-[#214344]    ${open?"backdrop-blur-md":"bg-[#214344]"}`}>
-          
+        <div className={`header fixed w-full z-[999] bg-[#214344]    ${open?"backdrop-blur-md":"bg-[#214344]"}`}>   
             <div className="flex justify-between md:px-[56px] px-[30px] py-5    items-center">
            <div className="flex items-center">
                 <div className="flex md:gap-[56px]  gap-5 items-center cursor-pointer">
@@ -85,14 +84,14 @@ useEffect(()=>{
                 <div>
             <Link to={"/"}><img src={headerImage} className="lg:h-[70px] h-[35px]"/></Link>
             </div>
-            <div className="flex gap-[51px] ">
-            <Input onChange={(e)=>{
+            <div   className="flex gap-[51px]  cursor-pointer">
+            {search && <Input onChange={(e)=>{
               searchHandler(e)
             }} className="bg-[#e4cc9b] border-none  rounded-full" placeholder="Search Your Products"/>
-         
-            <div onClick={()=>{setSearch(prev=>!prev)}} className="flex items-center md:gap-[51px]  ">
+         }
+            <div className="flex items-center md:gap-[51px]  ">
 
-              <div   className="max-sm:hidden h-[28px] w-[28px]">
+              <div onClick={()=>{setSearch(prev=>!prev)}}   className="max-sm:hidden h-[28px] w-[28px]">
           <img src={serach}  className="object-fit"/>
            </div>
            <div className="">
