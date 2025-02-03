@@ -11,7 +11,7 @@ import  similerYellow from "../assets/icons/similarYellow.png";
 import  similerGreen from "../assets/icons/similarGreen.png";
 import closeIcon from "../assets/closeicon.png"
 import greenBag from "../../src/assets/icons/greenBag.png"
-import yellowBag from "../../src/assets/icons/bagyellow.png"
+import yellowBag from "../../src/assets/icons/bagYellow.png"
 import WishList from "./wishlist/WishList";
 
 const CustomDrawer=({component,open,onClose,title,placement,width})=>{
