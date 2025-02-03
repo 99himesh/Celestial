@@ -174,7 +174,7 @@ const Card = ({ item, shop }) => {
         <div className="relative ">
           <Link to={`/product/${item?._id}`}>
             <div
-              className={`px-3 pt-1 pb-12 flex flex-col bg-[#214344]  rounded-b-3xl`}
+              className={`px-3 pt-2 pb-12 flex flex-col bg-[#214344]  rounded-b-3xl`}
             >
               <div>
                 <h5 className="md:text-[20px] text-[20px] font-semibold  text-white">
