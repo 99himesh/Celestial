@@ -48,34 +48,34 @@ const Footer=()=>{
             </Col>
             <Col xl={6} lg={6} md={8} sm={12} xs={24}>
             <div className=""  >
-                <h6 className="text-[24px]  text-[#F0D5A0]" >LET US HELP YOU</h6>
+                <h6 className="text-[24px]  text-[#F0D5A0] font-semibold" >LET US HELP YOU</h6>
                 <div className="flex flex-col gap-3 pt-10">
-                    <Link to={"/"} className="text-[#fff] hover:text-[#fff] text-[16px] ">Home</Link>
-                    <Link to={"/shop"} className="text-[#fff] hover:text-[#fff] text-[16px] ">Shop</Link>
+                    <Link to={"/"} className="text-[#fff] hover:text-[#fff] text-[18px] ">Home</Link>
+                    <Link to={"/shop"} className="text-[#fff] hover:text-[#fff] text-[18px] ">Shop</Link>
                     <Link className="text-[#fff] hover:text-[#fff] text-[16px] ">Cart</Link>
                     <Link className="text-[#fff] hover:text-[#fff] text-[16px] ">Orders</Link>
-                    <Link className="text-[#fff] hover:text-[#fff] text-[16px] ">About Us</Link>
-                    <Link className="text-[#fff] hover:text-[#fff] text-[16px] ">Wishlist</Link>
-                    <Link className="text-[#fff] hover:text-[#fff] text-[16px] ">Order Traking</Link>
-                    <Link className="text-[#fff] hover:text-[#fff] text-[16px] ">Blog</Link>
-                    <Link className="text-[#fff] hover:text-[#fff] text-[16px] ">FAQ</Link>
-                    <Link className="text-[#fff] hover:text-[#fff] text-[16px] ">Contact Us</Link>
+                    <Link className="text-[#fff] hover:text-[#fff] text-[18px] ">About Us</Link>
+                    <Link className="text-[#fff] hover:text-[#fff] text-[18px] ">Wishlist</Link>
+                    <Link className="text-[#fff] hover:text-[#fff] text-[18px] ">Order Traking</Link>
+                    <Link className="text-[#fff] hover:text-[#fff] text-[18px] ">Blog</Link>
+                    <Link className="text-[#fff] hover:text-[#fff] text-[18px] ">FAQ</Link>
+                    <Link className="text-[#fff] hover:text-[#fff] text-[18px] ">Contact Us</Link>
                     
                 </div>
             </div>
             </Col>
             <Col xl={6} lg={6} md={8} sm={12} xs={24}>
             <div className=""   >
-                <h6 className="text-[24px]  text-[#F0D5A0]">THE COLLECTION</h6>
+                <h6 className="text-[24px]  text-[#F0D5A0] font-semibold">THE COLLECTION</h6>
                 <div className="flex flex-col gap-3 pt-10 ">
-                    <Link className="text-[#fff] hover:text-[#fff] text-[16px] cursor-pointer">Signature Collection</Link>
-                    <Link className="text-[#fff] hover:text-[#fff] text-[16px] cursor-pointer">Personalized Pieces</Link>
-                    <Link className="text-[#fff] hover:text-[#fff] text-[16px] cursor-pointer">Regular Upkeep</Link>
-                    <Link className="text-[#fff] hover:text-[#fff] text-[16px] cursor-pointer" onClick={()=>{filterSubcategary("nackeless")}}>Nackles</Link>
-                    <Link className="text-[#fff] hover:text-[#fff] text-[16px] cursor-pointer" onClick={()=>{filterSubcategary("earings")}}>Earring</Link>
-                    <Link className="text-[#fff] hover:text-[#fff] text-[16px] cursor-pointer" onClick={()=>{filterSubcategary("pendents")}}>Pendent</Link>
-                    <Link className="text-[#fff] hover:text-[#fff] text-[16px] cursor-pointer" onClick={()=>{filterSubcategary("bracelets")}}>Bracelet</Link>
-                    <Link className="text-[#fff] hover:text-[#fff] text-[16px] cursor-pointer" onClick={()=>{filterSubcategary("ring")}}>Rings</Link>
+                    <Link className="text-[#fff] hover:text-[#fff] text-[18px] cursor-pointer">Signature Collection</Link>
+                    <Link className="text-[#fff] hover:text-[#fff] text-[18px] cursor-pointer">Personalized Pieces</Link>
+                    <Link className="text-[#fff] hover:text-[#fff] text-[18px] cursor-pointer">Regular Upkeep</Link>
+                    <Link className="text-[#fff] hover:text-[#fff] text-[18px] cursor-pointer" onClick={()=>{filterSubcategary("nackeless")}}>Nackles</Link>
+                    <Link className="text-[#fff] hover:text-[#fff] text-[18px] cursor-pointer" onClick={()=>{filterSubcategary("earings")}}>Earring</Link>
+                    <Link className="text-[#fff] hover:text-[#fff] text-[18px] cursor-pointer" onClick={()=>{filterSubcategary("pendents")}}>Pendent</Link>
+                    <Link className="text-[#fff] hover:text-[#fff] text-[18px] cursor-pointer" onClick={()=>{filterSubcategary("bracelets")}}>Bracelet</Link>
+                    <Link className="text-[#fff] hover:text-[#fff] text-[18px] cursor-pointer" onClick={()=>{filterSubcategary("ring")}}>Rings</Link>
                 </div>
 
 
@@ -95,21 +95,21 @@ const Footer=()=>{
             </Col>
             <Col xl={6} lg={6} md={8} sm={12} xs={24}>
             <div className=""  >
-                <h6 className="text-[24px]  text-[#F0D5A0]">CONTACT DETAILS</h6>
+                <h6 className="text-[24px]  font-semibold text-[#F0D5A0]">CONTACT DETAILS</h6>
                 <div className="flex flex-col gap-3 pt-10">
-                    <Link className="text-[#fff] hover:text-[#fff] text-[16px] ">hello@zoci.in</Link>
-                    <Link className="text-[#fff] hover:text-[#fff] text-[16px] ">Monday – Friday: 9:00AM - 20:00PM</Link>
-                    <Link className="text-[#fff] hover:text-[#fff] text-[16px] ">Santacruz East, Mumbai, Maharashtra 400055</Link>
+                    <Link className="text-[#fff] hover:text-[#fff] text-[18px] ">hello@zoci.in</Link>
+                    <Link className="text-[#fff] hover:text-[#fff] text-[18px] ">Monday – Friday: 9:00AM - 20:00PM</Link>
+                    <Link className="text-[#fff] hover:text-[#fff] text-[18px] ">Santacruz East, Mumbai, Maharashtra 400055</Link>
                 </div>
             </div>
             <div className="pt-10"  >
-                <h6 className="text-[24px]  text-[#F0D5A0]">HELP</h6>
+                <h6 className="text-[24px]  text-[#F0D5A0] font-semibold">HELP</h6>
                 <div className="flex flex-col gap-3 pt-10">
-                    <Link className="text-[#fff] hover:text-[#fff] text-[16px] ">Jewelry Care Guide</Link>
-                    <Link className="text-[#fff] hover:text-[#fff] text-[16px] ">Privacy Policys</Link>
-                    <Link className="text-[#fff] hover:text-[#fff] text-[16px] ">Shipping Policy</Link>
-                    <Link className="text-[#fff] hover:text-[#fff] text-[16px] ">Terms and Conditions</Link>
-                    <Link className="text-[#fff] hover:text-[#fff] text-[16px] ">Refund and exchange policy</Link>
+                    <Link className="text-[#fff] hover:text-[#fff] text-[18px] ">Jewelry Care Guide</Link>
+                    <Link className="text-[#fff] hover:text-[#fff] text-[18px] ">Privacy Policys</Link>
+                    <Link className="text-[#fff] hover:text-[#fff] text-[18px] ">Shipping Policy</Link>
+                    <Link className="text-[#fff] hover:text-[#fff] text-[18px] ">Terms and Conditions</Link>
+                    <Link className="text-[#fff] hover:text-[#fff] text-[18px] ">Refund and exchange policy</Link>
                 </div>
             </div>
             </Col>
