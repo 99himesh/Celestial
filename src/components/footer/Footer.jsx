@@ -130,7 +130,7 @@ const Footer=()=>{
                                           <FaPinterestP style={{ fontSize: "20px", color: "#F0D5A0" }} />
                                           <FaYoutube style={{ fontSize: "20px", color: "#F0D5A0" }} />
                                           <WhatsAppOutlined  style={{ fontSize: "20px", color: "#F0D5A0" }} />
-                                          <TbBrandLinkedin style={{ fontSize: "20px", color: "#F0D5A0" }} />
+                                          <TbBrandLinkedin style={{ fontSize: "24px", color: "#F0D5A0" }} />
                                           
                                         </div>
              </div>
