@@ -122,7 +122,7 @@ const Card = ({ item, shop }) => {
             )}
           </div>
           <div
-            className="absolute flex flex-col gap-2 right-[20px] top-[20px] h-[35px] w-[35px] cursor-pointer"
+            className="absolute flex flex-col gap-2 right-[20px] top-[16px] h-[35px] w-[35px] cursor-pointer"
            
           >
             <Tooltip placement="left" title={"Add to Wishlist"}>
@@ -174,7 +174,7 @@ const Card = ({ item, shop }) => {
         <div className="relative ">
           <Link to={`/product/${item?._id}`}>
             <div
-              className={`px-3 pt-1 pb-12 flex flex-col bg-[#214344]  rounded-b-3xl`}
+              className={`px-3 pt-2 pb-12 flex flex-col bg-[#214344]  rounded-b-3xl`}
             >
               <div>
                 <h5 className="md:text-[20px] text-[20px] font-semibold  text-white">
