@@ -48,20 +48,8 @@ const getDataCart=async()=>{
   }
 }
 
-  const searchHandler=async(e)=>{
-      try {
-        const search={title:e.target.value}
-        console.log(search);
-        const res= await getProductFilterApi({search})
-        dispatch(searchProducts(res.products))
-        
-        
-      } catch (error) {
-        console.log(error);
-         
-      }
-    
-  }
+console.log(search);
+
 
 useEffect(()=>{
   getDataCart()
@@ -85,10 +73,10 @@ useEffect(()=>{
             <Link to={"/"}><img src={headerImage} className="lg:h-[70px] h-[35px]"/></Link>
             </div>
             <div   className="flex gap-[51px]  cursor-pointer">
-            {search && <Input onChange={(e)=>{
+            {/* {search && <Input onChange={(e)=>{
               searchHandler(e)
             }} className="bg-[#e4cc9b] border-none  rounded-full" placeholder="Search Your Products"/>
-         }
+         } */}
             <div className="flex items-center md:gap-[51px]  ">
 
               <div onClick={()=>{setSearch(prev=>!prev)}}   className="max-sm:hidden h-[28px] w-[28px]">
@@ -101,9 +89,7 @@ useEffect(()=>{
             </div>
         </div>
         </div>
-        <div className="fixed right-0 w-[100%]  mx-auto pt-[100px]  z-20 h-[70vh] overflow-auto px-5">
-       <CustomSearch items={searchData} setOpen={setOpen}/>
-       </div>
+       
 
         <div
         className={`fixed inset-0 transition-all duration-300 ${
@@ -111,6 +97,7 @@ useEffect(()=>{
         } ${open || cartOpen ? "z-[998]" : "z-[-1]"}`}
         onClick={onClose}
       ></div>
+       <CustomSearch search={search} items={searchData} />
     
 
         <EasyMenuHeader open={open} setOpen={setOpen} />

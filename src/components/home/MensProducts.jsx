@@ -8,10 +8,10 @@ import { getProductApi } from "../../feature/product/productApi";
 import { addProducts } from "../../feature/product/productSlice";
 
 const settings = {
-  className: "center",
-  centerMode: true,
+  // className: "center",
+  // centerMode: true,
   infinite: true,
-  centerPadding: "80px",
+  // centerPadding: "80px",
   slidesToShow: 3,
   speed: 1000,
   responsive: [
@@ -21,7 +21,7 @@ const settings = {
           slidesToShow: 2,
           slidesToScroll: 2,
           infinite: true,
-         centerPadding: "60px",
+        //  centerPadding: "60px",
 
           dots: true
         }
@@ -32,7 +32,7 @@ const settings = {
           slidesToShow: 1,
           slidesToScroll: 1,
           initialSlide: 1,
-        centerPadding: "40px",
+        // centerPadding: "40px",
 
         }
       },
@@ -41,7 +41,7 @@ const settings = {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-        centerPadding: "40px",
+        // centerPadding: "40px",
 
         }
       }
@@ -62,7 +62,7 @@ const MensProduct=()=>{
   }, [])
  
       return (
-        <div className=" w-[100%] pt-10 overflow-hidden">
+        <div className=" w-[90%] mx-auto pt-10 overflow-hidden">
           <Slider {...settings}>
             {mensData?.map((item,idx) => (
               <div key={idx} style={{  padding: "10px", textAlign: "center"}}>
