@@ -91,10 +91,10 @@ const Card = ({ item, shop }) => {
         onMouseLeave={() => {
           setThumbnailButton(false);
         }}
-        className="w-[85%] mx-auto       border border-gray-200 rounded-xl "
+        className="w-[82%] mx-auto       border border-gray-200 rounded-xl "
       >
         <div className=" relative">
-          <div className=" border-[#214344] hover:rounded-t-xl h-[360px]  ">
+          <div className=" border-[#214344]  hover:rounded-t-[20px] h-[360px]  ">
             {!thumbnailButton && (
               <img
                 className=" rounded-t-2xl w-full  h-full object-cover "
@@ -103,7 +103,7 @@ const Card = ({ item, shop }) => {
               />
             )}
             {thumbnailButton && (
-              <div className="w-full   border-[3px] border-[#214344] rounded-t-[19px]">
+              <div className="w-full   border-[5px] border-[#214344] rounded-t-[19px]">
                 
                 <video
                   className="w-full h-[360px] rounded-t-2xl object-cover"
