@@ -91,9 +91,9 @@ const Sorting = ({ setPaginateData, item, paginateData }) => {
             }}
           >
   <Select
-  className=""
+  // className="rounded-full"
     defaultValue="default"
-    style={{ width: 140 }}
+    style={{ width: 140 ,borderRadius:"20px"}}
     onChange={(e) => { selectHandle(e); }}
     options={[
       { value: 'default', label: 'Default Sorting' },

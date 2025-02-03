@@ -78,7 +78,7 @@ const categary=useSelector(state=>state.shop.categary);
       <Col span={24}>
        
         <div className="md:px-20 px-5 pt-20 bg-[#eee5db] cursor-pointer ">
-          <div className="py-5 cursor-pointer" >
+          <div className="py-5 cursor-pointer flex justify-center" >
             <CustomFilter />
           </div>
           </div> 

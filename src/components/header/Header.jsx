@@ -12,12 +12,19 @@ import serach from "../../assets/search.png"
 import bag from "../../assets/Bag.png"
 import wishlist from "../../assets/wishlist.png"
 import menuIcon from "../../assets/Menuicon.png"
+import { Input } from "antd";
+import { getProductFilterApi } from "../../feature/product/productApi";
+import { searchProducts } from "../../feature/product/productSlice";
+import CustomSearch from "../home/CustomSearch";
     // This is my main Header. start here
 const Header=()=>{
     const [open, setOpen] = useState(false);
     const [cartOpen, setCartOpen] = useState(false);
+
     const dispatch=useDispatch();
+    const [search,setSearch]=useState(false)
     const cart=useSelector(state=>state.cart?.cart)
+  const searchData=useSelector(state=>state.product.searchData)
 
       const showDrawer = () => {
         setOpen(true);
@@ -41,6 +48,21 @@ const getDataCart=async()=>{
   }
 }
 
+  const searchHandler=async(e)=>{
+      try {
+        const search={title:e.target.value}
+        console.log(search);
+        const res= await getProductFilterApi({search})
+        dispatch(searchProducts(res.products))
+        
+        
+      } catch (error) {
+        console.log(error);
+         
+      }
+    
+  }
+
 useEffect(()=>{
   getDataCart()
 },[])
@@ -63,8 +85,14 @@ useEffect(()=>{
                 <div>
             <Link to={"/"}><img src={headerImage} className="lg:h-[70px] h-[35px]"/></Link>
             </div>
-            <div className="flex items-center md:gap-[51px]  ">
-              <div  className="max-sm:hidden h-[28px] w-[28px]">
+            <div className="flex gap-[51px] ">
+            <Input onChange={(e)=>{
+              searchHandler(e)
+            }} className="bg-[#e4cc9b] border-none  rounded-full" placeholder="Search Your Products"/>
+         
+            <div onClick={()=>{setSearch(prev=>!prev)}} className="flex items-center md:gap-[51px]  ">
+
+              <div   className="max-sm:hidden h-[28px] w-[28px]">
           <img src={serach}  className="object-fit"/>
            </div>
            <div className="">
@@ -73,6 +101,10 @@ useEffect(()=>{
             </div>
             </div>
         </div>
+        </div>
+        <div className="fixed right-0 w-[100%]  mx-auto pt-[100px]  z-20 h-[70vh] overflow-auto px-5">
+       <CustomSearch items={searchData} setOpen={setOpen}/>
+       </div>
 
         <div
         className={`fixed inset-0 transition-all duration-300 ${
@@ -80,6 +112,8 @@ useEffect(()=>{
         } ${open || cartOpen ? "z-[998]" : "z-[-1]"}`}
         onClick={onClose}
       ></div>
+    
+
         <EasyMenuHeader open={open} setOpen={setOpen} />
         <CustomDrawer component={<Cart/>} open={cartOpen} setOpen={setOpen} onClose={cartOnClose}/>
 
