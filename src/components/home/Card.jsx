@@ -91,7 +91,7 @@ const Card = ({ item, shop }) => {
         onMouseLeave={() => {
           setThumbnailButton(false);
         }}
-        className="w-[95%] mx-auto       border border-gray-200 rounded-xl "
+        className="w-[93%] mx-auto       border border-gray-200 rounded-xl "
       >
         <div className=" relative">
           <div className=" border-[#214344]  hover:rounded-t-[20px] h-[360px]  ">
@@ -129,9 +129,9 @@ const Card = ({ item, shop }) => {
               
               <div  onClick={() => {
               addToWishlistHandler(item);
-            }} className="bg-[#214344] h-[40px] w-[40px] flex justify-center  items-center rounded-full p-2 cursor-pointer  ">
+            }} className="bg-[#214344] h-[35px] w-[35px] flex justify-center  items-center rounded-full p-2 cursor-pointer  ">
                 {/* <WishListIcon /> */}
-                <img className="w-full h-[full]" src={wishlist} />
+                <img className="w-[20px] h-[18px]" src={wishlist} />
               </div>
             </Tooltip>
 
@@ -140,8 +140,8 @@ const Card = ({ item, shop }) => {
               <Tooltip placement="left" title={"Cart"}> 
                   <div onClick={() => {
                     addCartHandler(item);
-                  }} className="h-[40px] w-[40px] flex justify-center items-center rounded-full bg-[#214344] hover:bg-[#214344]  p-2">
-                  <img className="h-[24px] w-[24px]" src={bag} />
+                  }} className="h-[35px] w-[35px] flex justify-center items-center rounded-full bg-[#214344] hover:bg-[#214344]  p-2">
+                  <img className="h-[20px] w-[20px]" src={bag} />
                   </div>
               </Tooltip>
             )}
@@ -153,18 +153,18 @@ const Card = ({ item, shop }) => {
                   onClick={() => {
                     showModal(item?.id);
                   }}
-                  className=" bg-[#214344] flex justify-center items-center h-[40px] w-[40px] p-2 rounded-full "
+                  className=" bg-[#214344] flex justify-center items-center h-[35px] w-[35px] p-2 rounded-full "
                 >
                   <ShareAltOutlined
-                    style={{ fontSize: "24px", color: "#F0D5A0" }}
+                    style={{ fontSize: "20px", color: "#F0D5A0" }}
                   />
                 </div>
               </Tooltip>
             )}
             {thumbnailButton && (
               <Tooltip placement="left" title={"similar"}>  
-                  <div className="h-[40px] w-[40px] flex justify-center  items-center p-2  bg-[#214344]  rounded-full ">
-                    <img className="w-[24px] h-[24px] ps-0.5" src={similarYellow} />
+                  <div className="h-[35px] w-[35px] flex justify-center  items-center p-2  bg-[#214344]  rounded-full ">
+                    <img className="w-[20px] h-[20px] ps-0.5" src={similarYellow} />
                   </div>
               </Tooltip>
             )}
@@ -177,7 +177,7 @@ const Card = ({ item, shop }) => {
               className={`px-3 pt-1 pb-12 flex flex-col bg-[#214344]  rounded-b-3xl`}
             >
               <div>
-                <h5 className="md:text-[24px] text-[20px] font-semibold  text-white">
+                <h5 className="md:text-[20px] text-[20px] font-semibold  text-white">
                   {item?.title}
                 </h5>
               </div>
