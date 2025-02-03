@@ -52,7 +52,7 @@ import "./header.css";
 import SignUp from "../auth/SignUp";
 import { useDispatch, useSelector } from "react-redux";
 import { addCategary, addproductToshop } from "../../feature/shop/shopSlice";
-import { TbPointFilled } from "react-icons/tb";
+import { TbBrandLinkedin, TbPointFilled } from "react-icons/tb";
 import { searchProducts } from "../../feature/product/productSlice";
 import useSelection from "antd/es/table/hooks/useSelection";
 import CustomSearch from "../home/CustomSearch";
@@ -231,7 +231,8 @@ const EasyMenuHeader = ({ open, setOpen }) => {
               <FaPinterestP style={{ fontSize: "20px", color: "#F0D5A0" }} />
               <FaYoutube style={{ fontSize: "20px", color: "#F0D5A0" }} />
               <WhatsAppOutlined  style={{ fontSize: "20px", color: "#F0D5A0" }} />
-              <LinkedinOutlined style={{ fontSize: "20px", color: "#F0D5A0" }}/>
+              <TbBrandLinkedin style={{ fontSize: "20px", color: "#F0D5A0" }} />
+              
             </div>
           </div>
         </Sider>

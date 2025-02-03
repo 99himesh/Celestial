@@ -124,13 +124,15 @@ const Footer=()=>{
                 <TwitterOutlined style={{fontSize:"24px",color:"#F0D5A0"}} /> */}
                 {/* <InstagramOutlined style={{fontSize:"24px",color:"#F0D5A0"}} /> */}
 
-                              <FaInstagramSquare style={{ fontSize: "20px", color: "#F0D5A0" }} />
-                              <FaFacebookF style={{ fontSize: "20px", color: "#F0D5A0" }} />
-                              <FaPinterestP style={{ fontSize: "20px", color: "#F0D5A0" }} />
-                              <FaYoutubeSquare style={{ fontSize: "20px", color: "#F0D5A0" }} />
-                              <WhatsAppOutlined  style={{ fontSize: "20px", color: "#F0D5A0" }} />
-                              {/* <LinkedinOutlined style={{ fontSize: "20px", color: "#F0D5A0" }}/> */}
-                              <TbBrandLinkedin style={{ fontSize: "20px", color: "#F0D5A0" }} />
+                             <div className=" flex  gap-3">
+                                          <FaInstagram style={{ fontSize: "20px", color: "#F0D5A0" }} />
+                                          <FaFacebook style={{ fontSize: "20px", color: "#F0D5A0" }} />
+                                          <FaPinterestP style={{ fontSize: "20px", color: "#F0D5A0" }} />
+                                          <FaYoutube style={{ fontSize: "20px", color: "#F0D5A0" }} />
+                                          <WhatsAppOutlined  style={{ fontSize: "20px", color: "#F0D5A0" }} />
+                                          <TbBrandLinkedin style={{ fontSize: "20px", color: "#F0D5A0" }} />
+                                          
+                                        </div>
              </div>
              <div className="flex flex-wrap md:justify-between justify-center max-md:gap-5 md:px-20 px-5  w-full py-7"  >
                 <div>
