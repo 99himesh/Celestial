@@ -62,7 +62,7 @@ const MensProduct=()=>{
   }, [])
  
       return (
-        <div className=" w-[75%] mx-auto pt-10 overflow-hidden">
+        <div className=" w-[78%] mx-auto pt-10 overflow-hidden">
           <Slider {...settings}>
             {mensData?.map((item,idx) => (
               <div key={idx} style={{  padding: "10px", textAlign: "center"}}>
