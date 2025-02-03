@@ -7,11 +7,11 @@ import pritiImage from  "../../assets/Priti.jpg"
 import { FcLike } from "react-icons/fc";
 const Testimonial=()=>{
     return(
-        <div className="textimonial  ">
-            <div className="w-full overflow-hidden flex justify-center  py-10   ">
+        <div className="textimonial py-20  ">
+            <div className="w-full overflow-hidden flex justify-center  py-20   ">
             <h1 className="md:text-[55px]  text-[30px] text-center md:text-start  text-[#BFA785] font-[400]">Client Reviews & Testimonials</h1>
             </div>
-    <Row className="py-10"   justify={"center"}>
+    <Row className="py-10 relative  flex justify-between"    >
         <Col xl={8} lg={8} sm={24} xs={24}  >
         <div className="flex flex-col justify-center items-center gap-5 w-[70%] mx-auto p-5">
   <div className="w-[230px] mx-auto flex justify-center h-[300px] relative "> 
@@ -29,8 +29,8 @@ Loved them a lot Thank you Zoci ❤
   </p>
 </div>
         </Col>
-        <Col xl={8} lg={8} sm={24} xs={24} >
-        <div className="flex flex-col justify-center items-center gap-5 w-[100%] mx-auto bg-[#214344] p-5">
+        <Col xl={8} lg={8} sm={24} xs={24} className="py-[120px] bg-[#214344] absolute -top-[58px]  left-0 right-0 mx-auto" >
+        <div className="flex flex-col justify-center items-center gap-5  w-[100%] mx-auto  bg-[#214344] px-5 ">
   <div className="w-[230px] mx-auto flex justify-center h-[300px] relative  "> 
     {/* Rotate only the parent container */}
     <img 

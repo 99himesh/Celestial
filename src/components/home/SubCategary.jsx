@@ -13,9 +13,10 @@ const settings = {
     infinite: true,
     speed: 200,
     focusOnSelect: true, 
-    slidesToShow: 5,
+    slidesToShow: 3,
     slidesToScroll: 1, 
     autoplay: true,
+    centerPadding: "60px", 
     autoplaySpeed: 2000,
     arrows: false,
     centerMode:true,
@@ -73,7 +74,7 @@ const SubCategary=()=>{
 
     return (
         <div className="md:px-1 px-0  subcategary my-10 w-full">
-        <div  className="   w-[90%] mx-auto  " >
+        <div  className="   w-[78%] mx-auto  " >
             <Slider {...settings} >
            {subCategaryData?.map((item,idx)=>{
             return(
@@ -98,8 +99,8 @@ const SubCategary=()=>{
                   style={{
                     borderRadius: '50%',
                     // border:"2px solid #747676",
-                    width: 240,
-                    height: 240,
+                    width: 260,
+                    height: 260,
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',
