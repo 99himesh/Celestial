@@ -22,13 +22,13 @@ export const getProductApi=async()=>{
 
 
 
-export const getProductFilterApi = async ({ page, limit, sortby, filters }) => {
-    console.log(sortby);
+export const getProductFilterApi = async ({ page, limit, sortby, filters,search }) => {
     
     try {
       const params = {
         page,
         limit,
+        ...search,
         ...sortby,
         ...filters, // Spread filters dynamically
       };

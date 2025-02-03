@@ -1,4 +1,4 @@
-import { Button, Progress, Typography } from "antd";
+import { Button, Empty, Progress, Typography } from "antd";
 import { DeleteOutlined } from "@ant-design/icons";
 import image from "../../assets/women.jpg"
 import { addToCartData, deleteCartData, getCartData } from "../../feature/categary/cartApi";
@@ -43,10 +43,15 @@ const WishList=()=>{
     },[deleteUpdate,dispatch])
     return(
         <>
-          <div className="cart    px-5  py-10 bg-[#efe6dc] h-[100%]">
-            <div className="overflow-y-auto ">
+          <div className="cart    px-5  py-16 bg-[#efe6dc] h-[100%]">
+            <div className="overflow-y-auto  ">
             <h4 className="text-start font-[400] text-[16px]">Congrats! You are eligible for more to enjoy FREE Shipping</h4>
+            {/* <Progress   /> */}
+
+            {wishlistData?.length==0 && <Empty  description={<div>
             <Progress   />
+             <Typography.Text className="text-semibold">No data</Typography.Text>
+            </div>} />}
         { wishlistData?.map((item,idx)=>{
             return(
           
@@ -72,7 +77,7 @@ const WishList=()=>{
         })}
               <div className="pt-5">
 
-<Button className="w-full rounded-full bg-[#214344] font-semibold text-[#fff] hover:!text-[#214344] hover:!border-[#214344]" onClick={()=>{navigate("/wishlist")}}>Open WishList Page</Button>
+{wishlistData.length!=0 && <Button className="w-full rounded-full bg-[#214344] font-semibold text-[#fff] hover:!text-[#214344] hover:!border-[#214344]" onClick={()=>{navigate("/wishlist")}}>Open WishList Page</Button>}
 </div>
 </div>
     

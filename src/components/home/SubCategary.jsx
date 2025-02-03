@@ -23,10 +23,14 @@ const settings = {
         {
           breakpoint: 1024,
           settings: {
-            slidesToShow: 2,
-            slidesToScroll: 2,
+            slidesToShow: 3,
+            slidesToScroll:1,
             infinite: true,
-            dots: false
+            initialSlide: 1,
+
+            dots: false,
+            autoplaySpeed: 2000,
+
           }
         },
         {
@@ -36,8 +40,7 @@ const settings = {
             slidesToScroll: 1,
             initialSlide: 1,
             dots: false,
-        autoplaySpeed: 2000,
-
+            autoplaySpeed: 2000,
             display:"flex",
 
           }
@@ -51,7 +54,6 @@ const settings = {
             autoplaySpeed: 2000,
             dots: false,
             centerMode: true,
-
           }
         }
       ]
@@ -71,7 +73,7 @@ const SubCategary=()=>{
 
     return (
         <div className="md:px-1 px-0  subcategary my-10 w-full">
-        <div  className="   w-[100%] mx-auto  " >
+        <div  className="   w-[90%] mx-auto  " >
             <Slider {...settings} >
            {subCategaryData?.map((item,idx)=>{
             return(

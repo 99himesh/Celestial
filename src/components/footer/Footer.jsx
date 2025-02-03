@@ -1,10 +1,20 @@
 import { Col, Row } from "antd";
 import { Link } from "react-router";
 import footerImage from "../../assets/header.png"
-import { FacebookOutlined, InstagramOutlined, TwitterOutlined, WhatsAppOutlined } from "@ant-design/icons";
+import { FacebookOutlined, InstagramOutlined, LinkedinOutlined, TwitterOutlined, WhatsAppOutlined } from "@ant-design/icons";
 import { useDispatch } from "react-redux";
 import { getProductFilterApi } from "../../feature/product/productApi";
 import { addCategary, addproductToshop } from "../../feature/shop/shopSlice";
+// import { FaFacebook, FaInstagram, FaPinterestP, FaYoutube } from "react-icons/fa";
+import {
+  FaFacebook,
+  FaFacebookF,
+  FaInstagram,
+  FaInstagramSquare,
+  FaPinterestP,
+  FaYoutube,
+  FaYoutubeSquare,
+} from "react-icons/fa";
 const Footer=()=>{
     const year=new Date().getFullYear();
     const dispatch=useDispatch();
@@ -106,12 +116,19 @@ const Footer=()=>{
         </div>
         <Row className="pt-5" >
              <div className="flex w-full gap-5 justify-center  py-7 border-b-[0.5px] border-t-[1px] border-gray-500"  >
-                <h4 className="text-[18px] font-bold text-[#F0D5A0] tracking-wide  ">Follow US</h4>
-                <FacebookOutlined style={{fontSize:"24px",color:"#F0D5A0"}} />
+                <h4 className="text-[18px] font-bold text-[#F0D5A0] tracking-wide  ">Follow US On</h4>
+                {/* <FacebookOutlined style={{fontSize:"24px",color:"#F0D5A0"}} />
                 <InstagramOutlined style={{fontSize:"24px",color:"#F0D5A0"}} />
                 <WhatsAppOutlined style={{fontSize:"24px",color:"#F0D5A0"}} />
-                <TwitterOutlined style={{fontSize:"24px",color:"#F0D5A0"}} />
+                <TwitterOutlined style={{fontSize:"24px",color:"#F0D5A0"}} /> */}
                 {/* <InstagramOutlined style={{fontSize:"24px",color:"#F0D5A0"}} /> */}
+
+                              <FaInstagramSquare style={{ fontSize: "20px", color: "#F0D5A0" }} />
+                              <FaFacebookF style={{ fontSize: "20px", color: "#F0D5A0" }} />
+                              <FaPinterestP style={{ fontSize: "20px", color: "#F0D5A0" }} />
+                              <FaYoutubeSquare style={{ fontSize: "20px", color: "#F0D5A0" }} />
+                              <WhatsAppOutlined  style={{ fontSize: "20px", color: "#F0D5A0" }} />
+                              <LinkedinOutlined style={{ fontSize: "20px", color: "#F0D5A0" }}/>
              </div>
              <div className="flex flex-wrap md:justify-between justify-center max-md:gap-5 md:px-20 px-5  w-full py-7"  >
                 <div>

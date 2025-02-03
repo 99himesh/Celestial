@@ -48,7 +48,7 @@ Thank you Zoci ❤
   </div>
 </div></Col>
 <Col xl={8} lg={8} sm={24} xs={24} >
-        <div className="flex flex-col justify-center items-center gap-5 w-[70%] mx-auto p-5">
+        <div className="flex flex-col justify-center items-center gap-5 w-[100%] mx-auto p-5">
   <div className="w-[230px] mx-auto flex justify-center h-[300px] relative "> 
     {/* Rotate only the parent container */}
     <img 

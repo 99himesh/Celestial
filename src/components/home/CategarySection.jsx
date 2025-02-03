@@ -46,7 +46,7 @@ const CategarySection = () => {
         <SubCategary/>
         <div>
         <h3 className=' text-[#214344] md:font-[500] md:text-[65px] text-[20px] text-center'>Top Sellers</h3>
-        <h3 className=' text-[#214344] font-[500] text-[20px] text-center'>Our Most Loved Products</h3>
+        <h3 className=' text-[#214344] font-[600] text-[20px] text-center'>Our Most Loved Products</h3>
         <div className='md:flex  md:gap-5 justify-start md:justify-between md:px-20 px-5 items-center pt-5'>
           <div className='md:flex  md:gap-5 items-center md:justify-start '>
             <h4 className='text-[24px] font-bold '>All Products</h4>

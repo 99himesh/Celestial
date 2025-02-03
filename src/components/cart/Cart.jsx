@@ -50,11 +50,14 @@ const Cart=()=>{
    
     return(
         <>
-          <div className="cart bg-[#efe6dc] px-5  py-10 h-[100vh]">
+          <div className="cart bg-[#efe6dc] px-5  pt-[57px] h-[100vh]">
             <h4 className="text-start font-[400] text-[16px]">Congrats! You are eligible for more to enjoy FREE Shipping</h4>
+            {/* <Progress   /> */}
+            <div className="overflow-y-auto  pt-5">
+            {cartData?.length==0 && <Empty  description={<div>
             <Progress   />
-            <div className="overflow-y-auto ">
-            {cartData?.length===0 && <Empty/>}
+             <Typography.Text className="text-semibold">No data</Typography.Text>
+            </div>} />}
 
         { cartData?.map((item,idx)=>{            
           sum+=item.price
