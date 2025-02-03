@@ -122,7 +122,7 @@ const Card = ({ item, shop }) => {
             )}
           </div>
           <div
-            className="absolute flex flex-col gap-2 right-[20px] top-[20px] h-[35px] w-[35px] cursor-pointer"
+            className="absolute flex flex-col gap-2 right-[20px] top-[16px] h-[35px] w-[35px] cursor-pointer"
            
           >
             <Tooltip placement="left" title={"Add to Wishlist"}>
