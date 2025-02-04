@@ -104,25 +104,19 @@ const ProductDetails = () => {
     
   }, [dispatch])
   return (
-    <Row className="md:pt-[120px] pt-[70px] bg-[#efe6dc] px-20  pb-5">
-      <Col xl={12} lg={12} md={12} sm={24} xs={24}>
-        {/* <div className="py-5 px-3   mx-auto">
-          <img className="rounded h-[400px] w-full" src={girlImage} alt="product image" />
-          <div className="flex justify-between pt-10">
-            <button onClick={() => { addCartHandler(items) }} className="text-white bg-[#214344] hover:bg-[#214344] font-medium rounded-lg text-sm px-5 py-2  text-center">Add to Bag</button>
-            <button className="text-[#214344] border bg-[#fff] hover:text-[#fff] hover:bg-[#214344] font-medium rounded-lg text-sm px-5 py-2  text-center">Buy Now</button>
-          </div>
-        </div> */}
+    <Row className="md:pt-[120px] pt-[70px] bg-[#efe6dc] md:px-20 px-5  pb-5">
+      <Col xl={12} lg={12} md={24} sm={24} xs={24}>
+      
         <Row className=" px-5 ">
-          <Col xl={4} lg={4} md={24} sm={24} xs={24}>
-            <div className="flex  max-md:py-3 md:flex-col gap-[14px]">
+          <Col xl={4} lg={24} md={24} sm={24} xs={24}>
+            <div className="flex lg:flex-col   max-lg:py-3 py-1  gap-[14px]">
               <div onClick={() => { activeImageHAndler(items?.images[0], 1) }} className={`h-[100px] w-[100px] cursor-pointer ${activeImageId == 1 && "border-[2px] border-[#214343] rounded-md"} `}>{items?.images?.length>0 && <img className="w-[100%] h-[100%] rounded" src={items?.images[0]} />}</div>
               <div onClick={() => { activeImageHAndler(items?.images[1], 2) }} className={`h-[100px] w-[100px] cursor-pointer ${activeImageId == 2 && "border-[2px] border-[#214343] rounded-md"} `}>{items?.images?.length>0 && <img className="w-[100%] h-[100%] rounded" src={items?.images[1]} />}</div>
               <div onClick={() => { activeImageHAndler(items?.images[2], 3) }} className={`h-[100px] w-[100px] cursor-pointer ${activeImageId == 3 && "border-[2px] border-[#214343] rounded-md"} `}>{items?.images?.length>0 && <img className="w-[100%] h-[100%] rounded" src={items.images[2]} />}</div>
               <div onClick={() => { activeImageHAndler(items?.images[3], 4) }} className={`h-[100px] w-[100px] cursor-pointer ${activeImageId == 4 && "border-[2px] border-[#214343] rounded-md"} `}>{items?.images?.length>0 && <img className="w-[100%] h-[100%] rounded" src={items.images[3]} />}</div>
             </div>
           </Col>
-          <Col xl={20} lg={20} md={24} sm={24} xs={24}>
+          <Col xl={20} lg={12} md={24} sm={24} xs={24}>
             {/* <div className="slick-slider "> */}
 
             {/* <Slider {...settings}>   */}
@@ -147,7 +141,7 @@ const ProductDetails = () => {
           </Col>
         </Row>
       </Col>
-      <Col xl={12} lg={12} md={12} sm={24} xs={24} >
+      <Col xl={12} lg={24} md={24} sm={24} xs={24} >
         <div className="w-full  bg-[#efe6dc]   px-5  dark:bg-gray-800 dark:border-gray-700">
           <div className="px-3   gap-5">
             <div className="pb-3">
