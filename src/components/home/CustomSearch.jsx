@@ -36,7 +36,7 @@ const CustomSearch = ({ items, search, setOpen,setIsModalOpen }) => {
   };
   return (
     <>
-    <div className="h-[400px]  px-20">
+    <div className="h-[300px]  px-20">
       <div onClick={()=>{closeModal()}} className="flex justify-center cursor-pointer text-[30px]">x</div>
       <div className="px-5">
       <Input
