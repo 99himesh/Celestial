@@ -24,7 +24,7 @@
       .btn:before,
       .btn:after {
         content: '';
-        background-image:#214344;
+        /* background-image:#214344; */
         position: absolute;
         width: calc(100% );
         height: 41px;
