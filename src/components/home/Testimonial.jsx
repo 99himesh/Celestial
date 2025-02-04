@@ -17,7 +17,7 @@ const Testimonial=()=>{
   <div className="w-[230px] mx-auto flex justify-center h-[300px] relative "> 
     {/* Rotate only the parent container */}
     <img 
-      className=" rounded-full border-[3px] border-[#214344] " 
+      className=" rounded-full border-[5px] border-[#214344] " 
       src={manya} 
     />
   </div>
@@ -34,7 +34,7 @@ Loved them a lot Thank you Zoci ❤
   <div className="w-[230px] mx-auto flex justify-center h-[300px] relative  "> 
     {/* Rotate only the parent container */}
     <img 
-      className=" rounded-full border-[3px] border-[#BFA785] " 
+      className=" rounded-full border-[5px] border-[#BFA785] " 
       src={pritiImage} 
     />
   </div>
@@ -52,7 +52,7 @@ Thank you Zoci ❤
   <div className="w-[230px] mx-auto flex justify-center h-[300px] relative "> 
     {/* Rotate only the parent container */}
     <img 
-      className=" rounded-full border-[3px] border-[#214344]" 
+      className=" rounded-full border-[5px] border-[#214344]" 
       src={divyanshi} 
     />
   </div>

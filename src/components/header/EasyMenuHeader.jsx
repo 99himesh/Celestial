@@ -252,7 +252,6 @@ const EasyMenuHeader = ({ open, setOpen }) => {
                   }}
                   className=" bg-[#fff] rounded-full px-5 py-2 md:w-[300px]    "
                 />
-              <CustomSearch items={searchData} setOpen={setOpen}/>
                 <div className="absolute top-2 right-2">
                   <SearchOutlined style={{ fontSize: "20px" }} />
                 </div>

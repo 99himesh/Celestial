@@ -45,18 +45,18 @@ const Cart=()=>{
             
         }
     }
+console.log(cartData,"image");
 
   
    
     return(
         <>
-          <div className="cart bg-[#efe6dc] px-5  pt-[57px] h-[100vh]">
-            <h4 className="text-start font-[400] text-[16px]">Congrats! You are eligible for more to enjoy FREE Shipping</h4>
+          <div className="cart bg-[#efe6dc] px-5 w-full  pt-[57px] h-[100vh]">
             {/* <Progress   /> */}
             <div className="overflow-y-auto  pt-5">
-            {cartData?.length==0 && <Empty  description={<div>
+            {cartData?.length==0 && <Empty imageStyle={{height:"200px"}} description={<div>
             <Progress   />
-             <Typography.Text className="text-semibold">No data</Typography.Text>
+            <h4 className="text-start text-[#000] font-[400] text-[15px]">Congrats! You are eligible for more to enjoy FREE Shipping</h4>
             </div>} />}
 
         { cartData?.map((item,idx)=>{            
@@ -66,7 +66,7 @@ const Cart=()=>{
        <div className="flex justify-between px-5 pt-5" key={idx}>
         <div  className=" flex gap-3">
             <div className="h-[100px] w-[100px]">
-        <img src={image} className="w-full h-full rounded-xl"/>
+        <img src={item?.productId.images[0]} className="w-full h-full rounded-xl"/>
         </div>
         <div className="flex flex-col pt-2">
             <Typography.Text className="text-[16px] font-[400] ">{item?.title}</Typography.Text>

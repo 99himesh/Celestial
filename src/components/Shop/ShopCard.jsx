@@ -83,7 +83,7 @@ const addToWishlistHandler=async(item)=>{
       <div onMouseEnter={()=>{ setThumbnailButton(true)}} onMouseLeave={()=>{ setThumbnailButton(false)}}  className="w-[100%] mx-auto rounded-3xl  shadow-2xl">
        <div className=" relative">
        <div className=" border-[#214344] rounded-xl h-[370px]  ">
-       {!thumbnailButton && <img className="rounded-t-2xl w-full  h-full object-cover " src={item?.images[0]} alt="product image " />}
+       {!thumbnailButton && <img className="rounded-t-2xl border-[5px] border-[#214344] w-full  h-full object-cover " src={item?.images[0]} alt="product image " />}
        {thumbnailButton  && <div className="w-full   border-[3px] border-[#214344] rounded-t-[19.5px]"> <video  className="w-full h-[370px] rounded-t-2xl object-cover"  muted loop autoPlay>
                <source    src={item?.video[0]} alt="...Loading" type="video/mp4"/>
                <source  src={item.video[0]} type="video/ogg"/>

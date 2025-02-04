@@ -37,6 +37,7 @@ const  SignUp=()=>{
             const res=await sendOtp(input)
             debugger
 
+            console.log(res);
             
         if(res.status){
             setSentOtp(false)

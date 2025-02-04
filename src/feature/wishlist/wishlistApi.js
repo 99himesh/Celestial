@@ -55,9 +55,8 @@ export const deleteWishlistData = async (items) => {
   
     try {
       const res = await api.delete(
-        'https://zoci-backend.onrender.com/api/product/removeFromWishlist', 
+        `https://zoci-backend.onrender.com/api/product/removeFromWishlist/${items.userId}/${items.prodId}`, 
         {
-          data: items,
           headers: {
             'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json', 
