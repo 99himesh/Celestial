@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Drawer, Button, Checkbox, Slider, Typography, Collapse } from "antd";
 import { PlusOutlined, MinusOutlined } from "@ant-design/icons";
-
+import "./advancefilter.css"
 const { Panel } = Collapse;
 
 const AdvanceFilter = ({ open, setOpen }) => {

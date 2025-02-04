@@ -15,8 +15,8 @@ import startWhite from "../../assets/StarWhite.png";
 import starOrange from "../../assets/starOrange.png"
 import manya from "../../assets/Manya.png";
 import "./productDetails.css"
-import bag from "../../assets/icons/bagYellow.png"
-import wishlistYellow from "../../assets/icons/wishlistyellow.png"
+import bag from "../../assets/icons/greenBag.png"
+import wishlist from "../../assets/icons/wishlistGreen.png"
 import {
   TransformWrapper,
   TransformComponent,
@@ -29,6 +29,7 @@ import { TbPointFilled } from "react-icons/tb";
 // product details page start here
 
 const ProductDetails = () => {
+  const [counterPeople,setCounterPeople]=useState(5);
   const dispatch = useDispatch(); 1
   const [activeImageId, setActiveImageId] = useState(1);
   const data = useSelector(state => state.product?.products)
@@ -80,6 +81,21 @@ const ProductDetails = () => {
     setOpen(false);
   };
 
+
+
+
+
+  useEffect(()=>{
+    if(counterPeople===0)  return
+
+    const counttime= setInterval(()=>{
+   
+      setCounterPeople(prev=>prev-1)
+    },[7000])
+   clearInterval(counttime)
+
+  },[counterPeople])
+
   useEffect(() => {
     percentageCalculate();
   }, [id, dispatch, data]);
@@ -88,7 +104,7 @@ const ProductDetails = () => {
     
   }, [dispatch])
   return (
-    <Row className="md:pt-[120px] pt-[70px] bg-[#efe6dc] pb-5">
+    <Row className="md:pt-[120px] pt-[70px] bg-[#efe6dc] px-20  pb-5">
       <Col xl={12} lg={12} md={12} sm={24} xs={24}>
         {/* <div className="py-5 px-3   mx-auto">
           <img className="rounded h-[400px] w-full" src={girlImage} alt="product image" />
@@ -99,19 +115,23 @@ const ProductDetails = () => {
         </div> */}
         <Row className=" px-5 ">
           <Col xl={4} lg={4} md={24} sm={24} xs={24}>
-            <div className="flex  max-md:py-3 md:flex-col gap-3">
-              <div onClick={() => { activeImageHAndler(items?.images[0], 1) }} className={`h-[60px] w-[60px] cursor-pointer ${activeImageId == 1 && "border-[2px] border-[#214343] rounded-md"} `}>{items?.images?.length>0 && <img className="w-[100%] h-[100%] rounded" src={items?.images[0]} />}</div>
-              <div onClick={() => { activeImageHAndler(items?.images[1], 2) }} className={`h-[60px] w-[60px] cursor-pointer ${activeImageId == 2 && "border-[2px] border-[#214343] rounded-md"} `}>{items?.images?.length>0 && <img className="w-[100%] h-[100%] rounded" src={items?.images[1]} />}</div>
-              <div onClick={() => { activeImageHAndler(items?.images[2], 3) }} className={`h-[60px] w-[60px] cursor-pointer ${activeImageId == 3 && "border-[2px] border-[#214343] rounded-md"} `}>{items?.images?.length>0 && <img className="w-[100%] h-[100%] rounded" src={items.images[2]} />}</div>
-              <div onClick={() => { activeImageHAndler(items?.images[3], 4) }} className={`h-[60px] w-[60px] cursor-pointer ${activeImageId == 4 && "border-[2px] border-[#214343] rounded-md"} `}>{items?.images?.length>0 && <img className="w-[100%] h-[100%] rounded" src={items.images[3]} />}</div>
+            <div className="flex  max-md:py-3 md:flex-col gap-[14px]">
+              <div onClick={() => { activeImageHAndler(items?.images[0], 1) }} className={`h-[100px] w-[100px] cursor-pointer ${activeImageId == 1 && "border-[2px] border-[#214343] rounded-md"} `}>{items?.images?.length>0 && <img className="w-[100%] h-[100%] rounded" src={items?.images[0]} />}</div>
+              <div onClick={() => { activeImageHAndler(items?.images[1], 2) }} className={`h-[100px] w-[100px] cursor-pointer ${activeImageId == 2 && "border-[2px] border-[#214343] rounded-md"} `}>{items?.images?.length>0 && <img className="w-[100%] h-[100%] rounded" src={items?.images[1]} />}</div>
+              <div onClick={() => { activeImageHAndler(items?.images[2], 3) }} className={`h-[100px] w-[100px] cursor-pointer ${activeImageId == 3 && "border-[2px] border-[#214343] rounded-md"} `}>{items?.images?.length>0 && <img className="w-[100%] h-[100%] rounded" src={items.images[2]} />}</div>
+              <div onClick={() => { activeImageHAndler(items?.images[3], 4) }} className={`h-[100px] w-[100px] cursor-pointer ${activeImageId == 4 && "border-[2px] border-[#214343] rounded-md"} `}>{items?.images?.length>0 && <img className="w-[100%] h-[100%] rounded" src={items.images[3]} />}</div>
             </div>
           </Col>
           <Col xl={20} lg={20} md={24} sm={24} xs={24}>
             {/* <div className="slick-slider "> */}
 
             {/* <Slider {...settings}>   */}
-            <div className="md:h-[400px] h-[300px]  w-[100%]">
+            <div className="md:h-[450px]   md:w-[450px] mx-auto relative">
              {items?.images?.length>0 &&  <InnerImageZoom
+             fadeDuration={0} 
+             fullscreenOnMobile={true}
+             mobileBreakpoint={640}
+             hideCloseButton={false}
                 style={{
                   height: '100%',
                   width: '100%',
@@ -164,7 +184,7 @@ const ProductDetails = () => {
               <span className="text-sm text-red-500  dark:text-white">{discountPercentage && discountPercentage}% Off</span>
             
             </div>
-            <Flex vertical>
+            <Flex vertical className="p-0">
               <Progress strokeColor={"#214344"} showInfo={false} trailColor="white" percent={items?.quantity} status="active" />
               <div className="flex justify-between">
                 <div className="flex gap-1">
@@ -178,39 +198,24 @@ const ProductDetails = () => {
               </div>
             </Flex>
 
-            <div className="flex gap-10 pt-5">
-                <button onClick={() => { addCartHandler(items) }} className=" bg-[#214344] hover:bg-[#214344] rounded-full size-[40px] p-2"><img src={wishlistYellow}/></button>
+            <div className="flex justify-between  px-7  items-center py-[25px] ">
+            <button  onClick={() => { addCartHandler(items) }}  className=" rounded-full"><div className="p-2 h-[45px] w-[40px]"><img src={bag}  className="h-full w-full" /></div></button>
+
                 {/* <button className="text-[#214344] border bg-[#fff] hover:text-[#fff] hover:bg-[#214344] font-medium rounded-full text-sm md:w-[250px] w-[120px]  h-[45px]  text-center">Buy Now</button> */}
-                <button  className="bg-[#214344] rounded-full"><div className="bg-[#214344] hover:bg-[#214344] rounded-full p-2"><img src={bag} className="h-[20px] w-[23px]"/></div></button>
                
-                <button class="btn rounded-full">Buy Now</button>
+                <button class="btn rounded-full h-[50px] flex ">Buy Now</button>
+                <button className="   size-[30px]"><img src={wishlist}/></button>
+
+
              
               </div>
-            <div className=" flex flex-col gap-4">
-              {/* <div>
-                <Typography.Text className="tetx-lg font-bold">Material : </Typography.Text>
-                <Typography.Text className="text-md font-semibold">{items?.material}</Typography.Text>
-              </div> */}
-              <div>
-                {/* <Rate starBg={"red"} starColor={"red"} disabled allowHalf defaultValue={5} /> */}
-
-                
-
-              </div>
+        
+            <div className="flex flex-col   gap-[25px] ">
+            
+               <div className="w-[100%] shadow-xl bg-[#fffcf2]   rounded-full flex justify-start px-5 items-center h-[50px]"><div className=" flex items-center h-[20px] w-[20px]  "><img className="w-[100%] " src={bag} /></div>
+            <Typography.Text className="ps-4  text-[16px]">{counterPeople} people have this in their carts right now. It's running out! </Typography.Text>
             </div>
-            <div className="flex flex-col gap-5 pt-5 ">
-              {/* <div className="pt-5">
-                <Typography.Text className="tetx-lg font-bold">Review : </Typography.Text>
-                <Typography.Text className="text-md font-semibold">{items?.review}</Typography.Text>
-              </div> */}
-              {/* <div>
-                <Typography.Text className="tetx-lg font-bold">Available size : </Typography.Text>
-                <Typography.Text className="text-md font-semibold">{items?.size}</Typography.Text>
-              </div> */}
-               <div className="w-[100%] shadow-xl bg-[#fffcf2]   rounded-full flex justify-start px-5 items-center h-[45px]"><div className=" flex items-center h-[20px] w-[20px]  "><img className="w-[100%] " src={bag} /></div>
-            <Typography.Text className="ps-4">9 people have this in their carts right now. It's running out! </Typography.Text>
-            </div>
-              <div>
+              <div className="">
               <Collapse
                 style={{ borderRadius: "30px", background: "#fff" }}
                   className="shadow-xl"
@@ -223,7 +228,7 @@ const ProductDetails = () => {
                 className="shadow-xl"
 
                 size="medium"
-                items={[{ key: '1', label: 'Story', children: <p>{"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s."}</p> }]} />
+                items={[{ key: '1', label: <Typography.Text  className="text-[16px] text-start">Story</Typography.Text>, children: <p>{"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s."}</p> }]} />
               {/* <div className="pb-5">
                 <Typography.Text className="tetx-lg font-bold">Color : </Typography.Text>
                 <Typography.Text className="text-md font-semibold">{items?.color}</Typography.Text>

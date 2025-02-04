@@ -17,7 +17,7 @@ const WishList=()=>{
    
     const getwishlistDataHandler=async()=>{
         try {
-            const data=await getWishlistData(user)
+            const data=await getWishlistData()
             console.log(data.wishlist   );
             
             dispatch(addToWishList(data.wishlist))
@@ -38,19 +38,22 @@ const WishList=()=>{
             
         }
     }
+    console.log(wishlistData);
+    
     useEffect(()=>{
         getwishlistDataHandler();
     },[deleteUpdate,dispatch])
     return(
         <>
-          <div className="cart    px-5  py-16 bg-[#efe6dc] h-[100%]">
+          <div className="cart w-full    px-5  py-16 bg-[#efe6dc] h-[100%]">
             <div className="overflow-y-auto  ">
-            <h4 className="text-start font-[400] text-[16px]">Congrats! You are eligible for more to enjoy FREE Shipping</h4>
             {/* <Progress   /> */}
 
-            {wishlistData?.length==0 && <Empty  description={<div>
-            <Progress   />
-             <Typography.Text className="text-semibold">No data</Typography.Text>
+            {wishlistData?.length==0 && <Empty imageStyle={{height:"200px"}}  description={<div >
+            {/* <Progress   />  */}
+            <h3  className="text-center font-[400] text-[24px] text-[#000]">Empty Wishlist</h3>
+            <h4 className="text-center font-[400] text-[15px] text-[#000] py-3">You have no items in your wishlist. Start adding!</h4>
+<button className="bg-[#214344] text-[#fff] px-10 py-3 rounded-full text-[16px]">Shop</button>
             </div>} />}
         { wishlistData?.map((item,idx)=>{
             return(
