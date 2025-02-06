@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux"
 import image from "../../assets/girl.jpg"
 import { deleteWishlistData, getWishlistData } from "../../feature/wishlist/wishlistApi";
 import { addToWishList } from "../../feature/wishlist/wishlistSlice";
-import DrawerLoader from "../loading/drawerLoader";
 import { useEffect, useState } from "react";
 const WishlistView=()=>{
     const wishListData=useSelector(state=>state?.wish?.wishlist)
