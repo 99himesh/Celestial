@@ -35,7 +35,7 @@ const  SignUp=()=>{
     const sendOtpHandler=async()=>{
         try {
             const res=await sendOtp(input)
-            debugger
+            
 
             console.log(res);
             

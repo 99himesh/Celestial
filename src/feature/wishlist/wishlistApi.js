@@ -2,7 +2,7 @@ import api from "../../axios/axios";
 // This is api of products
 
 export const addToWishlistData=async(data,token)=>{ 
-    debugger  
+      
     
     try {
         const res=await api.post(`https://zoci-backend.onrender.com/api/product/addtowishlist`,data,{ headers: {
@@ -51,7 +51,6 @@ export const getWishlistData=async()=>{
 
 
 export const deleteWishlistData = async (items) => {
-    debugger;
     const token = localStorage.getItem("token");
   
     try {
