@@ -1,5 +1,4 @@
 import { Button, Empty, Progress, Typography } from "antd";
-import CustomDrawer from "../CustomDrawer";
 import { DeleteOutlined } from "@ant-design/icons";
 import image from "../../assets/women.jpg"
 import { addToCartData, deleteCartData, getCartData } from "../../feature/categary/cartApi";
@@ -7,9 +6,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../feature/categary/cartSlice";
 import { useNavigate } from "react-router";
-import Loading from "../loading/Loading";
-import DrawerLoader from "../loading/drawerLoader.jsx";
-// import DrawerLoader from "../loading/drawerLoader";
+import DrawerLoader from "../loading/DrawerLoader.jsx";
 const Cart=()=>{
     const dispatch=useDispatch();
     const navigate=useNavigate();
