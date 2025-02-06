@@ -104,7 +104,7 @@ const SubCategary=({categary})=>{
                 }}
               >
                 <Card
-                className={`2xl "bg-[#fff] subCategary xl:size-[280px]   lg:size-[220px] md:size-[200px] max-md:size-[200px]   max-sm:size-[250px]   "  `}
+                className={`2xl "bg-[#fff] subCategary xl:size-[280px]   lg:size-[220px] md:size-[200px] max-md:size-[200px]   max-sm:size-[240px]   "  `}
                   style={{
                     borderRadius: '50%',
                     // border:"2px solid #747676",
