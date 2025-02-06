@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Button, Collapse, Drawer, Radio, Space, Tooltip } from "antd";
-import { NavLink } from "react-router";
+import { NavLink, useNavigate } from "react-router";
 import {
   FileSearchOutlined,
   HomeOutlined,
@@ -64,6 +64,7 @@ const siderStyle = {
   backgroundColor: "#214344",
 };
 const EasyMenuHeader = ({ open, setOpen }) => {
+  const navigate=useNavigate();
   const dispatch = useDispatch();
   // const [searchData,setSearchData]=useState([]);
   const [activeTab, setActiveTab] = useState("home");
@@ -140,7 +141,7 @@ const EasyMenuHeader = ({ open, setOpen }) => {
                   </div>
                 </button>
               </Tooltip>
-              <Tooltip placement="left" title={"Bag"}>
+              <Tooltip placement="left" title={"Shop"}>
                 <button
                   onClick={() => setActiveTab("cart")}
                   className={` rounded-full p-2   ${
@@ -237,8 +238,8 @@ const EasyMenuHeader = ({ open, setOpen }) => {
           </div>
         </Sider>
         {activeTab == "catalogue" && <Catalogue />}
-        {activeTab == "cart" && <Cart />}
-        {activeTab == "wishlist" && <WishList />}
+        {/* {activeTab == "cart" && (navigate("/shop"))} */}
+        {activeTab == "wishlist" && <div  className=" pt-16 w-full"><WishList /></div>}
         {activeTab == "profile" && <SignUp />}
 
         <div className=" pt-[55px] home-tab">

@@ -8,60 +8,66 @@ import { addToCart } from "../../feature/categary/cartSlice";
 import { addToWishList } from "../../feature/wishlist/wishlistSlice";
 import { deleteWishlistData, getWishlistData } from "../../feature/wishlist/wishlistApi";
 import { useNavigate } from "react-router";
+import Loading from "../loading/Loading";
+import DrawerLoader from "../loading/DrawerLoader";
 const WishList=()=>{
     const dispatch=useDispatch();
-    const [deleteUpdate,setDeleteUpdate]=useState(false)
+    const [loading,setLoading]=useState(false)
     const wishlistData=useSelector(state=>state?.wish.wishlist)
     const navigate=useNavigate();
     const user=localStorage.getItem("userId")
+   console.log(wishlistData,"wisjj");
    
     const getwishlistDataHandler=async()=>{
+        debugger
+        setLoading(true)
         try {
             const data=await getWishlistData()
-            console.log(data.wishlist   );
-            
-            dispatch(addToWishList(data.wishlist))
-        } catch (error) {   
+            console.log(data.wishlist);
+            dispatch(addToWishList(data?.wishlist))
+            setLoading(false)
+        } catch (error) {  
+            setLoading(false) 
         }
     }
    
     const deleteWishlistHandler=async(item)=>{
+        setLoading(true)
         console.log(item);
         
       const items={userId:user,prodId: item.prodId }
         
         try {
         const data=await deleteWishlistData(items)  
-        setDeleteUpdate(true)   
+        getwishlistDataHandler();
+        setLoading(false)
         } catch (error) {
+            setLoading(false)
+
             throw error;
-            
         }
     }
-    console.log(wishlistData);
     
     useEffect(()=>{
         getwishlistDataHandler();
-    },[deleteUpdate,dispatch])
+    },[])
+    if(loading) return <DrawerLoader/>
     return(
         <>
-          <div className="cart w-full    px-5  py-16 bg-[#efe6dc] h-[100%]">
+          <div className="cart w-full    px-5 min-h-[calc(100vh-85px)]    bg-[#efe6dc]  pb-3">
             <div className="overflow-y-auto  ">
-            {/* <Progress   /> */}
-
             {wishlistData?.length==0 && <Empty imageStyle={{height:"200px"}}  description={<div >
-            {/* <Progress   />  */}
             <h3  className="text-center font-[400] text-[24px] text-[#000]">Empty Wishlist</h3>
             <h4 className="text-center font-[400] text-[15px] text-[#000] py-3">You have no items in your wishlist. Start adding!</h4>
-<button className="bg-[#214344] text-[#fff] px-10 py-3 rounded-full text-[16px]">Shop</button>
+            <button onClick={()=>navigate("/shop")} className="bg-[#214344] text-[#fff] px-10 py-3 rounded-full text-[16px]">Shop</button>
             </div>} />}
         { wishlistData?.map((item,idx)=>{
             return(
           
-       <div className="flex justify-between px-5 pt-5 ">
+       <div className="flex justify-between px-5 pt-5  w-full">
         <div  className=" flex gap-3">
             <div className="h-[100px] w-[100px]">
-        <img src={image} className="w-full h-full rounded-xl"/>
+        <img src={item.image[0]} className="w-full h-full rounded-xl"/>
         </div>
         <div className="flex flex-col pt-2">
             <Typography.Text className="text-[16px] font-[400] ">{item?.title}</Typography.Text>

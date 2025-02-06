@@ -1,5 +1,4 @@
 import { Button, Empty, Progress, Typography } from "antd";
-import CustomDrawer from "../CustomDrawer";
 import { DeleteOutlined } from "@ant-design/icons";
 import image from "../../assets/women.jpg"
 import { addToCartData, deleteCartData, getCartData } from "../../feature/categary/cartApi";
@@ -7,51 +6,62 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../feature/categary/cartSlice";
 import { useNavigate } from "react-router";
+import DrawerLoader from "../loading/DrawerLoader.jsx";
 const Cart=()=>{
     const dispatch=useDispatch();
     const navigate=useNavigate();
     const cartData=useSelector(state=>state?.cart?.cart)
-    const [dataUpdated, setDataUpdated] = useState(false);
+    const [loading,setLoading]=useState(false)
+     console.log(cartData,"cart");
      
    let sum=0;
     const getCartDataHandler=async()=>{
-       debugger
-        // (user,token);
+        setLoading(true)
         
         try {
-            debugger
+            
        
             const data=await getCartData()
+            setLoading(false)
             
-            debugger
             dispatch(addToCart(data?.data?.cartItems))
         } catch (error) {
+            
+            if(error?.response?.data?.message==="No items in the cart"){
+                dispatch(addToCart([]))  
+            }
+            setLoading(false)
+        }
+    }
+
+
+
+    const deleteCartHandler=async(items)=>{
+        setLoading(true)
+        if(cartData.length===0) return
+        const id=items.productId._id;
+        try {
+        const response=await deleteCartData(id)  
+        if(response.status!="success") return
+        getCartDataHandler()
+        setLoading(false) 
+        } catch (error) {
+            setLoading(false)
+            throw error;
             
         }
     }
     useEffect(()=>{
         getCartDataHandler();
-    },[dataUpdated])
-    const deleteCartHandler=async(items)=>{
-        const id=items.productId._id;
-        
-    
-        
-        try {
-        const data=await deleteCartData(id)  
-        setDataUpdated((prev) => !prev);   
-        } catch (error) {
-            throw error;
-            
-        }
-    }
-console.log(cartData,"image");
+    },[])
+ 
 
-  
+  if(loading) return <DrawerLoader/>
    
     return(
         <>
-          <div className="cart bg-[#efe6dc] px-5 w-full  pt-[57px] h-[100vh]">
+        <div className="bg-[#efe6dc] min-h-[calc(100vh-85px)]  w-full ">
+          <div className="cart  px-5 w-full h-auto pb-3">
             {/* <Progress   /> */}
             <div className="overflow-y-auto  pt-5">
             {cartData?.length==0 && <Empty imageStyle={{height:"200px"}} description={<div>
@@ -97,13 +107,14 @@ console.log(cartData,"image");
         </div>
         <div className="flex  justify-between pt-3">
             <div >
-                <Button className="bg-[#214344] text-[#fff] text-[16px] w-[210px] font-[400] rounded-full py-5 hover:!border-[#214344] hover:!text-[#214344]" onClick={()=>{navigate("/viewcart")}} >View Cart</Button>
+                <Button className="bg-[#214344] text-[#fff] text-[16px] md:w-[210px] w-[150px] font-[400] rounded-full py-5 hover:!border-[#214344] hover:!text-[#214344]" onClick={()=>{navigate("/viewcart")}} >View Cart</Button>
             </div>
             <div >
-                <Button className="bg-[#214344] text-[#fff] text-[16px] w-[210px] font-[400] rounded-full py-5 hover:!border-[#214344] hover:!text-[#214344]"  >Checkout</Button>
+                <Button className="bg-[#214344] text-[#fff] text-[16px]  md:w-[210px] w-[150px] font-[400] rounded-full py-5 hover:!border-[#214344] hover:!text-[#214344]"  >Checkout</Button>
             </div>
         </div>
         </div>}
+         </div>
          </div>
         </>
     )

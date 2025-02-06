@@ -1,0 +1,8 @@
+ .ant-slider-track.ant-slider-track-1  {background-color: #214344;}
+ .sorting .ant-select-selection-item {font-size: 16px;color: #214344;}
+ .ant-select-item-option:hover {
+    color: white !important;
+  }
+
+  .ant-collapse-item{border-radius: 30px!important;}
+  .ant-collapse-content-active{border-radius: 0 0 30px 30px!important;}

@@ -1,12 +1,11 @@
-import { Circles, Grid, Hourglass } from 'react-loader-spinner'
 import loader from "../../assets/loader.mp4"
-const Loading = () => {
+const DrawerLoader = () => {
     const loadingStyle = {
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
-        height: '100vh',
+        height: '80vh',
         backgroundColor: '#red',
         fontSize: '18px',
         color: '#555',
@@ -26,4 +25,4 @@ const Loading = () => {
 };
 
 
-export default Loading;
+export default DrawerLoader;

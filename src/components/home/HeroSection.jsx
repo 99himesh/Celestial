@@ -13,7 +13,7 @@ const HeroSection=()=>{
       </video>
       </div>
       <div className="absolute md:top-[278px] top-[150px]  left-0 right-0 mx-auto  w-[60%] text-center">
-          <h1  className="md:text-[70px] text-[24px] font-semibold text-[#fff] ">Signature Collection Coming Soon </h1>
+          <h1  className="md:text-[70px] text-[24px] font-[600] text-[#fff] ">Signature Collection Coming Soon </h1>
           <button className="px-7 bg-[transparent]    md:backdrop-blur-lg py-1 rounded-full md:text-[20px] text-[14px]   text-[#fff] mt-8">Know More <RightOutlined /></button> 
   
       </div>

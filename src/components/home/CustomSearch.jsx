@@ -5,6 +5,7 @@ import { searchProducts } from "../../feature/product/productSlice";
 import { Link } from "react-router-dom";
 import { Typography } from "antd";
 import { useEffect, useState } from "react";
+import closeIcon from "../../assets/icons/closeIconGreen.png"
 
 const CustomSearch = ({ items, search, setOpen,setIsModalOpen }) => {
   const dispatch = useDispatch();
@@ -36,18 +37,18 @@ const CustomSearch = ({ items, search, setOpen,setIsModalOpen }) => {
   };
   return (
     <>
-    <div className="h-[300px]  px-20">
-      <div onClick={()=>{closeModal()}} className="flex justify-center cursor-pointer text-[30px]">x</div>
-      <div className="px-5">
-      <Input
+    <div className={`${searchData.length>0 ?"h-[500px]":"h-[220px]"} px-20   backdrop-blur-md`}>
+      <div onClick={()=>{closeModal()}} className="flex  justify-center cursor-pointer w-[40px] h-[40px] mx-auto  bg-[#fff] rounded-full p-2 mt-5  items-center  "><div className="h-[20px] w-[20px]  "><img className="w-full" src={closeIcon}/></div></div>
+      <div className="px-5 w-[400px] mx-auto   pt-10">
+      <input
         // onChange={searchHandler}
         onChange={(e)=>{setSearchInut(e.target.value)}}
         
-        className="bg-[#e4cc9b] border-none rounded-full w-full active:bg-[#e4cc9b] hover:bg-[#e4cc9b] focus:bg-[#e4cc9b] border-[2px] border-![#214344]"
-        placeholder="Search Your Products"
+        className="bg-[#efe6dc] text-center text-[40px] outline-none  focus:outline-none active:outline-none    focus:border-none active:border-none  border-none rounded-full w-full active:bg-[#efe6dc] hover:bg-[#efe6dc] focus:bg-[#efe6dc] border-[2px] border-![#efe6dc]"
+        placeholder="Search Products..."
       />
       </div>
-      <div className="h-[300px]  overflow-auto py-5">
+      <div className="h-[350px]  overflow-auto py-5">
       {searchData?.map((item) => (
         <div className=" px-5">
         <Link onClick={() => setOpen(false)} to={`/product/${item._id}`} key={item._id} className="flex justify-between px-2 pt-5 bg-[#efe6dc] rounded-xl shadow-xl py-5 mb-3">

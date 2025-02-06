@@ -1,100 +1,149 @@
 import { Col, Drawer, Row, Typography } from "antd";
-import { Pagination } from 'antd';
+import { Pagination } from "antd";
 import ProductListing from "./ProductListing";
-import { Select } from 'antd';
-import { getProductApi, getProductApiPaginate, getProductApiSort, getProductFilterApi } from "../../feature/product/productApi";
+import { Select } from "antd";
+import {
+  getProductApi,
+  getProductApiPaginate,
+  getProductApiSort,
+  getProductFilterApi,
+} from "../../feature/product/productApi";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addProducts } from "../../feature/product/productSlice";
-import Loading from "../loading/Loading";
 import CustomFilter from "./CustomFlter";
 import Sorting from "./sorting";
 import { TbPointFilled } from "react-icons/tb";
 import { addproductToshop } from "../../feature/shop/shopSlice";
+import filterBanner from "../../assets/filterBanner.jpg";
+import { RightOutlined } from "@ant-design/icons";
+import filterIcon from "../../assets/icons/filterIcon.png";
 const Shop = () => {
-  const [loading,setLoading]=useState(true);
-  const dispatch = useDispatch()
-const data=useSelector(state=>state?.shop?.shop)
-const categary=useSelector(state=>state.shop.categary);
+  const dispatch = useDispatch();
+  const data = useSelector((state) => state?.shop?.shop);
+  const categary = useSelector((state) => state.shop.categary);
+  const [filter, setFiter] = useState(false);
 
-  console.log(data);
-  
-  
   const getProducts = async () => {
-    const pagination = { page: 1, limit: 10, }
-    const data = await getProductFilterApi(pagination)  
+    const pagination = { page: 1, limit: 10 };
+    const data = await getProductFilterApi(pagination);
     console.log(data.products);
-      
-    if(data) setLoading(false)
-  dispatch(addproductToshop(data?.products))
-  }
 
+    dispatch(addproductToshop(data?.products));
+  };
 
-
-  const filterSubcategary=async(data)=>{
-    
+  const filterSubcategary = async (data) => {
     try {
-      const filters={category:data}
-      const res=await getProductFilterApi({filters});
+      const filters = { category: data };
+      const res = await getProductFilterApi({ filters });
       console.log(res);
-      
-      dispatch(addproductToshop(res?.products))  
-      dispatch(addCategary(data))  
+
+      dispatch(addproductToshop(res?.products));
+      dispatch(addCategary(data));
     } catch (error) {
       console.log(error);
-      
     }
-  
-  
-    
-  }
-  
+  };
+
   useEffect(() => {
     getProducts();
-  }, [])
-  
- if(loading) return <Loading/>
+  }, []);
+
   return (
     <>
-    
-    <Row className="md:pt-[110px] pt-[70px] ">
-      <div className="flex flex-wrap justify-between items-center w-[100%]   md:px-10 px-5  py-2 fixed z-10 bg-[#fff]">
-        <div>
-      <div className="flex flex-wrap gap-1 items-center ">      
-            <h3 className="text-[#214344] text-[14px]">Home </h3>
-            <TbPointFilled />
-            <p className="text-[#214344] text-[16px] font-[400]">{categary.toUpperCase()}</p>
+      <Row className="md:pt-[110px] pt-[70px]  ">
+        {/* <div className="relative  w-full">
+           <img className="w-full h-[200px]" src={filterBanner} alt="" />
+           <div className=" absolute top-[30%] left-10 ">      
+            <h3 className="text-[#214344] text-[24px] font-bold">{categary===""?"Shop":categary.charAt(0).toUpperCase()}{categary.slice(1,categary.lenght)} </h3>
+            <div className="flex gap-3 items-center pt-3 ">
+            <p className="text-[#214344] text-[14px] font-[400]"> Home</p>
 
+            <RightOutlined style={{fontSize:"14px",color:"#214344"}} />
+            <p className="text-[#214344] text-[14px] font-[400]"> Shop</p>
+            <RightOutlined style={{fontSize:"12px",color:"#214344"}} />
+
+            <p className="text-[#214344] text-[14px] font-[400]"> {categary.toUpperCase()}</p>
+            </div>
         </div>
-        {/* <h2 className="text-[#214344] text-[26px] font-semibold">Pendents</h2> */}
-        </div>
-        <div>
-      <Sorting  />
+     </div>
 
-        </div>
 
-      </div>
+     
+     <div className="flex justify-between w-full items-center fixed top-0 z-[9999] bg-[#fff] shadow-md">
+  <div>hsvdjh</div>
+  <div>
+    <Sorting />
+  </div>
+</div>
 
-      <Col span={24}>
-       
-        <div className="md:px-20 px-5 pt-20 bg-[#eee5db] cursor-pointer ">
-          <div className="py-5 cursor-pointer flex justify-center" >
-            <CustomFilter />
+   */}
+
+        <div className="relative w-full">
+          <div className="h-[236px] ">
+            <img className="w-full h-full" src={filterBanner} alt="" />
           </div>
-          </div> 
+          <div className="absolute top-[30%] md:left-10 left-2">
+            <h3 className="text-[#214344] text-[24px] font-bold">
+              {categary === ""
+                ? "Shop"
+                : categary.charAt(0).toUpperCase() + categary.slice(1)}
+            </h3>
+            <div className="flex gap-3 items-center pt-3">
+              <p className="text-[#214344] text-[14px] font-[500]">Home</p>
+              <RightOutlined style={{ fontSize: "14px", color: "#214344" }} />
+              <p className="text-[#214344] text-[14px] font-[500]">Shop</p>
+              <RightOutlined style={{ fontSize: "12px", color: "#214344" }} />
+              <p className="text-[#214344] text-[14px] font-[500]">
+                {categary.toUpperCase()}
+              </p>
+            </div>
+            <div className="flex gap-1 pt-14">
+              <h5 className="text-[14px] font-[400] text-[#214344]">
+                Showing 1-20 of 20 results{" "}
+              </h5>
+            </div>
+          </div>
+        </div>
+
+        {/* Sticky Banner */}
+        <div className=" sticky top-[110px] z-[9999]  ">
+          <div className="absolute right-0   ">
+            {filter ? (
+              <div
+                onClick={() => {
+                  setFiter((prev) => !prev);
+                }}
+                className="size-[50px] p-1  bg-[#214344]  cursor-pointer rounded-l-full  flex justify-center items-center "
+              >
+                <div className="size-[24px]">
+                <img className="w-full h-full" src={filterIcon} />
+                </div>
+              </div>
+            ) : (
+              <div className="sticky top-[100px] z-[9999]  bg-white shadow-md min-w-[350px]   transition-all  duration-500 rounded-l-full">
+                <div className="flex items-center justify-between px-3  ">
+                 
+                  <Sorting setFiter={setFiter}/>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+
+        <Col span={24}>
+          <div className="md:px-20 px-5 pt-20 bg-[#eee5db] cursor-pointer ">
+            <div className="py-5 cursor-pointer flex justify-center">
+              <CustomFilter />
+            </div>
+          </div>
           <div className="px-10 bg-[#eee5db]  py-20">
-          <ProductListing data={data} />
+            <ProductListing data={data} />
           </div>
-         
-      </Col>
-    </Row>
-   
+        </Col>
+      </Row>
     </>
-  
-    
-  )
-}
+  );
+};
 
 export default Shop;
-
-

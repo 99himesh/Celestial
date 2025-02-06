@@ -6,8 +6,10 @@ import { Header } from "antd/es/layout/layout";
 import AdvanceFilter from "./AdvanceFilter";
 import { useDispatch } from "react-redux";
 import { addproductToshop } from "../../feature/shop/shopSlice";
-
-const Sorting = ({ setPaginateData, item, paginateData }) => {
+import filterIcon from "../../assets/icons/greenFilter.png"
+import closeIcon from "../../assets/icons/closeIconGreen.png";
+import "./advancefilter.css"
+const Sorting = ({ setPaginateData, item, paginateData,setFiter }) => {
   const [sort, setSort] = useState("high")
   const dispatch=useDispatch();
   const [current, setCurrent] = useState(1);
@@ -57,51 +59,72 @@ const Sorting = ({ setPaginateData, item, paginateData }) => {
     }
   }
 
-  const showDrawer = () => {
-    setOpen(true);
-  };
 
 
+const filterHandler=()=>{
+  setOpen(true);
+}
 
   return (
     <>
 
-      <div className="flex   w-full flex-wrap gap-7  z-10 justify-between items-center pb-3   ">
+      <div className="sorting  flex   w-full flex-wrap  z-10 justify-between items-center   ">
         <div>
           {/* <h4>Showing {paginateData[0]?.id}-{paginateData[paginateData.length - 1]?.id} of {item?.length}</h4> */}
         </div>
-        <div className="flex items-center gap-4 pt-2">
-          <div className="cursor-pointer" onClick={showDrawer}>
-          <FilterIcon color={"#000"} />
+        <div className="flex items-center w-full justify-between  ">
+        <div className="  size-[50px] flex items-center justify-center rounded-full">
+                    <div
+                      onClick={() => {
+                        setFiter((prev) => !prev);
+                      }}
+                      className=" cursor-pointer rounded-full  size-[20px]"
+                    >
+                      <img className="h-full w-full" src={closeIcon} />
+                    </div>
+                  </div>
+          <div className="cursor-pointer h-[24px] w-[24px]" onClick={()=>{filterHandler()}}>
+          {/* <FilterIcon color={"#000"} /> */}
+          <img src={filterIcon}/>
           </div>
           <ConfigProvider
-            theme={{
-              components: {
-                Select: {
-                  colorPrimary: "#214344",  // Theme color
-                  borderRadius: 8,          // Rounded edges
-                  controlItemBgHover: "#1a2d2d", // Hover effect
-                  controlItemBgActive: "#fff", // Active state
-                  colorText: "#122424",        // Text color
-                  borderColor: "transparent", // Remove border
-                  optionSelectedColor: "#fff", // Selected text color
-                  optionSelectedBg: "#1a2d2d" // Selected background
-                }
-              }
-            }}
-          >
+  theme={{
+    components: {
+      Select: {
+        controlOutline: "none", // Remove focus outline
+        borderRadius: 0, // Optional: Remove border radius
+        optionSelectedBg: "#214344", // Selected background
+        optionSelectedColor: "#fff", // Selected text color
+        controlItemBgHover: "#214344", // Background color on hover
+        optionActiveBg: "#214344", // Active background
+        optionActiveColor: "#ff6600", // Text color on hover
+        colorText: "#000", // Default text color
+        optionFontColor: "#ff0000", // **Set text color inside dropdown options**
+      }
+    }
+  }}
+>
+
   <Select
-  // className="rounded-full"
-    defaultValue="default"
-    style={{ width: 140 ,borderRadius:"20px"}}
+  className="hover:text-[#fff]"
+    // defaultValue="Default Sorting"
+    placeholder={<p className="text-[#214344] text-[16px]">Short by</p>}
+    bordered={false} // Removes the border
+    style={{
+      width: 200,
+      backgroundColor: "transparent", // Ensures background is transparent
+    }}
     onChange={(e) => { selectHandle(e); }}
     options={[
-      { value: 'default', label: 'Default Sorting' },
-      { value: 'low', label: 'Low to High' },
-      { value: 'high', label: 'High to Low' },
+      // { value: "default", label: "Default Sorting" },
+      { value: "low", label: "Low to High by price" },
+      { value: "high", label: "High to Low by price" },
     ]}
   />
 </ConfigProvider>
+
+
+
         </div>
       </div>
 
