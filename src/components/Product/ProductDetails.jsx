@@ -122,7 +122,7 @@ const ProductDetails = () => {
   }, [dispatch])
   return (
     <div className="relative">
-    <Row className="md:pt-[120px] pt-[70px] bg-[#efe6dc] md:px-20 px-5  pb-5">
+    <Row className="md:pt-[120px] pt-[70px] bg-[#efe6dc] md:px-20 2  pb-5">
       <Col xl={12} lg={12} md={24} sm={24} xs={24}>
       
         <Row className=" px-5 ">
@@ -207,7 +207,7 @@ const ProductDetails = () => {
               </div>
             </Flex>
 
-            <div className="flex justify-between  md:px-7  items-center py-[15px]  ">
+            <div className="flex justify-between  md:px-7 px-0  items-center py-[15px]  ">
             <button  onClick={() => { addCartHandler(items,"cart") }}  className=" rounded-full cursor-pointer"><div className="p-2 h-[45px] w-[40px] cursor-pointer"><img src={bag}  className="h-full w-full" /></div></button>
 
                 {/* <button className="text-[#214344] border bg-[#fff] hover:text-[#fff] hover:bg-[#214344] font-medium rounded-full text-sm md:w-[250px] w-[120px]  h-[45px]  text-center">Buy Now</button> */}
