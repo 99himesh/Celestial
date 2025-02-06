@@ -42,12 +42,12 @@ const Footer=()=>{
         <div className="md:px-20 px-5 " >
         <Row >
             <Col xl={6} lg={6} md={8} sm={12} xs={24}>
-            <div className="flex h-full justify-end  items-center px-10" >
+            <div className="flex h-full justify-end   items-center px-10" >
             <img className="" src={footerImage}/>
             </div>
             </Col>
             <Col xl={6} lg={6} md={8} sm={12} xs={24}>
-            <div className=""  >
+            <div className="max-sm:pt-7"  >
                 <h6 className="text-[24px]  text-[#F0D5A0] font-semibold" >LET US HELP YOU</h6>
                 <div className="flex flex-col gap-3 pt-10">
                     <Link to={"/"} className="text-[#fff] hover:text-[#fff] text-[18px] ">Home</Link>
@@ -65,7 +65,7 @@ const Footer=()=>{
             </div>
             </Col>
             <Col xl={6} lg={6} md={8} sm={12} xs={24}>
-            <div className=""   >
+            <div className="max-sm:pt-7"   >
                 <h6 className="text-[24px]  text-[#F0D5A0] font-semibold">THE COLLECTION</h6>
                 <div className="flex flex-col gap-3 pt-10 ">
                     <Link className="text-[#fff] hover:text-[#fff] text-[18px] cursor-pointer">Signature Collection</Link>
@@ -94,7 +94,7 @@ const Footer=()=>{
             </div>
             </Col>
             <Col xl={6} lg={6} md={8} sm={12} xs={24}>
-            <div className=""  >
+            <div className="max-sm:pt-7"  >
                 <h6 className="text-[24px]  font-semibold text-[#F0D5A0]">CONTACT DETAILS</h6>
                 <div className="flex flex-col gap-3 pt-10">
                     <Link className="text-[#fff] hover:text-[#fff] text-[18px] ">hello@zoci.in</Link>

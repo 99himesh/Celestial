@@ -29,7 +29,7 @@ Loved them a lot Thank you Zoci ❤
   </p>
 </div>
         </Col>
-        <Col xl={8} lg={8} md={8} sm={24} xs={24} className="py-[120px] bg-[#214344] md:absolute -top-[58px]  left-0 right-0 mx-auto" >
+        <Col xl={8} lg={8} md={8} sm={24} xs={24} className="py-[120px] bg-[#214344] md:absolute md:-top-[58px]  left-0 right-0 mx-auto" >
         <div className="flex flex-col justify-center items-center gap-5  w-[100%] mx-auto  bg-[#214344] px-5 ">
   <div className="w-[230px] mx-auto flex justify-center h-[300px] relative  "> 
     {/* Rotate only the parent container */}

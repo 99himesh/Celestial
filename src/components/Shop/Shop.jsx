@@ -80,7 +80,7 @@ const Shop = () => {
    */}
 
         <div className="relative w-full">
-          <div className="h-[236px] ">
+          <div className="md:h-[236px] h-[150px] ">
             <img className="w-full h-full" src={filterBanner} alt="" />
           </div>
           <div className="absolute top-[30%] md:left-10 left-2">
@@ -98,7 +98,7 @@ const Shop = () => {
                 {categary.toUpperCase()}
               </p>
             </div>
-            <div className="flex gap-1 pt-14">
+            <div className="flex gap-1 md:pt-14 pt-2">
               <h5 className="text-[14px] font-[400] text-[#214344]">
                 Showing 1-20 of 20 results{" "}
               </h5>
@@ -107,7 +107,7 @@ const Shop = () => {
         </div>
 
         {/* Sticky Banner */}
-        <div className=" sticky top-[110px] z-[9999]  ">
+        <div className=" sticky md:top-[110px] top-[70px] z-[9999]  ">
           <div className="absolute right-0   ">
             {filter ? (
               <div
@@ -132,7 +132,7 @@ const Shop = () => {
         </div>
 
         <Col span={24}>
-          <div className="md:px-20 px-5 pt-20 bg-[#eee5db] cursor-pointer ">
+          <div className="md:px-20 px-5  bg-[#eee5db] cursor-pointer ">
             <div className="py-5 cursor-pointer flex justify-center">
               <CustomFilter />
             </div>
