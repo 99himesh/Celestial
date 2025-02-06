@@ -168,7 +168,7 @@ const ProductDetails = () => {
               </div>
               <div className="flex justify-between items-center">
                 <div>
-              <h5 className="text-[30px] font-semibold tracking-tight text-gray-900 dark:text-white">{items?.title}</h5>
+              <h5 className="text-[30px] font-semibold tracking-tight text-[#214344]">{items?.title}</h5>
 
                 </div>
                 <div>
@@ -188,9 +188,9 @@ const ProductDetails = () => {
               </div>
             </div>
             <div className="flex gap-2 items-center pt-7">
-              <span className="text-xl font-semibold text-gray-900 dark:text-white">Rs. {items?.price}</span>
-              <span className="text-lg text-gray-400 line-through dark:text-white">Rs. {items?.discountPrice}</span>
-              <span className="text-sm text-red-500  dark:text-white">{discountPercentage && discountPercentage}% Off</span>
+              <span className="text-xl font-semibold text-[#214344] ">Rs. {items?.price}</span>
+              <span className="text-lg text-gray-400 line-through ">Rs. {items?.discountPrice}</span>
+              <span className="text-sm text-red-500  ">{discountPercentage && discountPercentage}% Off</span>
             
             </div>
             <Flex vertical className="p-0">
@@ -219,7 +219,7 @@ const ProductDetails = () => {
             <div className="flex flex-col   gap-[20px] ">
             
                <div className="w-[100%] shadow-xl bg-[#fffcf2]   rounded-full flex justify-start md:px-5 px-2  items-center h-[50px]"><div className=" flex items-center h-[20px] w-[20px]  "><img className="w-[100%] " src={bag} /></div>
-            <Typography.Text className="ps-4  text-[16px]">{counterPeople} people have this in their carts right now. It's running out! </Typography.Text>
+            <Typography.Text className="ps-4  text-[16px]">{} people have this in their carts right now. It's running out! </Typography.Text>
             </div>
               <div className="">
               <Collapse
@@ -239,7 +239,7 @@ const ProductDetails = () => {
             </div>
             <div className="progress">
             </div>
-          </div>
+          </div>counterPeople
         </div>
         
         <CustomDrawer cartStatus={cartStatus} component={<Cart />} open={open} setOpen={setOpen} onClose={onClose} />
