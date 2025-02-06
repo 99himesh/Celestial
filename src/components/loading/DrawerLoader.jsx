@@ -1,4 +1,3 @@
-import { Circles, Grid, Hourglass } from 'react-loader-spinner'
 import loader from "../../assets/loader.mp4"
 const DrawerLoader = () => {
     const loadingStyle = {
