@@ -17,7 +17,7 @@ import WishList from "./wishlist/WishList";
 const CustomDrawer=({component,open,onClose,title,placement,width,cartStatus})=>{
   
   const [activeDrawer,setActiveDrawer]=useState("cart")
-  debugger
+  
 console.log(cartStatus);
 
   useEffect(()=>{

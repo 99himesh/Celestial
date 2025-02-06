@@ -19,7 +19,7 @@ const WishList=()=>{
    console.log(wishlistData,"wisjj");
    
     const getwishlistDataHandler=async()=>{
-        debugger
+        
         setLoading(true)
         try {
             const data=await getWishlistData()

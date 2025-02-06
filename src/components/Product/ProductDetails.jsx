@@ -70,7 +70,7 @@ const ProductDetails = () => {
       price: item.price
     }
     try {
-      debugger
+      
       const res = await addToCartData(data, token)
       console.log(res);
 
@@ -207,17 +207,18 @@ const ProductDetails = () => {
               </div>
             </Flex>
 
-            <div className="flex justify-between  md:px-7 px-0  items-center py-[15px]  ">
+            <div className="flex justify-between  md:px-7  items-center py-[15px]  ">
             <button  onClick={() => { addCartHandler(items,"cart") }}  className=" rounded-full cursor-pointer"><div className="p-2 h-[45px] w-[40px] cursor-pointer"><img src={bag}  className="h-full w-full" /></div></button>
 
                 {/* <button className="text-[#214344] border bg-[#fff] hover:text-[#fff] hover:bg-[#214344] font-medium rounded-full text-sm md:w-[250px] w-[120px]  h-[45px]  text-center">Buy Now</button> */}
                
-                <button class="btn rounded-full h-[50px] flex  ">Buy Now</button>
-                <button onClick={()=>{addTowishlistHandler(items,"wishlist")}} className="size-[30px] cursor-pointer"><img src={wishlist}/></button>
+                {/* <button class="btn rounded-full md:h-[50px] h-[40px] flex  max-md:w-[0px]">Buy Now</button> */}
+                <button class="bg-[#214344] rounded-full w-[350px] text-[15px] font-seemibold md:py-4 py-2  text-[#fff] max-md:w-[200px]">Buy Now</button>
+                <button onClick={()=>{addTowishlistHandler(items,"wishlist")}} className="md:size-[30px] size-[35px] cursor-pointer"><img src={wishlist}/></button>
               </div>
             <div className="flex flex-col   gap-[20px] ">
             
-               <div className="w-[100%] shadow-xl bg-[#fffcf2]   rounded-full flex justify-start md:px-5 items-center h-[50px]"><div className=" flex items-center h-[20px] w-[20px]  "><img className="w-[100%] " src={bag} /></div>
+               <div className="w-[100%] shadow-xl bg-[#fffcf2]   rounded-full flex justify-start md:px-5 px-2  items-center h-[50px]"><div className=" flex items-center h-[20px] w-[20px]  "><img className="w-[100%] " src={bag} /></div>
             <Typography.Text className="ps-4  text-[16px]">{counterPeople} people have this in their carts right now. It's running out! </Typography.Text>
             </div>
               <div className="">
