@@ -128,10 +128,10 @@ const ProductDetails = () => {
         <Row className=" px-5 ">
           <Col xl={4} lg={24} md={24} sm={24} xs={24}>
             <div className="flex lg:flex-col   max-lg:py-3 py-1  gap-[14px]">
-              <div onClick={() => { activeImageHAndler(items?.images[0], 1) }} className={`h-[100px] w-[100px] cursor-pointer ${activeImageId == 1 && "border-[2px] border-[#214343] rounded-md"} `}>{items?.images?.length>0 && <img className="w-[100%] h-[100%] rounded" src={items?.images[0]} />}</div>
-              <div onClick={() => { activeImageHAndler(items?.images[1], 2) }} className={`h-[100px] w-[100px] cursor-pointer ${activeImageId == 2 && "border-[2px] border-[#214343] rounded-md"} `}>{items?.images?.length>0 && <img className="w-[100%] h-[100%] rounded" src={items?.images[1]} />}</div>
-              <div onClick={() => { activeImageHAndler(items?.images[2], 3) }} className={`h-[100px] w-[100px] cursor-pointer ${activeImageId == 3 && "border-[2px] border-[#214343] rounded-md"} `}>{items?.images?.length>0 && <img className="w-[100%] h-[100%] rounded" src={items.images[2]} />}</div>
-              <div onClick={() => { activeImageHAndler(items?.images[3], 4) }} className={`h-[100px] w-[100px] cursor-pointer ${activeImageId == 4 && "border-[2px] border-[#214343] rounded-md"} `}>{items?.images?.length>0 && <img className="w-[100%] h-[100%] rounded" src={items.images[3]} />}</div>
+              <div onClick={() => { activeImageHAndler(items?.images[0], 1) }} className={`md:size-[100px] size-[70px] cursor-pointer ${activeImageId == 1 && "border-[2px] border-[#214343] rounded-md"} `}>{items?.images?.length>0 && <img className="w-[100%] h-[100%] rounded" src={items?.images[0]} />}</div>
+              <div onClick={() => { activeImageHAndler(items?.images[1], 2) }} className={`md:size-[100px] size-[70px] cursor-pointer ${activeImageId == 2 && "border-[2px] border-[#214343] rounded-md"} `}>{items?.images?.length>0 && <img className="w-[100%] h-[100%] rounded" src={items?.images[1]} />}</div>
+              <div onClick={() => { activeImageHAndler(items?.images[2], 3) }} className={`md:size-[100px] size-[70px] cursor-pointer ${activeImageId == 3 && "border-[2px] border-[#214343] rounded-md"} `}>{items?.images?.length>0 && <img className="w-[100%] h-[100%] rounded" src={items.images[2]} />}</div>
+              <div onClick={() => { activeImageHAndler(items?.images[3], 4) }} className={`md:size-[100px] size-[70px] cursor-pointer ${activeImageId == 4 && "border-[2px] border-[#214343] rounded-md"} `}>{items?.images?.length>0 && <img className="w-[100%] h-[100%] rounded" src={items.images[3]} />}</div>
             </div>
           </Col>
           <Col xl={20} lg={12} md={24} sm={24} xs={24}>
@@ -207,7 +207,7 @@ const ProductDetails = () => {
               </div>
             </Flex>
 
-            <div className="flex justify-between  px-7  items-center py-[15px]  ">
+            <div className="flex justify-between  md:px-7  items-center py-[15px]  ">
             <button  onClick={() => { addCartHandler(items,"cart") }}  className=" rounded-full cursor-pointer"><div className="p-2 h-[45px] w-[40px] cursor-pointer"><img src={bag}  className="h-full w-full" /></div></button>
 
                 {/* <button className="text-[#214344] border bg-[#fff] hover:text-[#fff] hover:bg-[#214344] font-medium rounded-full text-sm md:w-[250px] w-[120px]  h-[45px]  text-center">Buy Now</button> */}
@@ -217,7 +217,7 @@ const ProductDetails = () => {
               </div>
             <div className="flex flex-col   gap-[20px] ">
             
-               <div className="w-[100%] shadow-xl bg-[#fffcf2]   rounded-full flex justify-start px-5 items-center h-[50px]"><div className=" flex items-center h-[20px] w-[20px]  "><img className="w-[100%] " src={bag} /></div>
+               <div className="w-[100%] shadow-xl bg-[#fffcf2]   rounded-full flex justify-start md:px-5 items-center h-[50px]"><div className=" flex items-center h-[20px] w-[20px]  "><img className="w-[100%] " src={bag} /></div>
             <Typography.Text className="ps-4  text-[16px]">{counterPeople} people have this in their carts right now. It's running out! </Typography.Text>
             </div>
               <div className="">
