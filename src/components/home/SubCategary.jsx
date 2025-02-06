@@ -107,9 +107,6 @@ const SubCategary=({categary})=>{
                 className={`2xl "bg-[#fff] subCategary xl:size-[280px]   lg:size-[220px] md:size-[200px] max-md:size-[200px]   max-sm:size-[240px]   "  `}
                   style={{
                     borderRadius: '50%',
-                    // border:"2px solid #747676",
-                    // width: 285,
-                    // height: 285,
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',

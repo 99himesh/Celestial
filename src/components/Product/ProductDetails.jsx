@@ -125,8 +125,8 @@ const ProductDetails = () => {
     <Row className="md:pt-[120px] pt-[70px] bg-[#efe6dc] md:px-20 2  pb-5">
       <Col xl={12} lg={12} md={24} sm={24} xs={24}>
       
-        <Row className=" px-5 ">
-          <Col xl={4} lg={24} md={24} sm={24} xs={24}>
+        <Row className=" px-5 " >
+          <Col xl={{span:4,order:1}} lg={24} md={24} sm={{span:24,order:2}}  xs={{span:24,order:2}}  >
             <div className="flex lg:flex-col   max-lg:py-3 py-1  gap-[14px]">
               <div onClick={() => { activeImageHAndler(items?.images[0], 1) }} className={`md:size-[100px] size-[70px] cursor-pointer ${activeImageId == 1 && "border-[2px] border-[#214343] rounded-md"} `}>{items?.images?.length>0 && <img className="w-[100%] h-[100%] rounded" src={items?.images[0]} />}</div>
               <div onClick={() => { activeImageHAndler(items?.images[1], 2) }} className={`md:size-[100px] size-[70px] cursor-pointer ${activeImageId == 2 && "border-[2px] border-[#214343] rounded-md"} `}>{items?.images?.length>0 && <img className="w-[100%] h-[100%] rounded" src={items?.images[1]} />}</div>
@@ -134,8 +134,14 @@ const ProductDetails = () => {
               <div onClick={() => { activeImageHAndler(items?.images[3], 4) }} className={`md:size-[100px] size-[70px] cursor-pointer ${activeImageId == 4 && "border-[2px] border-[#214343] rounded-md"} `}>{items?.images?.length>0 && <img className="w-[100%] h-[100%] rounded" src={items.images[3]} />}</div>
             </div>
           </Col>
-          <Col xl={20} lg={12} md={24} sm={24} xs={24}>
-            <div className="md:h-[450px]   md:w-[450px] mx-auto relative">
+          <Col xl={{span:20,order:2}} lg={12} md={24} sm={{span:24,order:1}}  xs={{span:24,order:1}} >
+          <div className="flex gap-2 md:hidden items-center max-md:pt-4 ">
+                <Typography.Text className="text-[14px] font-semibold ">Home </Typography.Text>
+                <TbPointFilled />
+
+                <Typography.Text className="text-[14px] font-semibold">{(items?.category)?.toUpperCase()} </Typography.Text>
+              </div>
+            <div className="md:h-[450px]   md:w-[450px] mx-auto relative max-md:pt-2">
              {items?.images?.length>0 &&  <InnerImageZoom
              fadeDuration={0} 
              fullscreenOnMobile={true}
@@ -160,15 +166,15 @@ const ProductDetails = () => {
         <div className="w-full  bg-[#efe6dc]   px-5 ">
           <div className="px-3   gap-5">
             <div className="pb-3">
-              <div className="flex gap-2 items-center ">
+              <div className="flex gap-2 max-md:hidden items-center ">
                 <Typography.Text className="text-[14px] font-semibold ">Home </Typography.Text>
                 <TbPointFilled />
 
                 <Typography.Text className="text-[14px] font-semibold">{(items?.category)?.toUpperCase()} </Typography.Text>
               </div>
-              <div className="flex justify-between items-center">
+              <div className="flex max-sm:flex-col justify-between md:items-center">
                 <div>
-              <h5 className="text-[30px] font-semibold tracking-tight text-[#214344]">{items?.title}</h5>
+              <h5 className="md:text-[30px] text-[24px] font-semibold tracking-tight text-[#214344]">{items?.title}</h5>
 
                 </div>
                 <div>
@@ -214,12 +220,12 @@ const ProductDetails = () => {
                
                 {/* <button class="btn rounded-full md:h-[50px] h-[40px] flex  max-md:w-[0px]">Buy Now</button> */}
                 <button class="bg-[#214344] rounded-full w-[350px] text-[15px] font-seemibold md:py-4 py-2  text-[#fff] max-md:w-[200px]">Buy Now</button>
-                <button onClick={()=>{addTowishlistHandler(items,"wishlist")}} className="md:size-[30px] size-[35px] cursor-pointer"><img src={wishlist}/></button>
+                <button onClick={()=>{addTowishlistHandler(items,"wishlist")}} className="size-[30px]  cursor-pointer"><img src={wishlist}/></button>
               </div>
             <div className="flex flex-col   gap-[20px] ">
             
-               <div className="w-[100%] shadow-xl bg-[#fffcf2]   rounded-full flex justify-start md:px-5 px-2  items-center h-[50px]"><div className=" flex items-center h-[20px] w-[20px]  "><img className="w-[100%] " src={bag} /></div>
-            <Typography.Text className="ps-4  text-[16px]">{} people have this in their carts right now. It's running out! </Typography.Text>
+               <div className="w-[100%] shadow-xl bg-[#fffcf2]   rounded-full flex justify-start md:px-5 px-2  items-center h-[50px]"><div className=" flex items-center h-[18px] w-[18px]  "><img className="w-[100%] " src={bag} /></div>
+            <Typography.Text className="max-sm:ps-1 sm:ps-4 sm:text-[16px] max-sm:text-[10px]">{counterPeople} people have this in their carts right now. It's running out! </Typography.Text>
             </div>
               <div className="">
               <Collapse
@@ -239,7 +245,7 @@ const ProductDetails = () => {
             </div>
             <div className="progress">
             </div>
-          </div>counterPeople
+          </div>
         </div>
         
         <CustomDrawer cartStatus={cartStatus} component={<Cart />} open={open} setOpen={setOpen} onClose={onClose} />

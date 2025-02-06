@@ -42,7 +42,7 @@ const CategarySection = () => {
         <div className="w-[80%] mx-auto">
         <h3 className=' text-[#214344] md:font-[500] md:text-[65px] text-[20px] text-center'>Top Sellers</h3>
         <h3 className=' text-[#214344] font-[600] text-[20px] text-center'>Our Most Loved Products</h3>
-        <div className='md:flex  md:gap-5 justify-start md:justify-between  px-5 items-center pt-5'>
+        <div className='md:flex max-md:hidden md:gap-5 justify-start md:justify-between  px-5 items-center pt-5'>
           <div className='md:flex  md:gap-5 items-center md:justify-start '>
             <h4 className='text-[24px] font-bold '>All Products</h4>
           <p className='text-[16px] font-semibold text-gray-500'>Dont miss out on this weeks deals</p>
@@ -52,6 +52,8 @@ const CategarySection = () => {
         </div>
         
        {categary==="men" ?<MensProduct /> : <WomenProducts />}
+       <div className='flex justify-center pt-3'><Link  className='text-[16px] md:hidden  font-semibold   text-gray-600' to="/shop">View All</Link></div>
+
        <div className='py-5'>
        <Testimonial/>
        </div>
