@@ -83,7 +83,7 @@ const SubCategary=({categary})=>{
 
     return (
         <div className="md:px-1 px-0  subcategary my-10 mx-auto w-full">
-        <div  className="   w-[78%] mx-auto  " >
+        <div  className="   md:w-[78%] w-[100%] mx-auto  " >
             <Slider {...settings} >
            {(categary==="men"?womensData:mensData)?.map((item,idx)=>{
             return(
