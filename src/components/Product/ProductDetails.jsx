@@ -157,7 +157,7 @@ const ProductDetails = () => {
         </Row>
       </Col>
       <Col xl={12} lg={24} md={24} sm={24} xs={24} >
-        <div className="w-full  bg-[#efe6dc]   px-5  dark:bg-gray-800 dark:border-gray-700">
+        <div className="w-full  bg-[#efe6dc]   px-5 ">
           <div className="px-3   gap-5">
             <div className="pb-3">
               <div className="flex gap-2 items-center ">
