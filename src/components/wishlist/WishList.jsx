@@ -9,7 +9,7 @@ import { addToWishList } from "../../feature/wishlist/wishlistSlice";
 import { deleteWishlistData, getWishlistData } from "../../feature/wishlist/wishlistApi";
 import { useNavigate } from "react-router";
 import Loading from "../loading/Loading";
-import DrawerLoader from "../loading/drawerLoader";
+import DrawerLoader from "../loading/DrawerLoader";
 const WishList=()=>{
     const dispatch=useDispatch();
     const [loading,setLoading]=useState(false)
