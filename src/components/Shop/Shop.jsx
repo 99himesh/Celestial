@@ -22,7 +22,7 @@ const Shop = () => {
   const dispatch = useDispatch();
   const data = useSelector((state) => state?.shop?.shop);
   const categary = useSelector((state) => state.shop.categary);
-  const [filter, setFiter] = useState(false);
+  const [filter, setFiter] = useState(true);
 
   const getProducts = async () => {
     const pagination = { page: 1, limit: 10 };

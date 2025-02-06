@@ -6,7 +6,7 @@ const HeroSection=()=>{
   // const video="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4"
     return(
       <div className="pt-[110 px] relative bg-[#efe6dc]">
-        <div className="max-lg:invisible">
+        <div className="">
         <video  className="w-full h-[300px]  md:h-[700px] object-cover"  muted loop autoPlay>
         <source    src={video} type="video/mp4"/>
         <source  src={video} type="video/ogg"/>
