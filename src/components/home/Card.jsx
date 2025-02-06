@@ -27,6 +27,7 @@ import similarYellow from "../../assets/icons/similarYellow.png";
 // This is my card .start here
 const Card = ({ item, shop }) => {
   const [open, setOpen] = useState(false);
+  const [cartStatus,setCartStatus]=useState("");
   const [thumbnailButton, setThumbnailButton] = useState(false);
   const dispatch = useDispatch();
   const [cardId, setCardId] = useState(null);
@@ -36,7 +37,9 @@ const Card = ({ item, shop }) => {
   const user = localStorage.getItem("userId");
 
   // This function work as add to cart functionality
-  const addCartHandler = async (item) => {
+  const addCartHandler = async (item,status) => {
+    setCartStatus(status)
+    setOpen(true);
     const data = {
       userId: user,
       productId: item._id,
@@ -49,7 +52,7 @@ const Card = ({ item, shop }) => {
       console.log(error);
     }
 
-    setOpen(true);
+   
   };
   // This function work as to show modal
   const showModal = (idx) => {
@@ -66,8 +69,9 @@ const Card = ({ item, shop }) => {
     );
     setDiscountPercentage(percentage);
   };
-  const addToWishlistHandler = async (item, token) => {
-    console.log(item);
+  const addToWishlistHandler = async (item,status) => {
+    setCartStatus(status)
+    setOpen(true);
     const data = { userId: localStorage.getItem("userId"), prodId: item?._id };
 
     try {
@@ -75,7 +79,7 @@ const Card = ({ item, shop }) => {
     } catch (error) {
       console.log(error);
     }
-    setOpen(true);
+    
   };
 
   useEffect(() => {
@@ -84,6 +88,8 @@ const Card = ({ item, shop }) => {
 
   return (
     <>
+    <div className="relative">
+     <Link to={`/product/${item?._id}`}>
       <div
         onMouseEnter={() => {
           setThumbnailButton(true);
@@ -93,6 +99,7 @@ const Card = ({ item, shop }) => {
         }}
         className="w-[93%] mx-auto       border border-gray-200 rounded-xl "
       >
+        
         <div className=" relative">
           <div className=" border-[#214344]  hover:rounded-t-[20px] h-[360px]  ">
             {!thumbnailButton && (
@@ -121,58 +128,13 @@ const Card = ({ item, shop }) => {
               </div>
             )}
           </div>
-          <div
-            className="absolute flex flex-col gap-2 right-[20px] top-[16px] h-[35px] w-[35px] cursor-pointer"
-           
-          >
-            <Tooltip placement="left" title={"Add to Wishlist"}>
-              
-              <div  onClick={() => {
-              addToWishlistHandler(item);
-            }} className="bg-[#214344] h-[35px] w-[35px] flex justify-center  items-center rounded-full p-2 cursor-pointer  ">
-                {/* <WishListIcon /> */}
-                <img className="w-[20px] h-[18px]" src={wishlist} />
-              </div>
-            </Tooltip>
-
-            {/* {thumbnailButton &&<Tooltip placement="left" title={"Compare"}> <button  className="text-[#fff] bg-[#214344] p-2 rounded-full text-sm"><ReloadOutlined   style={{fontSize:"20px" ,color:"#F0D5A0"}} /></button></Tooltip>} */}
-            {thumbnailButton && (
-              <Tooltip placement="left" title={"Cart"}> 
-                  <div onClick={() => {
-                    addCartHandler(item);
-                  }} className="h-[35px] w-[35px] flex justify-center items-center rounded-full bg-[#214344] hover:bg-[#214344]  p-2">
-                  <img className="h-[20px] w-[20px]" src={bag} />
-                  </div>
-              </Tooltip>
-            )}
-
-            {thumbnailButton && (
-              <Tooltip placement="left" title={"Share"}>
-                
-                <div
-                  onClick={() => {
-                    showModal(item?.id);
-                  }}
-                  className=" bg-[#214344] flex justify-center items-center h-[35px] w-[35px] p-2 rounded-full "
-                >
-                  <ShareAltOutlined
-                    style={{ fontSize: "20px", color: "#F0D5A0" }}
-                  />
-                </div>
-              </Tooltip>
-            )}
-            {thumbnailButton && (
-              <Tooltip placement="left" title={"similar"}>  
-                  <div className="h-[35px] w-[35px] flex justify-center  items-center p-2  bg-[#214344]  rounded-full ">
-                    <img className="w-[20px] h-[20px] ps-0.5" src={similarYellow} />
-                  </div>
-              </Tooltip>
-            )}
-          </div>
+         
         </div>
+        
+
 
         <div className="relative ">
-          <Link to={`/product/${item?._id}`}>
+         
             <div
               className={`px-3 pt-2 pb-12 flex flex-col bg-[#214344]  rounded-b-3xl`}
             >
@@ -217,18 +179,76 @@ const Card = ({ item, shop }) => {
                     </div>
                   </Flex>
                 </div>
-              
             </div>
-          </Link>
+         
         </div>
       </div>
+      </Link>
+      <div
+            className="absolute flex flex-col gap-2 right-[30px] top-[16px] h-[35px] w-[35px] cursor-pointer"
+           
+          >
+            <Tooltip placement="left" title={"Add to Wishlist"}>
+              
+              <div  onClick={() => {
+              addToWishlistHandler(item,"wishlist");
+            }} className="bg-[#214344] h-[35px] w-[35px] flex justify-center  items-center rounded-full p-2 cursor-pointer  ">
+                {/* <WishListIcon /> */}
+                <img className="w-[20px] h-[18px]" src={wishlist} />
+              </div>
+            </Tooltip>
 
+            {/* {thumbnailButton &&<Tooltip placement="left" title={"Compare"}> <button  className="text-[#fff] bg-[#214344] p-2 rounded-full text-sm"><ReloadOutlined   style={{fontSize:"20px" ,color:"#F0D5A0"}} /></button></Tooltip>} */}
+            {thumbnailButton && (
+              <Tooltip placement="left" title={"Cart"}> 
+                  <div onClick={() => {
+                    addCartHandler(item,"cart");
+                  }} className="h-[35px] w-[35px] flex justify-center items-center rounded-full bg-[#214344] hover:bg-[#214344]  p-2">
+                  <img className="h-[20px] w-[20px]" src={bag} />
+                  </div>
+              </Tooltip>
+            )}
+
+            {thumbnailButton && (
+              <Tooltip placement="left" title={"Share"}>
+                
+                <div
+                  onClick={() => {
+                    showModal(item?.id);
+                  }}
+                  className=" bg-[#214344] flex justify-center items-center h-[35px] w-[35px] p-2 rounded-full "
+                >
+                  <ShareAltOutlined
+                    style={{ fontSize: "20px", color: "#F0D5A0" }}
+                  />
+                </div>
+              </Tooltip>
+            )}
+            {thumbnailButton && (
+              <Tooltip placement="left" title={"similar"}>  
+                  <div className="h-[35px] w-[35px] flex justify-center  items-center p-2  bg-[#214344]  rounded-full ">
+                    <img className="w-[20px] h-[20px] ps-0.5" src={similarYellow} />
+                  </div>
+              </Tooltip>
+            )}
+          </div>
+          <div
+          className={`fixed inset-0 transition-all duration-300 ${
+            open ? " backdrop-blur-md" : "bg-transparent"
+          } ${open  ? "z-[998]" : "z-[-1]"}`}
+          onClick={onClose}
+        ></div>
+
+          </div>
+
+       
       <CardModal
         isModalOpen={isModalOpen}
         setIsModalOpen={setIsModalOpen}
         id={cardId}
       />
       <CustomDrawer
+      cartStatus={cartStatus}
         component={<Cart />}
         open={open}
         setOpen={setOpen}

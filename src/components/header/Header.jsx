@@ -22,6 +22,7 @@
   const Header = () => {
     const [open, setOpen] = useState(false);
     const [cartOpen, setCartOpen] = useState(false);
+    const [cartStatus,setCartStatus]=useState("");
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const dispatch = useDispatch();
@@ -37,11 +38,15 @@
     const onClose = () => {
       setOpen(false);
     };
-    const cartShowDrawer = () => {
+    const cartShowDrawer = (status) => {
+      
       setCartOpen(true);
+      setCartStatus(status)
     };
+
     const cartOnClose = () => {
       setCartOpen(false);
+      
     };
     const getDataCart = async () => {
       try {
@@ -67,31 +72,34 @@
 
     return (
       <>
+      <div className="relative">
         <div
-          className={`header fixed w-full z-[999] bg-[#214344]    ${
-            open ? "backdrop-blur-md" : "bg-[#214344]"
-          }`}
-        >
+        className={`header fixed w-full z-[999] bg-[#214344] ${
+          isModalOpen || open || cartOpen ? 'backdrop-blur-md' : ''
+        } ${open ? 'backdrop-blur-md' : ''}`}
+      >
           <div className="flex justify-between md:px-[56px] px-[30px] py-5    items-center">
             <div className="flex items-center">
               <div className="flex md:gap-[56px]  gap-5 items-center cursor-pointer ">
                 <NavLink
-                  onClick={cartShowDrawer}
-                  className={"relative"}>
+                  onClick={()=>{cartShowDrawer("wishlist")}}
+                  className={"relative max-sm:hidden  cursor-pointer"}>
                 <div
                 
-                  className="max-sm:hidden h-[32px] w-[31px] pt-[2px] "
+                  className="h-[32px] w-[31px] pt-[2px] "
                 >
                   <img src={wishlist} />
                 </div>
                 {wish?.length > 0 && (
-                    <div className="flex justify-center  text-[#214344] items-center absolute  text-[10px] text-center  -top-1  -right-3 h-[16px] w-[16px] rounded-full bg-[#F0D5A0]">
+                    <div className="flex justify-center   text-[#214344] items-center absolute  text-[10px] text-center  -top-1  -right-3 h-[16px] w-[16px] rounded-full bg-[#F0D5A0]">
                       {wish?.length}
                     </div>
                   )}
                   </NavLink>
                 <NavLink
-                  onClick={cartShowDrawer}
+                  // onClick={cartShowDrawer}
+                  onClick={()=>{cartShowDrawer("cart")}}
+
                   className="relative"
                 >
                   <div className="md:h-[28px] h-[20px] md:w-[25px] w-[16px]  cursor-pointer">
@@ -141,12 +149,8 @@
           </div>
         </div>
 
-        <div
-          className={`fixed inset-0 transition-all duration-300 ${
-            open ? " backdrop-blur-md" : "bg-transparent"
-          } ${open || cartOpen ? "z-[998]" : "z-[-1]"}`}
-          onClick={onClose}
-        ></div>
+      
+        
        
 
       <div
@@ -154,19 +158,23 @@
         onClick={onClose}
       ></div>
 
-      <CustomDrawer component={<Cart />} open={cartOpen} setOpen={setOpen} onClose={cartOnClose} />
+      <CustomDrawer  component={<Cart />} open={cartOpen} setOpen={setOpen} onClose={cartOnClose} />
    
         <EasyMenuHeader open={open} setOpen={setOpen} />
         <CustomDrawer
+        cartStatus={cartStatus}
           component={<Cart />}
           open={cartOpen}
           setOpen={setOpen}
           onClose={cartOnClose}
         />
       
-       {isModalOpen && <div className="absolute top-0  w-full transition-all duration-1000 ease-in-out transform bg-[#e4cc9b] p-4 z-[9999]">
+       {isModalOpen && <div className=" absolute top-0  w-full transition-all duration-1000 ease-in-out transform bg-[#efe6dc]  z-[9999]">
+        <div className="fixed top-0 z-[999] w-full bg-[#efe6dc]">
           <CustomSearch isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} items={searchData} />
+      </div>
         </div>}
+        </div>
       
       </>
     );

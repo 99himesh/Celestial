@@ -16,7 +16,6 @@ import api from "../../axios/axios";
 
 
 export const addToCartData = async (data, token) => { 
-    console.log(data);
        
     try {
         const res = await api.post(`https://zoci-backend.onrender.com/api/user/addtocart`, data, { 
@@ -47,8 +46,7 @@ export const getCartData=async()=>{
     }
 
 }
-export const deleteCartData=async(id)=>{  
-    debugger
+export const deleteCartData=async(id)=>{ 
      const userId=localStorage.getItem("userId")
     const token=localStorage.getItem("token")
      
@@ -61,9 +59,9 @@ export const deleteCartData=async(id)=>{
             }
 
         });
-        return await res.data;   
+        return  {data:res.data,status:"success"};   
     } catch (error) {    
-        throw error;
+        throw {message:error,status:"fail"};
     }
 
 }

@@ -26,6 +26,7 @@ import InnerImageZoom from "react-inner-image-zoom";
 import Cart from "../cart/Cart";
 import { addToCartData } from "../../feature/categary/cartApi";
 import { TbPointFilled } from "react-icons/tb";
+import { addToWishlistData } from "../../feature/wishlist/wishlistApi";
 // product details page start here
 
 const ProductDetails = () => {
@@ -39,6 +40,8 @@ const ProductDetails = () => {
   const [open, setOpen] = useState(false);
   const [activeImageUrl, setActiveImageUrl] = useState(items?.images[0]);
   console.log(activeImageUrl);
+    const [cartStatus,setCartStatus]=useState("");
+  
   const user = localStorage.getItem("userId")
 
   const getData = async () => {
@@ -57,6 +60,8 @@ const ProductDetails = () => {
 
 
   const addCartHandler = async (item) => {
+    setCartStatus("cart")
+    setOpen(true)
     const token = localStorage.getItem("token")
     const data = {
       userId: user,
@@ -73,7 +78,6 @@ const ProductDetails = () => {
       console.log(error);
     }
 
-    setOpen(true)
   }
 
 
@@ -81,6 +85,19 @@ const ProductDetails = () => {
     setOpen(false);
   };
 
+
+  const addTowishlistHandler=async(item)=>{
+    setCartStatus("wishlist")
+    setOpen(true);
+       console.log(item);
+        const data = { userId: localStorage.getItem("userId"), prodId: item?._id };
+    
+        try {
+          const res = await addToWishlistData(data);
+        } catch (error) {
+          console.log(error);
+        }
+  }
 
 
 
@@ -104,6 +121,7 @@ const ProductDetails = () => {
     
   }, [dispatch])
   return (
+    <div className="relative">
     <Row className="md:pt-[120px] pt-[70px] bg-[#efe6dc] md:px-20 px-5  pb-5">
       <Col xl={12} lg={12} md={24} sm={24} xs={24}>
       
@@ -117,9 +135,6 @@ const ProductDetails = () => {
             </div>
           </Col>
           <Col xl={20} lg={12} md={24} sm={24} xs={24}>
-            {/* <div className="slick-slider "> */}
-
-            {/* <Slider {...settings}>   */}
             <div className="md:h-[450px]   md:w-[450px] mx-auto relative">
              {items?.images?.length>0 &&  <InnerImageZoom
              fadeDuration={0} 
@@ -172,7 +187,7 @@ const ProductDetails = () => {
                 </div>
               </div>
             </div>
-            <div className="flex gap-2 items-center">
+            <div className="flex gap-2 items-center pt-7">
               <span className="text-xl font-semibold text-gray-900 dark:text-white">Rs. {items?.price}</span>
               <span className="text-lg text-gray-400 line-through dark:text-white">Rs. {items?.discountPrice}</span>
               <span className="text-sm text-red-500  dark:text-white">{discountPercentage && discountPercentage}% Off</span>
@@ -182,29 +197,25 @@ const ProductDetails = () => {
               <Progress strokeColor={"#214344"} showInfo={false} trailColor="white" percent={items?.quantity} status="active" />
               <div className="flex justify-between">
                 <div className="flex gap-1">
-                  <Typography.Text className="font-semibold text-[14px] text-[#214344] ">Sold : </Typography.Text>
-                  <Typography.Text className="font-bold text-[14px] text-[#214344] ">{items?.sold}</Typography.Text>
+                  <Typography.Text className="font-semibold text-[16px] text-[#214344] ">Sold : </Typography.Text>
+                  <Typography.Text className="font-bold text-[16px] text-[#214344] ">{items?.sold}</Typography.Text>
                 </div>
                 <div className="flex gap-1">
-                  <Typography.Text className="font-semibold text-[#214344]">Available :</Typography.Text>
-                  <Typography.Text className="font-bold text-[14px] text-[#214344] ">{items?.quantity}</Typography.Text>
+                  <Typography.Text className="font-semibold text-[16px] text-[#214344]">Available :</Typography.Text>
+                  <Typography.Text className="font-bold text-[16px] text-[#214344] ">{items?.quantity}</Typography.Text>
                 </div>
               </div>
             </Flex>
 
-            <div className="flex justify-between  px-7  items-center py-[25px] ">
-            <button  onClick={() => { addCartHandler(items) }}  className=" rounded-full"><div className="p-2 h-[45px] w-[40px]"><img src={bag}  className="h-full w-full" /></div></button>
+            <div className="flex justify-between  px-7  items-center py-[15px]  ">
+            <button  onClick={() => { addCartHandler(items,"cart") }}  className=" rounded-full cursor-pointer"><div className="p-2 h-[45px] w-[40px] cursor-pointer"><img src={bag}  className="h-full w-full" /></div></button>
 
                 {/* <button className="text-[#214344] border bg-[#fff] hover:text-[#fff] hover:bg-[#214344] font-medium rounded-full text-sm md:w-[250px] w-[120px]  h-[45px]  text-center">Buy Now</button> */}
                
-                <button class="btn rounded-full h-[50px] flex ">Buy Now</button>
-                <button className="   size-[30px]"><img src={wishlist}/></button>
-
-
-             
+                <button class="btn rounded-full h-[50px] flex  ">Buy Now</button>
+                <button onClick={()=>{addTowishlistHandler(items,"wishlist")}} className="size-[30px] cursor-pointer"><img src={wishlist}/></button>
               </div>
-        
-            <div className="flex flex-col   gap-[25px] ">
+            <div className="flex flex-col   gap-[20px] ">
             
                <div className="w-[100%] shadow-xl bg-[#fffcf2]   rounded-full flex justify-start px-5 items-center h-[50px]"><div className=" flex items-center h-[20px] w-[20px]  "><img className="w-[100%] " src={bag} /></div>
             <Typography.Text className="ps-4  text-[16px]">{counterPeople} people have this in their carts right now. It's running out! </Typography.Text>
@@ -223,30 +234,23 @@ const ProductDetails = () => {
 
                 size="medium"
                 items={[{ key: '1', label: <Typography.Text  className="text-[16px] text-start">Story</Typography.Text>, children: <p>{"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s."}</p> }]} />
-              {/* <div className="pb-5">
-                <Typography.Text className="tetx-lg font-bold">Color : </Typography.Text>
-                <Typography.Text className="text-md font-semibold">{items?.color}</Typography.Text>
-              </div> */}
-</div>
-           
-           
+            </div>
             </div>
             <div className="progress">
-              {/* <Flex vertical className="gap-2">
-                <Typography.Text className="font-semibold">Booked stock</Typography.Text>
-                <Progress strokeColor={"#214344"} percent={items?.availableStock} status="active" />
-                <Typography.Text className="font-semibold pt-5">Available stock</Typography.Text>
-                <Progress strokeColor={"#214344"} percent={items?.availableStock} status="active" />
-              </Flex> */}
-
-              
             </div>
           </div>
         </div>
-        <CustomDrawer component={<Cart />} open={open} setOpen={setOpen} onClose={onClose} />
+        
+        <CustomDrawer cartStatus={cartStatus} component={<Cart />} open={open} setOpen={setOpen} onClose={onClose} />
 
       </Col>
     </Row>
+    <div
+        className={`fixed inset-0 transition-all duration-300 ${open ? " backdrop-blur-md" : "bg-transparent"} ${open  ? "z-[998]" : "z-[-1]"}`}
+        onClick={onClose}
+      ></div>
+ 
+    </div>
   )
 }
 export default ProductDetails;

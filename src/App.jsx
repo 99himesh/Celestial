@@ -4,6 +4,7 @@ import Loading from "./components/loading/Loading";
 import ViewCartPage from "./pages/viewCartPage/ViewCartPage";
 import WishlistPage from "./pages/wishlistPage/WishListPage";
 import ProtectedRoute from "./utils/ProtectedRoute";
+import ApiLoader from "./components/loading/ApiLoader";
 const Layout = lazy(() => import('./layout/Layout'));
 const ShopPage = lazy(() => import("./pages/shopPage/ShopPage"));
 const HomePage = lazy(() => import("./pages/home/Home"));
@@ -12,6 +13,7 @@ const ProductDetailsPage = lazy(() => import("./pages/productDetails/ProductDeta
 function App() {
   return (
     <>
+    <ApiLoader/>
     <Suspense fallback={<Loading/>}>
       <Routes>
         <Route path="/" element={<Layout />}>

@@ -10,14 +10,10 @@ import { Link } from 'react-router';
 import Testimonial from './Testimonial';
 import Loading from '../loading/Loading';
 const CategarySection = () => {
-  const [loading,setLoading]=useState(true)  
   const [categary,setCategary]=useState("men");
   const dispatch = useDispatch();
   const getProduct = async () => {
     const data = await getProductApi();
-    if(data){
-      setLoading(false)
-    }
     dispatch(addProducts(data))
   }
   useEffect(() => {
@@ -25,7 +21,6 @@ const CategarySection = () => {
   }, [])
   const buttonactive={background:"#214344",color:"#f0d5a0"}
   const buttonInActive={color:"#214344",border:"3px solid #214344"}
-  if(loading) return<Loading/>
   return (
     <>
       <div className="bg-[#efe6dc]">
@@ -43,7 +38,7 @@ const CategarySection = () => {
         </div>
         </div>
 
-        <SubCategary/>
+        <SubCategary categary={categary}/>
         <div className="w-[80%] mx-auto">
         <h3 className=' text-[#214344] md:font-[500] md:text-[65px] text-[20px] text-center'>Top Sellers</h3>
         <h3 className=' text-[#214344] font-[600] text-[20px] text-center'>Our Most Loved Products</h3>

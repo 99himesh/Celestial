@@ -7,36 +7,46 @@ import { useNavigate } from "react-router";
 import { useEffect, useState } from "react";
 import { deleteCartData, getCartData } from "../../feature/categary/cartApi";
 import { Header } from "antd/es/layout/layout";
+import { addToCart } from "../../feature/categary/cartSlice";
 const ViewCart=()=>{
 
 
 
     const dispatch=useDispatch();
     const cartData=useSelector(state=>state.cart.cart)
-    const [dataUpdated, setDataUpdated] = useState(false);
+    console.log(cartData,"cart");
+    
    let sum=0;
     const getCartDataHandler=async()=>{
         
         try {
-            const data=await getCartData()
+            const response=await getCartData()
             dispatch(addToCart(data))
         } catch (error) {
-            
+             if(error?.response?.data?.message==="No items in the cart"){
+                dispatch(addToCart([]))  
+        }
         }
     }
-    useEffect(()=>{
-        getCartDataHandler();
-    },[dataUpdated])
-    const deleteCartHandler=async(id)=>{
-        
+
+    const deleteCartHandler=async(items)=>{
         try {
-        const data=await deleteCartData(id)  
-        setDataUpdated((prev) => !prev);   
+            const id=items.productId._id;
+        const response=await deleteCartData(id) 
+        getCartDataHandler();
+        if(response.status!="success") return
+
+        getCartDataHandler() 
+
         } catch (error) {
             throw error;
             
         }
     }
+    useEffect(()=>{
+        getCartDataHandler();
+    },[])
+  
     return (
         <div className="view-cart pt-[110px] px-20 py-20 bg-[#efe6dc]">
         <Typography.Text className="text-[30px] font-semibold">Your cart</Typography.Text>
@@ -60,7 +70,7 @@ const ViewCart=()=>{
         </div>
         </div>
         
-        <div className="pt-2 cursor-pointer" onClick={()=>{deleteCartHandler(item?.id)}}>
+        <div className="pt-2 cursor-pointer" onClick={()=>{deleteCartHandler(item)}}>
         <DeleteOutlined  style={{fontSize:"30px",color:"#214344"}}/>
         </div>
        </div>

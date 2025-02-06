@@ -8,12 +8,15 @@ import { getProductApi } from "../../feature/product/productApi";
 import { addProducts } from "../../feature/product/productSlice";
 
 const settings = {
-  // className: "center",
-  // centerMode: true,
+  dots: false,
   infinite: true,
-  // centerPadding: "80px",
+  speed: 200,
+  focusOnSelect: true, 
   slidesToShow: 3,
-  speed: 1000,
+  slidesToScroll: 1, 
+  autoplay: true,
+  autoplaySpeed: 2000,
+  arrows: false,
   responsive: [
       {
         breakpoint: 1024,

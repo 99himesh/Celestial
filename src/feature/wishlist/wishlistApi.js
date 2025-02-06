@@ -3,6 +3,7 @@ import api from "../../axios/axios";
 
 export const addToWishlistData=async(data,token)=>{ 
     debugger  
+    
     try {
         const res=await api.post(`https://zoci-backend.onrender.com/api/product/addtowishlist`,data,{ headers: {
             'Content-Type': 'application/json', 

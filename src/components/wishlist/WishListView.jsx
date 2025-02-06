@@ -1,13 +1,46 @@
 import { DeleteOutlined } from "@ant-design/icons";
 import { Empty, Flex, Progress, Typography } from "antd";
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import image from "../../assets/girl.jpg"
+import { deleteWishlistData, getWishlistData } from "../../feature/wishlist/wishlistApi";
+import { addToWishList } from "../../feature/wishlist/wishlistSlice";
+import DrawerLoader from "../loading/drawerLoader";
+import { useEffect, useState } from "react";
 const WishlistView=()=>{
     const wishListData=useSelector(state=>state?.wish?.wishlist)
     let sum=0;
+     const dispatch=useDispatch()
+    const user=localStorage.getItem("userId")
+
+     const getwishlistDataHandler=async()=>{
+            try {
+                const data=await getWishlistData()
+                console.log(data.wishlist);
+                dispatch(addToWishList(data?.wishlist))
+            } catch (error) {  
+            }
+        }
+       
+        const deleteWishlistHandler=async(item)=>{
+            console.log(item);
+            
+          const items={userId:user,prodId: item.prodId }
+            
+            try {
+            const data=await deleteWishlistData(items)  
+            getwishlistDataHandler();
+            } catch (error) {
+    
+                throw error;
+            }
+        }
+            useEffect(()=>{
+                getwishlistDataHandler();
+            },[])
+        
     return(
         <>
-        <div className="pt-[110px] px-20 bg-[#efe6dc]">
+        <div className="pt-[110px] px-20 py-5 bg-[#efe6dc]">
         <Typography.Text className="text-[30px] font-semibold">Your Wishlist</Typography.Text>
 
 
@@ -15,10 +48,10 @@ const WishlistView=()=>{
           sum+=item.price
             return(
           
-       <div key={idx} className="flex justify-between px-5 pt-5 bg-[#efe6dc] shadow-xl rounded-xl py-4 mb-3 ">
+       <div key={idx} className="flex justify-between px-5 pt-5 bg-[#efe6dc] shadow-xl rounded-xl py-4 mb-3  ">
         <div  className=" flex gap-3">
             <div className="h-[100px] w-[100px]">
-        <img src={image} className="w-full h-full rounded-xl"/>
+        <img src={item.image[0]} className="w-full h-full rounded-xl"/>
         </div>
         <div className="flex flex-col pt-2">
             <Typography.Text className="text-[16px] font-semibold ">{item?.title}</Typography.Text>
@@ -41,7 +74,7 @@ const WishlistView=()=>{
         </div>
         </div>
         
-        <div className="pt-2 cursor-pointer" onClick={()=>{deleteCartHandler(item?.id)}}>
+        <div className="pt-2 cursor-pointer" onClick={()=>{deleteWishlistHandler(item)}}>
         <DeleteOutlined  style={{fontSize:"30px",color:"#214344"}}/>
         </div>
        </div>

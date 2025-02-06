@@ -6,7 +6,8 @@ import { Card } from "antd";
 import diamond from "../../assets/diamond.webp"
 import { useState } from "react";
 import "./subcategary.css"
-const subCategaryData=["Earing","Bracelets","Ring","Pendents","Necklaces","Band","Watch","Jackets"];
+const womensData=["Earing","Bracelets","Ring","Pendents","Necklaces","Band","Watch","Jackets"];
+const mensData=["LaunchSoon","LaunchSoon","LaunchSoon","LaunchSoon","LaunchSoon","LaunchSoon","LaunchSoon","LaunchSoon"];
 const settings = {
     className:"center",
     dots: false,
@@ -27,8 +28,10 @@ const settings = {
             slidesToShow: 3,
             slidesToScroll:1,
             infinite: true,
+            focusOnSelect: true, 
             initialSlide: 1,
-
+            centerPadding: "30px", 
+            centerMode:true,
             dots: false,
             autoplaySpeed: 2000,
 
@@ -37,9 +40,13 @@ const settings = {
         {
           breakpoint: 600,
           settings: {
-            slidesToShow: 3,
+            slidesToShow: 2,
             slidesToScroll: 1,
             initialSlide: 1,
+            centerPadding: "10px", 
+            focusOnSelect: true, 
+
+            centerMode:true,
             dots: false,
             autoplaySpeed: 2000,
             display:"flex",
@@ -51,6 +58,8 @@ const settings = {
           breakpoint: 480,
           settings: {
             slidesToShow: 1,
+            centerPadding: "50px", 
+            centerMode:true,
             slidesToScroll: 1,
             autoplaySpeed: 2000,
             dots: false,
@@ -62,7 +71,7 @@ const settings = {
 
 
   
-const SubCategary=()=>{
+const SubCategary=({categary})=>{
   const [hoverSub,setHoverSub]=useState();
   const [hoverId,setHoverId]=useState(null)
 
@@ -76,7 +85,7 @@ const SubCategary=()=>{
         <div className="md:px-1 px-0  subcategary my-10 mx-auto w-full">
         <div  className="   w-[78%] mx-auto  " >
             <Slider {...settings} >
-           {subCategaryData?.map((item,idx)=>{
+           {(categary==="men"?womensData:mensData)?.map((item,idx)=>{
             return(
               <>
               <div
@@ -95,12 +104,12 @@ const SubCategary=()=>{
                 }}
               >
                 <Card
-                className={`2xl "bg-[#fff] subCategary "  `}
+                className={`2xl "bg-[#fff] subCategary xl:size-[280px]   lg:size-[220px] md:size-[200px] max-md:size-[200px]   max-sm:size-[200px]   "  `}
                   style={{
                     borderRadius: '50%',
                     // border:"2px solid #747676",
-                    width: 285,
-                    height: 285,
+                    // width: 285,
+                    // height: 285,
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',
