@@ -126,7 +126,7 @@ const ProductDetails = () => {
       <Col xl={12} lg={12} md={24} sm={24} xs={24}>
         <Row className="  "  >
           <Col xl={{span:4,order:1}} lg={{span:4,order:1}} md={{span:4,order:1}} sm={{span:24,order:2}}  xs={{span:24,order:2}}  >
-            <div className="flex lg:flex-col   max-lg:py-3 py-1  gap-[22px]">
+            <div className="flex lg:flex-col   max-lg:py-3 py-1  gap-[20px]">
               <div onClick={() => { activeImageHAndler(items?.images[0], 1) }} className={`md:size-[100px] size-[70px] cursor-pointer ${activeImageId == 1 && "border-[2px] border-[#214343] rounded-md"} `}>{items?.images?.length>0 && <img className="w-[100%] h-[100%] rounded" src={items?.images[0]} />}</div>
               <div onClick={() => { activeImageHAndler(items?.images[1], 2) }} className={`md:size-[100px] size-[70px] cursor-pointer ${activeImageId == 2 && "border-[2px] border-[#214343] rounded-md"} `}>{items?.images?.length>0 && <img className="w-[100%] h-[100%] rounded" src={items?.images[1]} />}</div>
               <div onClick={() => { activeImageHAndler(items?.images[2], 3) }} className={`md:size-[100px] size-[70px] cursor-pointer ${activeImageId == 3 && "border-[2px] border-[#214343] rounded-md"} `}>{items?.images?.length>0 && <img className="w-[100%] h-[100%] rounded" src={items.images[2]} />}</div>
