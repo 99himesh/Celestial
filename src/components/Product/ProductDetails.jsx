@@ -122,7 +122,7 @@ const ProductDetails = () => {
   }, [dispatch])
   return (
     <div className="relative">
-    <Row className="md:pt-[120px] pt-[70px] bg-[#efe6dc] md:px-20 2  pb-5">
+    <Row className="md:pt-[120px] pt-[70px] bg-[#efe6dc] md:px-16 2  pb-5">
       <Col xl={12} lg={12} md={24} sm={24} xs={24}>
         <Row className=" px-5 "  >
           <Col xl={{span:4,order:1}} lg={{span:4,order:1}} md={{span:4,order:1}} sm={{span:24,order:2}}  xs={{span:24,order:2}}  >
