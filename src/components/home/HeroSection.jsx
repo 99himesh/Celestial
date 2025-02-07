@@ -7,7 +7,7 @@ import scrollDown from "../../assets/scrolldown.png"
 const HeroSection=()=>{
   // const video="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4"
     return(
-      <div className="pt-[110px] relative bg-[#efe6dc]">
+      <div className="sm:pt-[110px] pt-[70px] relative bg-[#efe6dc]">
         <div className="">
         <video  className="w-full h-[700px]    md:h-[700px] object-cover"  muted loop autoPlay>
         <source    src={video} type="video/mp4"/>
