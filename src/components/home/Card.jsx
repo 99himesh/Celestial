@@ -35,7 +35,7 @@ const Card = ({ item, shop }) => {
   const [discountPercentage, setDiscountPercentage] = useState();
   const token = localStorage.getItem("token");
   const user = localStorage.getItem("userId");
-
+  const [isLaptop, setIsLaptop] = React.useState(window.innerWidth >= 1024);
   // This function work as add to cart functionality
   const addCartHandler = async (item,status) => {
     setCartStatus(status)
@@ -81,6 +81,18 @@ const Card = ({ item, shop }) => {
     }
     
   };
+
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsLaptop(window.innerWidth <= 1024);
+    };
+  
+    window.addEventListener("resize", handleResize);
+    
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
 
   useEffect(() => {
     percentageCalculate();
@@ -193,13 +205,10 @@ const Card = ({ item, shop }) => {
               <div  onClick={() => {
               addToWishlistHandler(item,"wishlist");
             }} className="bg-[#214344] h-[35px] w-[35px] flex justify-center  items-center rounded-full p-2 cursor-pointer  ">
-                {/* <WishListIcon /> */}
                 <img className="w-[20px] h-[18px]" src={wishlist} />
               </div>
             </Tooltip>
-
-            {/* {thumbnailButton &&<Tooltip placement="left" title={"Compare"}> <button  className="text-[#fff] bg-[#214344] p-2 rounded-full text-sm"><ReloadOutlined   style={{fontSize:"20px" ,color:"#F0D5A0"}} /></button></Tooltip>} */}
-            {thumbnailButton && (
+            {thumbnailButton && isLaptop &&(
               <Tooltip placement="left" title={"Cart"}> 
                   <div onClick={() => {
                     addCartHandler(item,"cart");
@@ -209,7 +218,7 @@ const Card = ({ item, shop }) => {
               </Tooltip>
             )}
 
-            {thumbnailButton && (
+            {thumbnailButton && isLaptop &&(
               <Tooltip placement="left" title={"Share"}>
                 
                 <div
@@ -224,7 +233,7 @@ const Card = ({ item, shop }) => {
                 </div>
               </Tooltip>
             )}
-            {thumbnailButton && (
+            {thumbnailButton && isLaptop && (
               <Tooltip placement="left" title={"similar"}>  
                   <div className="h-[35px] w-[35px] flex justify-center  items-center p-2  bg-[#214344]  rounded-full ">
                     <img className="w-[20px] h-[20px] ps-0.5" src={similarYellow} />

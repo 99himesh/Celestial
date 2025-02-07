@@ -107,14 +107,14 @@ const Shop = () => {
         </div>
 
         {/* Sticky Banner */}
-        <div className=" sticky md:top-[110px] top-[70px] z-[9999]  ">
-          <div className="absolute right-0   ">
-            {filter ? (
+        <div className=" sticky md:top-[110px] top-[70px]     z-[9999]  ">
+          <div className="absolute right-0">
+                        {filter ? ( 
               <div
                 onClick={() => {
                   setFiter((prev) => !prev);
                 }}
-                className="size-[50px] p-1  bg-[#214344]  cursor-pointer rounded-l-full  flex justify-center items-center "
+                className="size-[50px]  p-1  bg-[#214344]  cursor-pointer rounded-l-full  flex justify-center items-center "
               >
                 <div className="size-[24px]">
                 <img className="w-full h-full" src={filterIcon} />
@@ -128,7 +128,8 @@ const Shop = () => {
                 </div>
               </div>
             )}
-          </div>
+            </div>
+
         </div>
 
         <Col span={24}>
@@ -137,7 +138,7 @@ const Shop = () => {
               <CustomFilter />
             </div>
           </div>
-          <div className="px-10 bg-[#eee5db]  py-20">
+          <div className="sm:px-10 px-2 bg-[#eee5db]  py-20">
             <ProductListing data={data} />
           </div>
         </Col>

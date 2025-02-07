@@ -47,7 +47,7 @@ const Footer=()=>{
             </div>
             </Col>
             <Col xl={6} lg={6} md={8} sm={12} xs={24}>
-            <div className="max-sm:pt-7"  >
+            <div className="max-sm:pt-16"  >
                 <h6 className="text-[24px]  text-[#F0D5A0] font-semibold" >LET US HELP YOU</h6>
                 <div className="flex flex-col gap-3 pt-10">
                     <Link to={"/"} className="text-[#fff] hover:text-[#fff] text-[18px] ">Home</Link>

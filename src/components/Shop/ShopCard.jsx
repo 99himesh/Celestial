@@ -101,10 +101,10 @@ const ShopCard = ({ item, shop }) => {
             className="w-[100%] mx-auto rounded-3xl  shadow-2xl"
           >
             <div className=" relative">
-              <div className=" border-[#214344] rounded-xl h-[370px]  ">
+              <div className=" border-[#214344] rounded-xl sm:h-[370px] h-[165px]  ">
                 {!thumbnailButton && (
                   <img
-                    className="rounded-t-2xl border-[5px] border-[#214344] w-full  h-full object-cover "
+                    className="rounded-t-2xl sm:border-[5px] border-[3px] border-[#214344] w-full  h-full object-cover "
                     src={item?.images[0]}
                     alt="product image "
                   />
@@ -112,7 +112,7 @@ const ShopCard = ({ item, shop }) => {
                 {thumbnailButton && (
                   <div className="w-full   border-[3px] border-[#214344] rounded-t-[19.5px]">
                     <video
-                      className="w-full h-[370px] rounded-t-2xl object-cover"
+                      className="w-full sm:h-[370px] h-[165px] rounded-t-2xl object-cover"
                       muted
                       loop
                       autoPlay
@@ -132,7 +132,7 @@ const ShopCard = ({ item, shop }) => {
 
             <div className="relative  ">
               <div
-                className={`px-5 py-4  flex flex-col bg-[#214344] gap-2  rounded-b-3xl`}
+                className={`sm:px-5 px-2 sm:py-4 pb-2  flex flex-col bg-[#214344] sm:gap-2 gap-1  rounded-b-3xl`}
               >
                 <div>
                   <h5 className="md:text-[16px] text-[16px] font-[500]   text-white">
@@ -146,7 +146,7 @@ const ShopCard = ({ item, shop }) => {
                     </span>
                   </div>
                 </div>
-                <div className=" ">
+                <div className=" max-sm:hidden">
                   <Flex vertical>
                     <Progress
                       showInfo={false}
@@ -154,7 +154,7 @@ const ShopCard = ({ item, shop }) => {
                       percent={null}
                       status="active"
                     />
-                    <div className="flex justify-between">
+                    <div className="flex flex-wrap justify-between">
                       <div className="flex gap-1">
                         <Typography.Text className="font-semibold text-[14px] text-[#F0D5A0] ">
                           Sold :
@@ -184,14 +184,14 @@ const ShopCard = ({ item, shop }) => {
           </div>
         </Link>
         <div
-                className="absolute flex flex-col gap-2 right-5 top-5 h-[35px] w-[35px] cursor-pointer"
+                className="absolute flex flex-col gap-2 sm:right-5 right-3 sm:top-5 top-3 sm:size-[35px] size-[24px] cursor-pointer"
                 onClick={() => {
                   addToWishlistHandler(item,"wishlist");
                 }}
               >
                 <Tooltip placement="left" title={"Add to Wishlist"}>
                  
-                  <div className="bg-[#214344] rounded-full p-2 cursor-pointer">
+                  <div className="bg-[#214344] rounded-full sm:p-2 p-1.5 cursor-pointer">
                     <img src={wishlist} />
                   </div>
                 </Tooltip>

@@ -22,3 +22,25 @@ export const verifyOtp=async(data)=>{
   }
 
 }
+export const createPassword=async(data)=>{ 
+debugger
+   
+  const token=localStorage.getItem("token")
+  console.log(token);
+  console.log(data);
+  
+  
+
+  try {
+    
+      const res=await api.put(`https://zoci-backend.onrender.com/api/user/password`,data,{ headers: {
+          'Content-Type': 'application/json', 
+          'Authorization': `${token}` ,
+
+        }});
+      return  res.data;   
+    } catch (error) {    
+      throw error;
+  }
+
+}

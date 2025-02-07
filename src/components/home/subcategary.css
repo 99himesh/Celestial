@@ -43,3 +43,15 @@ padding-top: 20px;
 display: flex;
 align-items: center;
 }
+
+
+
+
+
+@media only screen and (max-width: 600px) {
+
+  .subcategary .slick-slider {
+    height: 300px;
+    display: flex; /* Optional: Ensures child items are aligned properly */
+  }
+}

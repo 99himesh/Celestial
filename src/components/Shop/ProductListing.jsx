@@ -7,11 +7,13 @@ const ProductListing=({data})=>{
     
     return(
         <>
-        <Row gutter={[50,50]}>
+        <Row>
         {data?.map((item,idx)=>{
             return(
-             <Col key={idx} xl={8} lg={8} md={12} sm={24} xs={24}>
+             <Col key={idx} xl={8} lg={8} md={12} sm={12} xs={12}>
+                <div className="sm:px-10 sm:pb-[78px] px-2 pb-4">
              <ShopCard item={item} shop="shop"/>
+             </div>
              </Col>
             )
         })}
