@@ -124,10 +124,9 @@ const ProductDetails = () => {
     <div className="relative">
     <Row className="md:pt-[120px] pt-[70px] bg-[#efe6dc] md:px-20 2  pb-5">
       <Col xl={12} lg={12} md={24} sm={24} xs={24}>
-      
-        <Row className=" px-5 " >
+        <Row className=" px-5 "  >
           <Col xl={{span:4,order:1}} lg={24} md={24} sm={{span:24,order:2}}  xs={{span:24,order:2}}  >
-            <div className="flex lg:flex-col   max-lg:py-3 py-1  gap-[14px]">
+            <div className="flex md:flex-col   max-lg:py-3 py-1  gap-[14px]">
               <div onClick={() => { activeImageHAndler(items?.images[0], 1) }} className={`md:size-[100px] size-[70px] cursor-pointer ${activeImageId == 1 && "border-[2px] border-[#214343] rounded-md"} `}>{items?.images?.length>0 && <img className="w-[100%] h-[100%] rounded" src={items?.images[0]} />}</div>
               <div onClick={() => { activeImageHAndler(items?.images[1], 2) }} className={`md:size-[100px] size-[70px] cursor-pointer ${activeImageId == 2 && "border-[2px] border-[#214343] rounded-md"} `}>{items?.images?.length>0 && <img className="w-[100%] h-[100%] rounded" src={items?.images[1]} />}</div>
               <div onClick={() => { activeImageHAndler(items?.images[2], 3) }} className={`md:size-[100px] size-[70px] cursor-pointer ${activeImageId == 3 && "border-[2px] border-[#214343] rounded-md"} `}>{items?.images?.length>0 && <img className="w-[100%] h-[100%] rounded" src={items.images[2]} />}</div>
