@@ -146,6 +146,7 @@ const ProductDetails = () => {
              fullscreenOnMobile={true}
              mobileBreakpoint={640}
              hideCloseButton={false}
+             hideHint={true}
                 style={{
                   height: '100%',
                   width: '100%',
