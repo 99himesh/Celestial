@@ -4,11 +4,13 @@ import ring from "../../assets/rings.jpg"
 const Catalogue=()=>{
     const [activeTab,setActiveTab]=useState("men")
     const [catalogueData,setCatalogueData]=useState(["Earring","Cufflinks","Bracelets","Rings","Pendants","Brooches","Chains","Walletchains"])
+    const [hoverActive,setHoverActive]=useState(false)
+    const [hoverId,setHoverId]=useState(null);
     const activeTabHandler=(categary)=>{
 
         setActiveTab(categary)
             if(categary==="men"){
-                setCatalogueData(["Earring","Cufflinks","Bracelets","Rings","Pendants","Brooches","Chains","Walletchains"])
+                setCatalogueData(["Launch Soon","Launch Soon","Launch Soon","Launch Soon","Launch Soon","Launch Soon","Launch Soon","Launch Soons"])
             }else{
                 setCatalogueData(["Necklace","Brooch","Watch clip","Cufflinks","Bracelet","Rings","Earrings","Pendant"])
 
@@ -29,20 +31,10 @@ const Catalogue=()=>{
             <Row gutter={[20,20]} className="pt-[34px]" >
             {catalogueData?.map((item,idx)=>{
                 return(
-                //     <Col xl={8} lg={8} md={8} sm={8} xs={12}>
-                //    <div className="flex flex-col   justify-center items-center ">
-
-                //      <img src={ring} className="rounded-full h-[100px] w-[100px]"/>
-                //      <h4 className="text-[16px] text-[#214344] text-center ">{item}</h4>
-                //    </div>
-                      
-                       
-                //     </Col>
-
-<Col xl={8} lg={8} md={8} sm={8} xs={12} >
+          <Col xl={8} lg={8} md={8} sm={8} xs={12} >
                 <div
-                onMouseEnter={() => hoverSubHandler(idx)}
-                onMouseLeave={() => setHoverSub(false)}
+                onMouseEnter={() => {setHoverActive(true),setHoverId(idx)}}
+                onMouseLeave={() => setHoverActive(false)}
                 className="cursor-pointer"
                 style={{
                   display: 'flex',
@@ -83,7 +75,6 @@ const Catalogue=()=>{
                       display: 'flex',
                       justifyContent: 'center',
                       alignItems: 'center',
-                      // border: '2px solid #747676',
                       borderRadius: 4,
                       position:"relative"
                     }}
@@ -92,7 +83,7 @@ const Catalogue=()=>{
                    <div className="w-[50px] h-[60px] flex items-center justify-center">
                     <img className="w-full h-[30px] " src={ring}/>
                     </div>
-                    {/* {(hoverSub &&  hoverId===idx ) && <h4 className="absolute left-0 right-0 mx-auto flex justify-center text-[20px]   text-[#214344] font-bold    ">{item}</h4>} */}
+              { hoverActive && hoverId===idx &&  <h4 className="absolute left-0 right-0 mx-auto flex justify-center text-[12px]   text-[#214344] font-bold    ">{item}</h4>}
                    </div>
                   </div>
                 </Card>

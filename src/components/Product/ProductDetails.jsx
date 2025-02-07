@@ -124,21 +124,21 @@ const ProductDetails = () => {
     <div className="relative">
     <Row className="md:pt-[120px] pt-[70px] bg-[#efe6dc] md:px-20 2  pb-5">
       <Col xl={12} lg={12} md={24} sm={24} xs={24}>
-        <Row className="  "  >
-          <Col xl={{span:4,order:1}} lg={{span:4,order:1}} md={{span:4,order:1}} sm={{span:24,order:2}}  xs={{span:24,order:2}}  >
-            <div className="flex lg:flex-col   max-lg:py-3 py-1  gap-[20px]">
+        <Row className="max-lg:px-5  "  >
+          <Col xl={{span:4,order:1}} lg={{span:24,order:2}} md={{span:24,order:2}} sm={{span:24,order:2}}  xs={{span:24,order:2}}  >
+            <div className="flex lg:flex-col   max-lg:py-3 py-1  gap-[20px] max-lg:justify-center">
               <div onClick={() => { activeImageHAndler(items?.images[0], 1) }} className={`md:size-[100px] size-[70px] cursor-pointer ${activeImageId == 1 && "border-[2px] border-[#214343] rounded-md"} `}>{items?.images?.length>0 && <img className="w-[100%] h-[100%] rounded" src={items?.images[0]} />}</div>
               <div onClick={() => { activeImageHAndler(items?.images[1], 2) }} className={`md:size-[100px] size-[70px] cursor-pointer ${activeImageId == 2 && "border-[2px] border-[#214343] rounded-md"} `}>{items?.images?.length>0 && <img className="w-[100%] h-[100%] rounded" src={items?.images[1]} />}</div>
               <div onClick={() => { activeImageHAndler(items?.images[2], 3) }} className={`md:size-[100px] size-[70px] cursor-pointer ${activeImageId == 3 && "border-[2px] border-[#214343] rounded-md"} `}>{items?.images?.length>0 && <img className="w-[100%] h-[100%] rounded" src={items.images[2]} />}</div>
               <div onClick={() => { activeImageHAndler(items?.images[3], 4) }} className={`md:size-[100px] size-[70px] cursor-pointer ${activeImageId == 4 && "border-[2px] border-[#214343] rounded-md"} `}>{items?.images?.length>0 && <img className="w-[100%] h-[100%] rounded" src={items.images[3]} />}</div>
             </div>
           </Col>
-          <Col xl={{span:20,order:2}} lg={{span:20,order:2}} md={{span:20,order:2}} sm={{span:24,order:1}}  xs={{span:24,order:1}} >
+          <Col xl={{span:20,order:2}} lg={{span:4,order:1}} md={{span:24,order:1}} sm={{span:24,order:1}}  xs={{span:24,order:1}} >
           <div className="flex gap-2 md:hidden items-center max-md:pt-4 ">
-                <Typography.Text className="text-[14px] font-semibold ">Home </Typography.Text>
-                <TbPointFilled />
+                <Typography.Text className="text-[14px] font-semibold text-[#214344]">Home </Typography.Text>
+                <TbPointFilled  style={{color:"#214344"}}/>
 
-                <Typography.Text className="text-[14px] font-semibold">{(items?.category)?.toUpperCase()} </Typography.Text>
+                <Typography.Text className="text-[14px] font-semibold text-[#214344]">{(items?.category)?.toUpperCase()} </Typography.Text>
               </div>
             <div className="md:h-[480px]   md:w-[480px] mx-auto relative max-md:pt-2">
              {items?.images?.length>0 &&  <InnerImageZoom
@@ -167,10 +167,10 @@ const ProductDetails = () => {
           <div className="px-3   gap-5">
             <div className="pb-3">
               <div className="flex gap-2 max-md:hidden items-center ">
-                <Typography.Text className="text-[14px] font-semibold ">Home </Typography.Text>
+                <Typography.Text className="text-[14px] text-[214344] font-semibold ">Home </Typography.Text>
                 <TbPointFilled />
 
-                <Typography.Text className="text-[14px] font-semibold">{(items?.category)?.toUpperCase()} </Typography.Text>
+                <Typography.Text className="text-[14px] text-[#214344] font-semibold">{(items?.category)?.toUpperCase()} </Typography.Text>
               </div>
               <div className="flex max-sm:flex-col justify-between md:items-center">
                 <div>
@@ -181,9 +181,9 @@ const ProductDetails = () => {
                 <div className="flex gap-2 items-center py-4">
                   {[1, 2, 3, 4, 5]?.map((item) => {
                     return (<>
-                      {item <= 3 ? <div className="h-[24px] w-[24px]">
+                      {item <= 3 ? <div className="h-[18px] w-[18px]">
                         <img src={starOrange} />
-                      </div> : <div className="h-[24px] w-[24px]">
+                      </div> : <div className="h-[18px] w-[18px]">
                         <img src={startWhite} />
                       </div>}
                     </>)
@@ -193,7 +193,7 @@ const ProductDetails = () => {
                 </div>
               </div>
             </div>
-            <div className="flex gap-2 items-center pt-7">
+            <div className="flex gap-2 items-center sm:pt-7">
               <span className="text-xl font-semibold text-[#214344] ">Rs. {items?.price}</span>
               <span className="text-lg text-gray-400 line-through ">Rs. {items?.discountPrice}</span>
               <span className="text-sm text-red-500  ">{discountPercentage && discountPercentage}% Off</span>
@@ -213,7 +213,7 @@ const ProductDetails = () => {
               </div>
             </Flex>
 
-            <div className="flex justify-between  md:px-7  items-center py-[15px]  ">
+            <div className="flex justify-between  md:px-7  items-center pt-[12px] pb-[15px]  ">
             <button  onClick={() => { addCartHandler(items,"cart") }}  className=" rounded-full cursor-pointer"><div className="p-2 h-[45px] w-[40px] cursor-pointer"><img src={bag}  className="h-full w-full" /></div></button>
 
                 {/* <button className="text-[#214344] border bg-[#fff] hover:text-[#fff] hover:bg-[#214344] font-medium rounded-full text-sm md:w-[250px] w-[120px]  h-[45px]  text-center">Buy Now</button> */}
@@ -224,8 +224,10 @@ const ProductDetails = () => {
               </div>
             <div className="flex flex-col   gap-[20px] ">
             
-               <div className="w-[100%] shadow-xl bg-[#fffcf2]   rounded-full flex justify-start md:px-5 px-2  items-center h-[50px]"><div className=" flex items-center h-[18px] w-[18px]  "><img className="w-[100%] " src={bag} /></div>
-            <Typography.Text className="max-sm:ps-1 sm:ps-4 sm:text-[16px] max-sm:text-[10px]">{counterPeople} people have this in their carts right now. It's running out! </Typography.Text>
+               <div className="w-[100%] shadow-xl bg-[#fffcf2]   rounded-full flex justify-start md:px-5 ps-4 pe-6  items-center h-[50px]"><div className=" flex items-center h-[20px] w-[20px]"><img className="w-[100%] " src={bag} /></div>
+           <marquee direction="left">
+            <Typography.Text className="max-sm:ps-1 sm:ps-4 text-[16px]">{counterPeople} people have this in their carts right now. It's running out! </Typography.Text>
+            </marquee>
             </div>
               <div className="">
               <Collapse
