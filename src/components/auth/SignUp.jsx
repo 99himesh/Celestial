@@ -57,9 +57,14 @@ const SignUp = () => {
       console.log(res);
 
       if (res.status) {
-        dispatch(loginSuccess({ token: res.data.token, users: res.data }));
+        console.log(res.data);
+        
         localStorage.setItem("token", res.data?.token);
         localStorage.setItem("userId", res.data?._id);
+        localStorage.setItem("role", res.data?.role);
+        // localStorage.setItem("role", res.data?._id);
+        dispatch(loginSuccess({ token: res.data.token, users: res.data }));
+     
       }
     } catch (error) {
       console.log(error);

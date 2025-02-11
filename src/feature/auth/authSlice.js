@@ -6,6 +6,7 @@ const initialState= {
     token:token || null,
     isAuthenticated:!!token
 }
+console.log("state.isAuthenticated");
 
 const authSlice = createSlice({
   name: "auth",

@@ -29,7 +29,10 @@ import { TbPointFilled } from "react-icons/tb";
 import { addToWishlistData } from "../../feature/wishlist/wishlistApi";
 // product details page start here
 
+import { useRazorpay, RazorpayOrderOptions } from "react-razorpay";
+
 const ProductDetails = () => {
+  const { error, isLoading, Razorpay } = useRazorpay();
   const [counterPeople,setCounterPeople]=useState(5);
   const dispatch = useDispatch(); 1
   const [activeImageId, setActiveImageId] = useState(1);
@@ -102,6 +105,38 @@ const ProductDetails = () => {
 
 
 
+
+  const handlePayment = () => {
+    const options = {
+      key: "YOUR_RAZORPAY_KEY",
+      amount: 50000, // Amount in paise
+      currency: "INR",
+      name: "Test Company",
+      description: "Test Transaction",
+      order_id: "order_9A33XWu170gUtm", // Generate order_id on server
+      handler: (response) => {
+        console.log(response);
+        alert("Payment Successful!");
+      },
+      prefill: {
+        name: "John Doe",
+        email: "john.doe@example.com",
+        contact: "9999999999",
+      },
+      theme: {
+        color: "#F37254",
+      },
+    };
+
+    const razorpayInstance = new Razorpay(options);
+    razorpayInstance.open();
+  };
+
+
+
+
+
+
   useEffect(()=>{
     if(counterPeople===0)  return
 
@@ -122,6 +157,8 @@ const ProductDetails = () => {
   }, [dispatch])
   return (
     <div className="relative">
+        {isLoading && <p>Loading Razorpay...</p>}
+        {error && <p>Error loading Razorpay: {error}</p>}
     <Row className="md:pt-[120px] pt-[70px] bg-[#efe6dc] md:px-20 2  pb-5">
       <Col xl={12} lg={12} md={24} sm={24} xs={24}>
         <Row className="max-lg:px-5  "  >
@@ -156,9 +193,6 @@ const ProductDetails = () => {
                 src={activeImageUrl}
               />}
             </div>
-            {/* </Slider> */}
-            {/* </div> */}
-
           </Col>
         </Row>
       </Col>
@@ -219,7 +253,8 @@ const ProductDetails = () => {
                 {/* <button className="text-[#214344] border bg-[#fff] hover:text-[#fff] hover:bg-[#214344] font-medium rounded-full text-sm md:w-[250px] w-[120px]  h-[45px]  text-center">Buy Now</button> */}
                
                 {/* <button class="btn rounded-full md:h-[50px] h-[40px] flex  max-md:w-[0px]">Buy Now</button> */}
-                <button class="bg-[#214344] rounded-full w-[350px] text-[15px] font-seemibold md:py-4 py-2  text-[#fff] max-md:w-[200px]">Buy Now</button>
+              
+                <button onClick={handlePayment} class="bg-[#214344] rounded-full w-[350px] text-[15px] font-seemibold md:py-4 py-2  text-[#fff] max-md:w-[200px]">Buy Now</button>
                 <button onClick={()=>{addTowishlistHandler(items,"wishlist")}} className="size-[30px]  cursor-pointer"><img src={wishlist}/></button>
               </div>
             <div className="flex flex-col   gap-[20px] ">
