@@ -10,8 +10,8 @@ const HeroSection=()=>{
       <div className="sm:pt-[110px] pt-[70px] relative bg-[#efe6dc]">
         <div className="">
         <video  className="w-full h-[700px]    md:h-[700px] object-cover"  muted loop autoPlay>
-        <source    src={video} type="video/mp4"/>
-        <source  src={video} type="video/ogg"/>
+        <source    src={"https://zoci-data.s3.ap-south-1.amazonaws.com/productVideos/1739249519134_video.mp4"} type="video/mp4"/>
+        <source  src={"https://zoci-data.s3.ap-south-1.amazonaws.com/productVideos/1739249519134_video.mp4"} type="video/ogg"/>
       </video>
       </div>
       <div className="absolute md:top-[200px] top-[300px]  left-0 right-0 mx-auto  w-[60%] text-center ">

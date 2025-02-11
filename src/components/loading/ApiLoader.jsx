@@ -18,14 +18,16 @@ const ApiLoader=()=>{
     const isLoading = useSelector((state) => state.load.pageLoading);
     return(
         <>
+       {isLoading && <>
         <Header/>
-        {isLoading && <div style={loadingStyle} className="backdrop-blur-md">
+        <div style={loadingStyle} className="backdrop-blur-md">
                     
                     <video width="80px" height="80px" muted loop autoPlay>
           <source src={loader} type="video/mp4"/>
           <source src={loader} type="video/ogg"/>
         </video>
-                </div>}
+                </div>
+                </>}
         
         </>
     )

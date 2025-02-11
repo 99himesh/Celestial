@@ -13,7 +13,10 @@ import api from "../../axios/axios";
 export const getProductApi=async()=>{    
     try {
         const res=await api.get(`https://zoci-backend.onrender.com/api/product/getAllProduct`);
+        console.log(res);
+
         return await res.data.products;   
+        
     } catch (error) {    
         throw error;
     }

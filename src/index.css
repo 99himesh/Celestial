@@ -42,19 +42,11 @@
    url("./assets/fonts/WoodfordBournePro-ExtraLight.ttf") format("truetype");
   font-weight: "extraLight";
  }
- /* @font-face {
-  font-family: "WoodfordBourne";
-  src: local("WoodfordBourne"),
-   url("./assets/fonts/WoodfordBournePro-BoldItalic.ttf") format("truetype");
-  font-weight: "boldItalic";
- } */
-
 
 
   body{
     font-family: 'WoodfordBourne',"Sans-serif";
 }
-.ant-pagination-item{background-color: red;}
 .ant-drawer-body{padding: 0!important;}
 
 
