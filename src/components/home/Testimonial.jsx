@@ -7,7 +7,7 @@ import pritiImage from  "../../assets/Priti.jpg"
 import { FcLike } from "react-icons/fc";
 const Testimonial=()=>{
     return(
-        <div className="textimonial md:py-20  ">
+        <div className="textimonial md:pb-20  ">
             <div className="w-full overflow-hidden flex justify-center  md:py-20   ">
             <h1 className="md:text-[55px]  text-[30px] text-center md:text-start  text-[#BFA785] font-[400]">Client Reviews & Testimonials</h1>
             </div>

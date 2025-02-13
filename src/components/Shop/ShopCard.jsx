@@ -9,8 +9,6 @@ import {
 } from "@ant-design/icons";
 import { Flex, Progress } from "antd";
 import { Link } from "react-router-dom";
-// import CardModal from "./CardModal";
-// import { addToCart } from "../../feature/product/productSlice";
 import { useDispatch, useSelector } from "react-redux";
 import image from "../../assets/girl.jpg";
 import ringimage from "../../assets/rings.jpg";
@@ -36,7 +34,6 @@ const ShopCard = ({ item, shop }) => {
   // This function work as add to cart functionality
   const addCartHandler = async (item,status) => {
 
-    console.log(status);
     
     setCartStatus(status)
     setOpen(true);
@@ -231,17 +228,6 @@ const ShopCard = ({ item, shop }) => {
       ></div>
 
       </div>
-
-      {/* <CardModal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen}  id={cardId}/> */}
-      {/* <CustomDrawer
-
-        component={<Cart />}
-        open={open}
-        setOpen={setOpen}
-        onClose={onClose}
-      cartStatus={cartStatus}
-
-      /> */}
 
 <CustomDrawer cartStatus={cartStatus} component={<Cart />} open={open} setOpen={setOpen} onClose={onClose} />
 

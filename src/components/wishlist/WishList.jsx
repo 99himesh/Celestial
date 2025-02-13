@@ -16,14 +16,12 @@ const WishList=()=>{
     const wishlistData=useSelector(state=>state?.wish.wishlist)
     const navigate=useNavigate();
     const user=localStorage.getItem("userId")
-   console.log(wishlistData,"wisjj");
    
     const getwishlistDataHandler=async()=>{
         
         setLoading(true)
         try {
             const data=await getWishlistData()
-            console.log(data.wishlist);
             dispatch(addToWishList(data?.wishlist))
             setLoading(false)
         } catch (error) {  
@@ -33,7 +31,6 @@ const WishList=()=>{
    
     const deleteWishlistHandler=async(item)=>{
         setLoading(true)
-        console.log(item);
         
       const items={userId:user,prodId: item.prodId }
         
@@ -51,7 +48,7 @@ const WishList=()=>{
     useEffect(()=>{
         getwishlistDataHandler();
     },[])
-    if(loading) return <DrawerLoader/>
+    // if(loading) return <DrawerLoader/>
     return(
         <>
           <div className="cart w-full    px-5 min-h-[calc(100vh-85px)]    bg-[#efe6dc]  pb-3">

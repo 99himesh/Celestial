@@ -30,7 +30,6 @@
     const cart = useSelector((state) => state.cart?.cart);
     const searchData = useSelector((state) => state.product.searchData);
     const wish=useSelector(state=>state.wish.wishlist)
-    console.log(wish);
     
     const showDrawer = () => {
       setOpen(true);
@@ -58,7 +57,6 @@
     const getDataWishlist = async () => {
       try {
         const res = await getWishlistData();
-        console.log(res);
         
         dispatch(addToWishList(res?.wishlist));
       } catch (error) {}
@@ -169,8 +167,8 @@
           onClose={cartOnClose}
         />
       
-       {isModalOpen && <div className=" absolute top-0  w-full transition-all duration-1000 ease-in-out transform bg-[#efe6dc]  z-[9999]">
-        <div className="fixed top-0 z-[999] w-full bg-[#efe6dc]">
+       {isModalOpen && <div className="  overflow-y-scroll fixed w-full transition-all duration-1000 ease-in-out transform bg-[#efe6dc]  z-[9999]">
+        <div className=" z-[999] w-full bg-[#efe6dc]">
           <CustomSearch isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} items={searchData} />
       </div>
         </div>}

@@ -1,19 +1,9 @@
 import axios from "axios"
 import api from "../../axios/axios";
-// This is api of products
-// export const getProductApi=async()=>{    
-//     try {
-//         const res=await api.get(`/products`);
-//         return await res.data;   
-//     } catch (error) {    
-//         throw error;
-//     }
 
-// }
 export const getProductApi=async()=>{    
     try {
         const res=await api.get(`https://zoci-backend.onrender.com/api/product/getAllProduct`);
-        console.log(res);
 
         return await res.data.products;   
         

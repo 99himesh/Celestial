@@ -5,11 +5,10 @@ import { RightOutlined } from "@ant-design/icons";
 import "./hero.css"
 import scrollDown from "../../assets/scrolldown.png"
 const HeroSection=()=>{
-  // const video="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4"
     return(
       <div className="sm:pt-[110px] pt-[70px] relative bg-[#efe6dc]">
         <div className="">
-        <video  className="w-full h-[700px]    md:h-[700px] object-cover"  muted loop autoPlay>
+        <video  className="w-full min-h-[700px]    md:min-h-[700px] object-cover"  muted loop autoPlay>
         <source    src={"https://zoci-data.s3.ap-south-1.amazonaws.com/productVideos/1739249519134_video.mp4"} type="video/mp4"/>
         <source  src={"https://zoci-data.s3.ap-south-1.amazonaws.com/productVideos/1739249519134_video.mp4"} type="video/ogg"/>
       </video>
@@ -29,4 +28,4 @@ const HeroSection=()=>{
     )
 }
 export default HeroSection;
-// This is my hero section .end here
+

@@ -3,7 +3,7 @@ import Card from "../home/Card";
 import ShopCard from "./ShopCard";
 // import ShopCard from "./shopCard";
 const ProductListing=({data})=>{
-    console.log(data);
+    (data);
     
     return(
         <>

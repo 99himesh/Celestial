@@ -77,7 +77,6 @@ const EasyMenuHeader = ({ open, setOpen }) => {
     try {
       const filters = { category: data };
       const res = await getProductFilterApi({ filters });
-      console.log(res);
 
       dispatch(addproductToshop(res?.products));
       dispatch(addCategary(data));
@@ -91,7 +90,6 @@ const EasyMenuHeader = ({ open, setOpen }) => {
   const searchHandler=async(e)=>{
       try {
         const search={title:e.target.value}
-        console.log(search);
         const res= await getProductFilterApi({search})
         dispatch(searchProducts(res.products))
         
@@ -102,7 +100,6 @@ const EasyMenuHeader = ({ open, setOpen }) => {
       }
     
   }
-  console.log(searchData);
   
 
   return (

@@ -25,7 +25,6 @@ const Footer=()=>{
       try {
         const filters={category:data}
         const res=await getProductFilterApi({filters});
-        console.log(res);
         
         dispatch(addproductToshop(res?.products)) 
         dispatch(addCategary(data))   
