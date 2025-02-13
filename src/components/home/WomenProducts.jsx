@@ -54,7 +54,6 @@ const settings = {
 const WomenProducts=()=>{
   const dispatch=useDispatch();
   const data=useSelector(state=>state.product.products)
-  const womensData=data.filter((item,id)=>item.category==="Women"); 
     const getProduct = async () => {
       const data = await getProductApi();
       dispatch(addProducts(data))
@@ -65,7 +64,7 @@ const WomenProducts=()=>{
       return (
         <div className="w-full py-10 ">
           <Slider {...settings}>
-            {womensData.map((item) => (
+            {data.map((item) => (
               <div key={item.id} style={{  padding: "10px", textAlign: "center"}}>
               <Card item={item}/>
               </div>

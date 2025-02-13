@@ -14,7 +14,6 @@ const ViewCart=()=>{
 
     const dispatch=useDispatch();
     const cartData=useSelector(state=>state.cart.cart)
-    console.log(cartData,"cart");
     
    let sum=0;
     const getCartDataHandler=async()=>{
@@ -46,7 +45,9 @@ const ViewCart=()=>{
     useEffect(()=>{
         getCartDataHandler();
     },[])
-  
+    useEffect(() => {
+      window.scrollTo(0, 0);
+    },[])
     return (
         <div className="view-cart pt-[110px] px-20 py-20 bg-[#efe6dc]">
         <Typography.Text className="text-[30px] font-semibold">Your cart</Typography.Text>

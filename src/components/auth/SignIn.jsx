@@ -1,26 +1,92 @@
+import React, { useState } from "react";
+import { Button, Checkbox, Form, Input } from "antd";
+import { Link, useNavigate } from "react-router";
+import { loginWithNumberAndPassword } from "../../feature/auth/authApi";
+import { useDispatch } from "react-redux";
+import { loginSuccess } from "../../feature/auth/authSlice";
+import { toast } from "react-toastify";
+const SignIn = ({ setSingnin }) => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [input, setInput] = useState({
+    mobile: "",
+    password: "",
+  });
+  const inputHandler = (e) => {
+    setInput((prevInput) => ({
+      ...prevInput,
+      [e.target.name]: e.target.value,
+    }));
+  };
 
-import React from 'react';
-import { Button, Checkbox, Form, Input } from 'antd';
-const  SignIn=()=>{
-    const onFinish = (values) => {
-      };
-      const onFinishFailed = (errorInfo) => {
-      };
-    return(
-        <div className='px-5  w-[100%] flex flex-col  items-center justify-start pt-10'>
-            <h4 className='text-[40px] text-[#214344]  '>Sign In</h4>
-            <div className='flex flex-col gap-5'>
-            <div className='flex flex-col gap-2'>
-                <label>Username</label>
-            <input className='w-[250px] px-2 py-1 rounded-full'/>
-            </div>
-            <div  className='flex flex-col gap-2'>
-                <label>Password</label>
-            <input className='w-[250px] px-2 py-1 rounded-full'/>
-            </div>
-            <button className='w-[100%] bg-[#214344] text-[#fff] rounded-full py-1 '>SignIn</button>
-            </div>
-</div>
-    )
-}
+  const signInHandler = async () => {
+    try {
+      const res = await loginWithNumberAndPassword(input);
+      console.log(res);
+      if (res.status) {
+        toast.success(res.data.message);
+
+        localStorage.setItem("token", res.data?.token);
+        localStorage.setItem("userId", res.data?._id);
+        localStorage.setItem("role", res.data?.role);
+        // localStorage.setItem("role", res.data?._id);
+        dispatch(loginSuccess({ token: res.data.token, users: res.data }));
+        if(res.data.role==="admin"){
+          navigate("/admin/products")
+
+        }else{
+           navigate("/")
+        }
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error(error.response.data.message);
+      setInput({
+
+        mobile:input.mobile ,
+        password: "",})
+    }
+  };
+
+  return (
+    <div className="w-[100%] flex flex-col gap-3  justify-center ">
+      <Input
+        name="mobile"
+        value={input.mobile}
+        onChange={(e) => {
+          inputHandler(e);
+        }}
+        placeholder="Enter mobile Number "
+        className="w-[100%] px-4 py-2 rounded-full"
+      />
+      <Input.Password
+        name="password"
+        value={input.password}
+        onChange={(e) => {
+          inputHandler(e);
+        }}
+        placeholder="Enter Password"
+        className="w-[100%] px-4 py-2 rounded-full"
+      />
+      <button
+        onClick={() => {
+          signInHandler();
+        }}
+        className="w-[100%] bg-[#214344] text-[#fff] rounded-full py-2 "
+      >
+        Sign in
+      </button>
+      <div className="pt-4 flex justify-center ">
+        <Link
+          className="text-[#214334] font-[400] text-[16px] hover:text-[#214344]"
+          onClick={() => {
+            setSingnin(false);
+          }}
+        >
+          New to zoci ? Create an account
+        </Link>
+      </div>
+    </div>
+  );
+};
 export default SignIn;

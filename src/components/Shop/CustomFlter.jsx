@@ -6,12 +6,11 @@ import { useDispatch } from "react-redux";
 const CustomFilter=()=>{
     const dispatch=useDispatch();
     const filterSubcategary=async(data,status)=>{
-        console.log(data,status);
         
         try {
           const filters={[data]:status}
           const res=await getProductFilterApi({filters});
-          console.log(res);
+          (res);
           
           dispatch(addproductToshop(res?.products))  
         } catch (error) {

@@ -10,7 +10,7 @@ export const addToWishlistData=async(data,token)=>{
             'Authorization': `${token}` // Sending token in the header
 
           }});
-        return await res.data;   
+        return  res.data;   
     } catch (error) {    
         throw error;
     }
@@ -33,21 +33,7 @@ export const getWishlistData=async()=>{
     }
 
 }
-// export const deleteWishlistData=async(items)=>{ 
-//     debugger  
-//     const token=localStorage.getItem("token") 
-//     try {
-//         const res = await api.delete('https://zoci-backend.onrender.com/api/product/removeFromWishlist',items, {
-//             headers: {
-//               'Authorization': `Bearer ${token}`, // Replace with your actual authorization header if needed
-//               'Content-Type': 'application/json',  // Optional, depending on API requirements
-//             }
-//           });  
-//     } catch (error) {    
-//         throw error;
-//     }
 
-// }
 
 
 export const deleteWishlistData = async (items) => {

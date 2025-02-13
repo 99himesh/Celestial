@@ -37,13 +37,12 @@ const CustomSearch = ({ items, search, setOpen,setIsModalOpen }) => {
   };
   return (
     <>
-    <div className={`${searchData.length>0 ?"h-[500px]":"h-[220px]"} px-20   backdrop-blur-md`}>
+    <div className="relative ">
+    <div className={`${searchData.length>0 ?"h-[500px]":"h-[220px]"} px-20  w-full  backdrop-blur-md`}>
       <div onClick={()=>{closeModal()}} className="flex  justify-center cursor-pointer w-[40px] h-[40px] mx-auto  bg-[#fff] rounded-full p-2 mt-5  items-center  "><div className="h-[20px] w-[20px]  "><img className="w-full" src={closeIcon}/></div></div>
       <div className="px-5 w-[400px] mx-auto   pt-10">
       <input
-        // onChange={searchHandler}
         onChange={(e)=>{setSearchInut(e.target.value)}}
-        
         className="bg-[#efe6dc] text-center text-[40px] outline-none  focus:outline-none active:outline-none    focus:border-none active:border-none  border-none rounded-full w-full active:bg-[#efe6dc] hover:bg-[#efe6dc] focus:bg-[#efe6dc] border-[2px] border-![#efe6dc]"
         placeholder="Search Products..."
       />
@@ -64,6 +63,7 @@ const CustomSearch = ({ items, search, setOpen,setIsModalOpen }) => {
         </Link>
         </div>
       ))}
+      </div>
       </div>
       </div>
     </>

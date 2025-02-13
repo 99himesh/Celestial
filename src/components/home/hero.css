@@ -14,5 +14,8 @@
     .animate-updown {
       animation: updown 6s ease-in-out infinite;
     }
+    .card:hover .card-icon{
+      left: 0;
+    }
   
   

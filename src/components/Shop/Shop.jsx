@@ -27,7 +27,6 @@ const Shop = () => {
   const getProducts = async () => {
     const pagination = { page: 1, limit: 10 };
     const data = await getProductFilterApi(pagination);
-    console.log(data.products);
 
     dispatch(addproductToshop(data?.products));
   };
@@ -36,7 +35,6 @@ const Shop = () => {
     try {
       const filters = { category: data };
       const res = await getProductFilterApi({ filters });
-      console.log(res);
 
       dispatch(addproductToshop(res?.products));
       dispatch(addCategary(data));
@@ -48,7 +46,9 @@ const Shop = () => {
   useEffect(() => {
     getProducts();
   }, []);
-
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  },[])
   return (
     <>
       <Row className="md:pt-[110px] pt-[70px]  ">

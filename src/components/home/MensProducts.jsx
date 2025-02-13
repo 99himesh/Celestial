@@ -55,11 +55,13 @@ const MensProduct=()=>{
   
   const dispatch=useDispatch();
   const data=useSelector(state=>state?.product?.products)
-  const mensData=data?.filter((item,id)=>item?.madefor==="Women");
   const getProduct = async () => {
     const data = await getProductApi();
+    console.log(data);
+    
     dispatch(addProducts(data))
   }
+  
   useEffect(() => {
     getProduct();
   }, [])
@@ -67,7 +69,7 @@ const MensProduct=()=>{
       return (
         <div className=" md:w-[78%] w-[85%] mx-auto pt-10 overflow-hidden">
           <Slider {...settings}>
-            {mensData?.map((item,idx) => (
+            {data?.map((item,idx) => (
               <div key={idx} style={{  padding: "10px", textAlign: "center"}}>
                 <Card item={item}/>
               </div>

@@ -30,6 +30,7 @@ import { addToWishlistData } from "../../feature/wishlist/wishlistApi";
 // product details page start here
 
 import { useRazorpay, RazorpayOrderOptions } from "react-razorpay";
+import OrderModal from "../order/order";
 
 const ProductDetails = () => {
   const { error, isLoading, Razorpay } = useRazorpay();
@@ -41,8 +42,8 @@ const ProductDetails = () => {
   const { id } = useParams();
   const items = data.find(ele => ele._id === id)
   const [open, setOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [activeImageUrl, setActiveImageUrl] = useState(items?.images[0]);
-  console.log(activeImageUrl);
     const [cartStatus,setCartStatus]=useState("");
   
   const user = localStorage.getItem("userId")
@@ -75,7 +76,6 @@ const ProductDetails = () => {
     try {
       
       const res = await addToCartData(data, token)
-      console.log(res);
 
     } catch (error) {
       console.log(error);
@@ -92,7 +92,6 @@ const ProductDetails = () => {
   const addTowishlistHandler=async(item)=>{
     setCartStatus("wishlist")
     setOpen(true);
-       console.log(item);
         const data = { userId: localStorage.getItem("userId"), prodId: item?._id };
     
         try {
@@ -113,25 +112,25 @@ const ProductDetails = () => {
       currency: "INR",
       name: "Test Company",
       description: "Test Transaction",
-      order_id: "order_9A33XWu170gUtm", // Generate order_id on server
-      handler: (response) => {
-        console.log(response);
-        alert("Payment Successful!");
-      },
-      prefill: {
-        name: "John Doe",
-        email: "john.doe@example.com",
-        contact: "9999999999",
-      },
-      theme: {
-        color: "#F37254",
-      },
+
     };
 
     const razorpayInstance = new Razorpay(options);
     razorpayInstance.open();
   };
 
+
+
+  const createOrder=async()=>{
+    try {
+    const order=await addOrder()
+    
+
+      
+    } catch (error) {
+      
+    }
+  }
 
 
 
@@ -155,29 +154,36 @@ const ProductDetails = () => {
     getData()
     
   }, [dispatch])
+
+
+
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  },[])
   return (
     <div className="relative">
         {isLoading && <p>Loading Razorpay...</p>}
         {error && <p>Error loading Razorpay: {error}</p>}
-    <Row className="md:pt-[120px] pt-[70px] bg-[#efe6dc] md:px-20 2  pb-5">
+    <Row className="md:pt-[120px] pt-[70px] bg-[#efe6dc] md:px-20   pb-5">
       <Col xl={12} lg={12} md={24} sm={24} xs={24}>
         <Row className="max-lg:px-5  "  >
-          <Col xl={{span:4,order:1}} lg={{span:24,order:2}} md={{span:24,order:2}} sm={{span:24,order:2}}  xs={{span:24,order:2}}  >
+          <Col xl={{span:3,order:1}} lg={{span:24,order:2}} md={{span:24,order:2}} sm={{span:24,order:2}}  xs={{span:24,order:2}}  >
             <div className="flex lg:flex-col   max-lg:py-3 py-1  gap-[20px] max-lg:justify-center">
-              <div onClick={() => { activeImageHAndler(items?.images[0], 1) }} className={`md:size-[100px] size-[70px] cursor-pointer ${activeImageId == 1 && "border-[2px] border-[#214343] rounded-md"} `}>{items?.images?.length>0 && <img className="w-[100%] h-[100%] rounded" src={items?.images[0]} />}</div>
-              <div onClick={() => { activeImageHAndler(items?.images[1], 2) }} className={`md:size-[100px] size-[70px] cursor-pointer ${activeImageId == 2 && "border-[2px] border-[#214343] rounded-md"} `}>{items?.images?.length>0 && <img className="w-[100%] h-[100%] rounded" src={items?.images[1]} />}</div>
-              <div onClick={() => { activeImageHAndler(items?.images[2], 3) }} className={`md:size-[100px] size-[70px] cursor-pointer ${activeImageId == 3 && "border-[2px] border-[#214343] rounded-md"} `}>{items?.images?.length>0 && <img className="w-[100%] h-[100%] rounded" src={items.images[2]} />}</div>
-              <div onClick={() => { activeImageHAndler(items?.images[3], 4) }} className={`md:size-[100px] size-[70px] cursor-pointer ${activeImageId == 4 && "border-[2px] border-[#214343] rounded-md"} `}>{items?.images?.length>0 && <img className="w-[100%] h-[100%] rounded" src={items.images[3]} />}</div>
+              <div onClick={() => { activeImageHAndler(items?.images[0], 1) }} className={`md:size-[90px] size-[70px] cursor-pointer ${activeImageId == 1 && "border-[2px] border-[#214343] rounded-md"} `}>{items?.images?.length>0 && <img className="w-[100%] h-[100%] rounded" src={items?.images[0]} />}</div>
+              <div onClick={() => { activeImageHAndler(items?.images[1], 2) }} className={`md:size-[90px] size-[70px] cursor-pointer ${activeImageId == 2 && "border-[2px] border-[#214343] rounded-md"} `}>{items?.images?.length>0 && <img className="w-[100%] h-[100%] rounded" src={items?.images[1]} />}</div>
+              <div onClick={() => { activeImageHAndler(items?.images[2], 3) }} className={`md:size-[90px] size-[70px] cursor-pointer ${activeImageId == 3 && "border-[2px] border-[#214343] rounded-md"} `}>{items?.images?.length>0 && <img className="w-[100%] h-[100%] rounded" src={items.images[2]} />}</div>
+              <div onClick={() => { activeImageHAndler(items?.images[3], 4) }} className={`md:size-[90px] size-[70px] cursor-pointer ${activeImageId == 4 && "border-[2px] border-[#214343] rounded-md"} `}>{items?.images?.length>0 && <img className="w-[100%] h-[100%] rounded" src={items.images[3]} />}</div>
             </div>
           </Col>
-          <Col xl={{span:20,order:2}} lg={{span:4,order:1}} md={{span:24,order:1}} sm={{span:24,order:1}}  xs={{span:24,order:1}} >
+          <Col xl={{span:21,order:2}} lg={{span:4,order:1}} md={{span:24,order:1}} sm={{span:24,order:1}}  xs={{span:24,order:1}} >
           <div className="flex gap-2 md:hidden items-center max-md:pt-4 ">
                 <Typography.Text className="text-[14px] font-semibold text-[#214344]">Home </Typography.Text>
                 <TbPointFilled  style={{color:"#214344"}}/>
 
                 <Typography.Text className="text-[14px] font-semibold text-[#214344]">{(items?.category)?.toUpperCase()} </Typography.Text>
               </div>
-            <div className="md:h-[480px]   md:w-[480px] mx-auto relative max-md:pt-2">
+            <div className="md:h-[400px]  h-[]   md:w-[400px] mx-auto relative max-md:pt-2">
              {items?.images?.length>0 &&  <InnerImageZoom
              fadeDuration={0} 
              fullscreenOnMobile={true}
@@ -254,7 +260,7 @@ const ProductDetails = () => {
                
                 {/* <button class="btn rounded-full md:h-[50px] h-[40px] flex  max-md:w-[0px]">Buy Now</button> */}
               
-                <button onClick={handlePayment} class="bg-[#214344] rounded-full w-[350px] text-[15px] font-seemibold md:py-4 py-2  text-[#fff] max-md:w-[200px]">Buy Now</button>
+                <button onClick={()=>{setIsModalOpen(true)}} class="bg-[#214344] rounded-full w-[350px] text-[15px] font-seemibold md:py-4 py-2  text-[#fff] max-md:w-[200px]">Buy Now</button>
                 <button onClick={()=>{addTowishlistHandler(items,"wishlist")}} className="size-[30px]  cursor-pointer"><img src={wishlist}/></button>
               </div>
             <div className="flex flex-col   gap-[20px] ">
@@ -286,7 +292,7 @@ const ProductDetails = () => {
         </div>
         
         <CustomDrawer cartStatus={cartStatus} component={<Cart />} open={open} setOpen={setOpen} onClose={onClose} />
-
+        {isModalOpen && <OrderModal setIsModalOpen={setIsModalOpen} isModalOpen={isModalOpen}  items={items}/>}
       </Col>
     </Row>
     <div

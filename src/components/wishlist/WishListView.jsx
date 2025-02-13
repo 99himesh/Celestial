@@ -14,14 +14,12 @@ const WishlistView=()=>{
      const getwishlistDataHandler=async()=>{
             try {
                 const data=await getWishlistData()
-                console.log(data.wishlist);
                 dispatch(addToWishList(data?.wishlist))
             } catch (error) {  
             }
         }
        
         const deleteWishlistHandler=async(item)=>{
-            console.log(item);
             
           const items={userId:user,prodId: item.prodId }
             
@@ -36,6 +34,9 @@ const WishlistView=()=>{
             useEffect(()=>{
                 getwishlistDataHandler();
             },[])
+              useEffect(() => {
+                window.scrollTo(0, 0);
+              },[])
         
     return(
         <>

@@ -30,7 +30,6 @@ const CustomDrawer = ({
 }) => {
   const [activeDrawer, setActiveDrawer] = useState("cart");
 
-  console.log(cartStatus);
 
   useEffect(() => {
     setActiveDrawer(cartStatus);

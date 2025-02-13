@@ -45,7 +45,6 @@ const Sorting = ({ setPaginateData, item, paginateData,setFiter }) => {
         const newestData = await getProductFilterApi({sortby})
         dispatch(addproductToshop(newestData?.products))
 
-        console.log(newestData);
           
         } catch (error) {
           console.log(error);

@@ -6,14 +6,12 @@ const initialState= {
     token:token || null,
     isAuthenticated:!!token
 }
-console.log("state.isAuthenticated");
 
 const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
     loginSuccess:(state,action)=>{ 
-      console.log(action.payload);
         state.userData=action.payload.users;   
         state.user=action.payload?.users._id;
         state.token=action.payload.token;
@@ -25,9 +23,13 @@ const authSlice = createSlice({
         state.token=null;
         state.isAuthenticated=false;
         localStorage.removeItem("token");
+    },
+    addUserData:(state,action)=>{
+      state.userData=action.payload
     }
+
   
   },
 });
-export const {loginSuccess,logout}=authSlice.actions
+export const {loginSuccess,logout,addUserData}=authSlice.actions
 export default authSlice.reducer;
