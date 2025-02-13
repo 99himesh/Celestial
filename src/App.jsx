@@ -9,7 +9,7 @@ import AdminLayout from "./components/admin/AdminLayout";
 import AdminProductPage from "./pages/adminProductPage/AdminProductPage";
 import AdminCreateFormPage from "./pages/adminCreateForm/AdminCreateFormPage";
 import AdminProtectedRoute from "./utils/AdminProtectedRoute";
-import NotFound from "./pages/NotFound/NotfoundPage";
+import NotFound from "./pages/notFound/NotfoundPage";
 const Layout = lazy(() => import('./layout/Layout'));
 const ShopPage = lazy(() => import("./pages/shopPage/ShopPage"));
 const HomePage = lazy(() => import("./pages/home/Home"));
