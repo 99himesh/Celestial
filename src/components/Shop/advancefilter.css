@@ -6,3 +6,6 @@
 
   .ant-collapse-item{border-radius: 30px!important;}
   .ant-collapse-content-active{border-radius: 0 0 30px 30px!important;}
+  .shopcard:hover .card-icon{
+    left: 0;
+  }

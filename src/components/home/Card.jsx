@@ -15,7 +15,7 @@ import ringimage from "../../assets/rings.jpg";
 import { WishListIcon } from "../../icons/icon";
 import CustomDrawer from "../CustomDrawer";
 import { addToCartData } from "../../feature/categary/cartApi";
-import { addToCart } from "../../feature/categary/cartSlice";
+import { addToCart, cartCountersData } from "../../feature/categary/cartSlice";
 import Cart from "../cart/Cart";
 import { addToWishlistData } from "../../feature/wishlist/wishlistApi";
 import video from "../../assets/video.mp4";
@@ -26,6 +26,8 @@ import "./hero.css";
 import { RWebShare } from "react-web-share";
 import { addCategary, addproductToshop } from "../../feature/shop/shopSlice";
 import { getProductFilterApi } from "../../feature/product/productApi";
+import { toast } from "react-toastify";
+import { parse } from "postcss";
 // This is my card .start here
 const Card = ({ item, shop }) => {
   const navigate=useNavigate  ();
@@ -36,10 +38,12 @@ const Card = ({ item, shop }) => {
   const [discountPercentage, setDiscountPercentage] = useState();
   const token = localStorage.getItem("token");
   const user = localStorage.getItem("userId");
+  const cart=useSelector(state=>state.cart.cart)
+  const wish=useSelector(state=>state.wish.wishlist)
+  
   // This function work as add to cart functionality
   const addCartHandler = async (item, status) => {
     setCartStatus(status);
-    setOpen(true);
     const data = {
       userId: user,
       productId: item._id,
@@ -47,9 +51,13 @@ const Card = ({ item, shop }) => {
       price: item.price,
     };
     try {
-      const res = await addToCartData(data, token);
+      const res = await addToCartData(data, token); 
+      setOpen(true);
+      toast.success(res?.message);
+      localStorage.setItem("cart",parseInt(cart.length)+1)
     } catch (error) {
-      console.log(error);
+      console.log(error.response.data.message);
+      toast.error(error.response.data.message);
     }
   };
   // This function work as to show modal
@@ -66,18 +74,27 @@ const Card = ({ item, shop }) => {
   };
   const addToWishlistHandler = async (item, status) => {
     setCartStatus(status);
-    setOpen(true);
     const data = { userId: localStorage.getItem("userId"), prodId: item?._id };
 
     try {
       const res = await addToWishlistData(data);
+      localStorage.setItem("wish",parseInt(cart.length)+1)
+
+      setOpen(true);
+      toast.success(res?.message);
+
     } catch (error) {
       console.log(error);
+      toast.error(error.response.data.message);
+
     }
   };
   const similerProductHandler=async() =>{
+    console.log(item.category);
+    const filters={category:item.category}
     try {
-      const res=await getProductFilterApi({category:item.category})
+      const res=await getProductFilterApi({filters})
+      console.log(res);
             dispatch(addproductToshop(res?.products));
             dispatch(addCategary(item.category));
             navigate("/shop")

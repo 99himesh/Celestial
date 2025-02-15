@@ -5,33 +5,44 @@ import image from "../../assets/girl.jpg"
 import { deleteWishlistData, getWishlistData } from "../../feature/wishlist/wishlistApi";
 import { addToWishList } from "../../feature/wishlist/wishlistSlice";
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 const WishlistView=()=>{
+  console.log("data");
+  
+  
     const wishListData=useSelector(state=>state?.wish?.wishlist)
+    console.log(wishListData);
+    
     let sum=0;
      const dispatch=useDispatch()
     const user=localStorage.getItem("userId")
-
+    
      const getwishlistDataHandler=async()=>{
             try {
                 const data=await getWishlistData()
+                debugger
+                console.log(data);
+                
                 dispatch(addToWishList(data?.wishlist))
             } catch (error) {  
             }
         }
        
         const deleteWishlistHandler=async(item)=>{
-            
           const items={userId:user,prodId: item.prodId }
-            
             try {
-            const data=await deleteWishlistData(items)  
+            const res=await deleteWishlistData(items)  
+            toast.success(res.data?.message)
             getwishlistDataHandler();
+            localStorage.setItem("wish",parseInt(wishListData.length)-1)
+
             } catch (error) {
-    
+          toast.error(error?.response?.data?.message)
                 throw error;
             }
         }
             useEffect(()=>{
+              debugger
                 getwishlistDataHandler();
             },[])
               useEffect(() => {

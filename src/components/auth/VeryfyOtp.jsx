@@ -3,9 +3,10 @@ import { verifyOtp } from "../../feature/auth/authApi";
 import { Form, Input, Typography } from "antd";
 import { loginSuccess } from "../../feature/auth/authSlice";
 import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
 
 const VerifyOtp=({mobile})=>{
-      const [otp, setOtp] = useState(null);
+      const [otp, setOtp] = useState("");
       const dispatch=useDispatch()
    console.log(mobile);
    
@@ -16,6 +17,7 @@ const VerifyOtp=({mobile})=>{
         onChange,
       };
      const verifyOtpHandler = async () => {
+      if (otp==="" || otp.length < 4) return toast.error("Please enter valid otp")
         
         try {
           const res = await verifyOtp({
@@ -25,14 +27,16 @@ const VerifyOtp=({mobile})=>{
           });
     
           if (res.status) {
+            toast.success(res.message);
             localStorage.setItem("token", res.data?.token);
             localStorage.setItem("userId", res.data?._id);
             localStorage.setItem("role", res.data?.role);
+            localStorage.setItem("cart",res.data.cart.length)
             dispatch(loginSuccess({ token: res.data.token, users: res.data }));
-         
           }
         } catch (error) {
           console.log(error);
+          toast.error(error.response.data.message);
         }
       };
     return(

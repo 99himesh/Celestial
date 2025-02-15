@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Button, Collapse, Drawer, Radio, Space, Tooltip } from "antd";
-import { NavLink, useNavigate } from "react-router";
+import { Button, Collapse, Drawer, Radio, Space, Tooltip, Typography } from "antd";
+import { Link, NavLink, useNavigate } from "react-router";
 import {
   FileSearchOutlined,
   HomeOutlined,
@@ -39,7 +39,6 @@ import profileYellow from "../../assets/icons/profileYellow.png";
 import api from "../../axios/axios";
 import {
   getProductFilterApi,
-  getProductSearch,
 } from "../../feature/product/productApi";
 import image from "../../assets/girl.jpg";
 import Catalogue from "../catalogue/Catalogue";
@@ -56,6 +55,7 @@ import { TbBrandLinkedin, TbPointFilled } from "react-icons/tb";
 import { searchProducts } from "../../feature/product/productSlice";
 import useSelection from "antd/es/table/hooks/useSelection";
 import CustomSearch from "../home/CustomSearch";
+import { toast } from "react-toastify";
 // this is my mobile nav. start here
 const siderStyle = {
   height: "full",
@@ -91,11 +91,15 @@ const EasyMenuHeader = ({ open, setOpen }) => {
       try {
         const search={title:e.target.value}
         const res= await getProductFilterApi({search})
+        console.log(res);
+   
+        
         dispatch(searchProducts(res.products))
         
         
       } catch (error) {
         console.log(error);
+        toast.error(error.response.data.message)
          
       }
     
@@ -235,13 +239,11 @@ const EasyMenuHeader = ({ open, setOpen }) => {
           </div>
         </Sider>
         {activeTab == "catalogue" && <Catalogue />}
-        {/* {activeTab == "cart" && (navigate("/shop"))} */}
         {activeTab == "wishlist" && <div  className=" pt-16 w-full"><WishList /></div>}
         {activeTab == "profile" && <SignUp />}
-
         <div className=" pt-[55px] home-tab">
           {activeTab === "home" && (
-            <div className="px-10">
+            <div className="px-10 relative">
               <div className="relative ">
                 <input
                   placeholder="Search your products"
@@ -254,6 +256,24 @@ const EasyMenuHeader = ({ open, setOpen }) => {
                   <SearchOutlined style={{ fontSize: "20px" }} />
                 </div>
               </div>
+              {searchData.map((item,idx)=>{
+                return(
+                  <div className="absolute top-12 z-[99] w-[80%]">
+                    <div className="bg-[#fff] rounded-md">
+                   <div className="flex gap-5 px-2 py-1 shadow-lg rounded-md">
+                    <div className="size-[50px] ">
+                     <img className="rounded-xl" src={item.images[0]}/>
+                     </div>
+                     <div className="flex flex-col">
+                     <Typography.Text className="text-[14px] font-semibold" >{item.title}</Typography.Text>
+                     <Typography.Text>Rs.{item.price}</Typography.Text>
+                     </div>
+
+                   </div>
+                    </ div>
+                  </div>
+                )
+              })}
             </div>
           )}
           {activeTab == "home" && (
@@ -365,8 +385,8 @@ const EasyMenuHeader = ({ open, setOpen }) => {
                   <h6> Bag</h6>
                 </div>
               </NavLink>
-              <NavLink className="text-[#214344] text-[16px] font-[600] hover:text-[#214344]">
-                <div className="flex items-center"> About us</div>
+              <NavLink onClick={()=>{setOpen(false)}} to={"/aboutus"} className="text-[#214344] text-[16px] font-[600] hover:text-[#214344]">
+                <div  className="flex items-center"> About us</div>
               </NavLink>
             </div>
           )}

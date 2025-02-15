@@ -1,11 +1,21 @@
-import axios from "axios"
 import api from "../../axios/axios";
 
 export const getProductApi=async()=>{    
     try {
-        const res=await api.get(`https://zoci-backend.onrender.com/api/product/getAllProduct`);
+        const res=await api.get(`/product/getAllProduct`);
 
         return await res.data.products;   
+        
+    } catch (error) {    
+        throw error;
+    }
+
+}
+export const getProductDetailsApi=async(id)=>{    
+    try {
+        const res=await api.get(`/product/get-productbyid/${id}`);
+
+        return await res.data;   
         
     } catch (error) {    
         throw error;
@@ -15,18 +25,18 @@ export const getProductApi=async()=>{
 
 
 
-export const getProductFilterApi = async ({ page, limit, sortby, filters,search }) => {
-    
-    try {
+export const getProductFilterApi = async ({ page, limit, sortby, filters,search,newly }) => {    
+   try {
       const params = {
         page,
         limit,
+        ...newly,
         ...search,
         ...sortby,
         ...filters, // Spread filters dynamically
       };
   
-      const response = await api.get("https://zoci-backend.onrender.com/api/product/getAllProduct", { params });
+      const response = await api.get("/product/getAllProduct", { params });
   
       return response.data;
     } catch (error) {
@@ -35,32 +45,3 @@ export const getProductFilterApi = async ({ page, limit, sortby, filters,search 
   };
   
 
-
-
-export const getProductApiPaginate=async(apiend)=>{    
-    try {
-        const res=await api.get(`https://zoci-backend.onrender.com/api/product/getAllProduct`);
-        return await res.data.products;   
-    } catch (error) {    
-        throw error;
-    }
-
-}
-export const getProductApiSort=async(apiend)=>{    
-    try {
-        const res=await api.get(`/products?_limit=10&_sort=${apiend._sort}&_order=${apiend._order}`);
-        return await res.data;   
-    } catch (error) {    
-        throw error;
-    }
-
-}
-export const getProductSearch=async(apiend)=>{        
-    try {
-        const res=await api.get(`/products?_limit=10&${apiend}`);
-        return await res.data;   
-    } catch (error) {    
-        throw error;
-    }
-
-}

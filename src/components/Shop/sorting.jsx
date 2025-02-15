@@ -1,6 +1,6 @@
 import { ConfigProvider, Drawer, Pagination, Select, Typography } from "antd";
 import { useState } from "react";
-import { getProductApiPaginate, getProductApiSort, getProductFilterApi } from "../../feature/product/productApi";
+import {  getProductFilterApi } from "../../feature/product/productApi";
 import { FilterIcon } from "../../icons/icon";
 import { Header } from "antd/es/layout/layout";
 import AdvanceFilter from "./AdvanceFilter";

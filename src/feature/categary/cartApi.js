@@ -1,15 +1,16 @@
 
 import api from "../../axios/axios";
+import { token } from "../constants/constants";
+import { userId } from "../constants/constants";
 
 
-
-export const addToCartData = async (data, token) => { 
-       
+export const addToCartData = async (data) => { 
     try {
-        const res = await api.post(`https://zoci-backend.onrender.com/api/user/addtocart`, data, { 
+        const res = await api.post(`/user/addtocart`, data, { 
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `${token}` // Sending token in the header
+                'Authorization': `Bearer ${token}`
+
             }
         });
         return res.data;   
@@ -19,13 +20,12 @@ export const addToCartData = async (data, token) => {
 };
 
 export const getCartData=async()=>{  
-    const user=localStorage.getItem("userId")
-    const token=localStorage.getItem("token")     
     try {
         
-        const res=await api.get(`https://zoci-backend.onrender.com/api/user/cart/view/${user}`,{
+        const res=await api.get(`/user/cart/view/${userId}`,{
             headers: {
-                'Authorization': `${token}` // Sending token in the header
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
             }
         });
         return await res.data;   
@@ -34,14 +34,12 @@ export const getCartData=async()=>{
     }
 
 }
-export const deleteCartData=async(id)=>{ 
-     const userId=localStorage.getItem("userId")
-    const token=localStorage.getItem("token")
-     
+export const deleteCartData=async(id)=>{      
     try {
-        const res=await api.delete(`https://zoci-backend.onrender.com/api/user/cart/removeitem/${userId}/${id}`,{
+        const res=await api.delete(`/user/cart/removeitem/${userId}/${id}`,{
             headers: {
-                'Authorization': `${token}` ,
+                               // Sending token in the header
+                'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json',
 
             }
@@ -54,4 +52,18 @@ export const deleteCartData=async(id)=>{
 
 }
 
+export const updateCartApi = async (data) => {        
+    try {
+        const res = await api.put(`/user/cart/updatequantity`, data, { 
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+
+            }
+        });
+        return res.data;   
+    } catch (error) {    
+        throw error;
+    }
+};
 

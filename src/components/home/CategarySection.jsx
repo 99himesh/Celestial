@@ -1,7 +1,5 @@
 
 import React, { useEffect, useState } from 'react';
-import MensProduct from './MensProducts';
-import WomenProducts from './WomenProducts';
 import { getProductApi } from '../../feature/product/productApi';
 import { useDispatch } from 'react-redux';
 import { addProducts } from '../../feature/product/productSlice';
@@ -9,16 +7,12 @@ import SubCategary from './SubCategary';
 import { Link } from 'react-router';
 import Testimonial from './Testimonial';
 import Loading from '../loading/Loading';
+import TopSellerProduct from './Products';
 const CategarySection = () => {
   const [categary,setCategary]=useState("men");
   const dispatch = useDispatch();
-  const getProduct = async () => {
-    const data = await getProductApi();
-    dispatch(addProducts(data))
-  }
-  useEffect(() => {
-    getProduct(); 
-  }, [])
+
+
   const buttonactive={background:"#214344",color:"#f0d5a0"}
   const buttonInActive={color:"#214344",border:"3px solid #214344"}
   return (
@@ -51,7 +45,7 @@ const CategarySection = () => {
         </div>
         </div>
         
-       {categary==="men" ?<MensProduct /> : <WomenProducts />}
+       <TopSellerProduct/>
        <div className='flex justify-center pt-10'><Link  className='text-[16px] md:hidden  font-semibold   text-[#fff] bg-[#214344] rounded-full py-3  w-[100px] flex justify-center ' to="/shop">View All</Link></div>
 
        <div className='py-5'>

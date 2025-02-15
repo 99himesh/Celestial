@@ -10,22 +10,22 @@ import { deleteWishlistData, getWishlistData } from "../../feature/wishlist/wish
 import { useNavigate } from "react-router";
 import Loading from "../loading/Loading";
 import DrawerLoader from "../loading/DrawerLoader";
+import { toast } from "react-toastify";
 const WishList=()=>{
     const dispatch=useDispatch();
-    const [loading,setLoading]=useState(false)
     const wishlistData=useSelector(state=>state?.wish.wishlist)
     const navigate=useNavigate();
     const user=localStorage.getItem("userId")
+    const [loading,setLoading]=useState(false)
    
     const getwishlistDataHandler=async()=>{
-        
         setLoading(true)
         try {
             const data=await getWishlistData()
             dispatch(addToWishList(data?.wishlist))
             setLoading(false)
         } catch (error) {  
-            setLoading(false) 
+            setLoading(false)
         }
     }
    
@@ -36,11 +36,15 @@ const WishList=()=>{
         
         try {
         const data=await deleteWishlistData(items)  
-        getwishlistDataHandler();
+
         setLoading(false)
+        toast.success(data?.message)
+        getwishlistDataHandler();
+      localStorage.setItem("wish",parseInt(wishlistData.length)-1)
+
         } catch (error) {
             setLoading(false)
-
+        toast.error(error?.response?.data?.message)
             throw error;
         }
     }
@@ -48,7 +52,7 @@ const WishList=()=>{
     useEffect(()=>{
         getwishlistDataHandler();
     },[])
-    // if(loading) return <DrawerLoader/>
+    if(loading) return <DrawerLoader/>
     return(
         <>
           <div className="cart w-full    px-5 min-h-[calc(100vh-85px)]    bg-[#efe6dc]  pb-3">
@@ -69,7 +73,6 @@ const WishList=()=>{
         <div className="flex flex-col pt-2">
             <Typography.Text className="text-[16px] font-[400] ">{item?.title}</Typography.Text>
             <Typography.Text className="text-[16px] font-bold">Rs {item?.price}</Typography.Text>
-            <button>+</button>
         </div>
         </div>
         
