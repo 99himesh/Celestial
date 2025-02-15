@@ -32,6 +32,7 @@ const VerifyOtp=({mobile})=>{
             localStorage.setItem("userId", res.data?._id);
             localStorage.setItem("role", res.data?.role);
             localStorage.setItem("cart",res.data.cart.length)
+            localStorage.setItem("wish",res.data.wishlist.length)
             dispatch(loginSuccess({ token: res.data.token, users: res.data }));
           }
         } catch (error) {

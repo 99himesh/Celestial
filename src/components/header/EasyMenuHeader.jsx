@@ -241,6 +241,8 @@ const EasyMenuHeader = ({ open, setOpen }) => {
         {activeTab == "catalogue" && <Catalogue />}
         {activeTab == "wishlist" && <div  className=" pt-16 w-full"><WishList /></div>}
         {activeTab == "profile" && <SignUp />}
+        {/* {activeTab == "cart" && <SignUp />} */}
+
         <div className=" pt-[55px] home-tab">
           {activeTab === "home" && (
             <div className="px-10 relative">
