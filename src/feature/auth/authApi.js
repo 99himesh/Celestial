@@ -1,10 +1,9 @@
 import api from "../../axios/axios";
-const token=localStorage.getItem("token")
-
+import { token } from "../constants/constants";
+import { userId } from "../constants/constants";
 export const sendOtp=async(data)=>{    
     try {
-      
-        const res=await api.post(`https://zoci-backend.onrender.com/api/user/sendOtp`,data,{ headers: {
+        const res=await api.post(`/user/sendOtp`,data,{ headers: {
             'Content-Type': 'application/json', 
           }});
         return  res.data;   
@@ -13,12 +12,9 @@ export const sendOtp=async(data)=>{
     }
 
 }
-export const verifyOtp=async(data)=>{    
-  console.log(data,"hello");
-  
+export const verifyOtp=async(data)=>{      
   try {
-    
-      const res=await api.post(`https://zoci-backend.onrender.com/api/user/register`,data,);
+      const res=await api.post(`/user/register`,data,);
       return  res.data;   
     } catch (error) {    
       throw error;
@@ -26,13 +22,10 @@ export const verifyOtp=async(data)=>{
 
 }
 export const createPassword=async(data)=>{ 
-  const token=localStorage.getItem("token")
   try {
-    
-      const res=await api.put(`https://zoci-backend.onrender.com/api/user/password`,data,{ headers: {
+      const res=await api.put(`/user/password`,data,{ headers: {
           'Content-Type': 'application/json', 
-          'Authorization': `${token}` ,
-
+          'Authorization': `Bearer ${token}`,
         }});
       return  res.data;   
     } catch (error) {    
@@ -44,13 +37,11 @@ export const createPassword=async(data)=>{
 
 
 export const logOutApi=async()=>{ 
-  const userId=localStorage.getItem("userId")   
   try {
     
-      const res=await api.post(`https://zoci-backend.onrender.com/api/user/logout/${userId}`,{ headers: {
+      const res=await api.post(`/user/logout/${userId}`,{ headers: {
           'Content-Type': 'application/json', 
-          'Authorization': `${token}` // Sending token in the header
-
+          'Authorization': `Bearer ${token}`,
         }});
       return  res.data;   
     } catch (error) {    
@@ -60,14 +51,12 @@ export const logOutApi=async()=>{
 }
 
 
-export const getUserData=async()=>{  
-  const user=localStorage.getItem("userId")
-  const token=localStorage.getItem("token")     
+export const getUserData=async()=>{     
   try {
       
-      const res=await api.get(`https://zoci-backend.onrender.com/api/user/${user}`,{
+      const res=await api.get(`/user/${userId}`,{
           headers: {
-              'Authorization': `Bearer ${token}`
+            'Authorization': `Bearer ${token}`,
               // Sending token in the header
           }
       });
@@ -78,15 +67,11 @@ export const getUserData=async()=>{
 
 }
 
-export const loginWithNumberAndPassword=async(data)=>{
-  console.log(data,"hh");
-  
-  const token=localStorage.getItem("token")
+export const loginWithNumberAndPassword=async(data)=>{  
   try {
-    
-      const res=await api.post(`https://zoci-backend.onrender.com/api/user/loginwithpassword`,data,{ headers: {
+      const res=await api.post(`/user/loginwithpassword`,data,{ headers: {
           'Content-Type': 'application/json', 
-          'Authorization': `${token}` ,
+          'Authorization': `Bearer ${token}`,
 
         }});
       return  res.data;   

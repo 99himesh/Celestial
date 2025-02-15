@@ -1,5 +1,4 @@
   import { Link, NavLink } from "react-router";
-  import { MenuOutlined, ShoppingCartOutlined } from "@ant-design/icons";
   import { useEffect, useState } from "react";
   import EasyMenuHeader from "./EasyMenuHeader";
   import { useDispatch, useSelector } from "react-redux";
@@ -12,11 +11,8 @@
   import bag from "../../assets/Bag.png";
   import wishlist from "../../assets/wishlist.png";
   import menuIcon from "../../assets/Menuicon.png";
-  import { Input } from "antd";
-  import { getProductFilterApi } from "../../feature/product/productApi";
-  import { searchProducts } from "../../feature/product/productSlice";
   import CustomSearch from "../home/CustomSearch";
-  import { addToWishlistData, getWishlistData } from "../../feature/wishlist/wishlistApi";
+  import {  getWishlistData } from "../../feature/wishlist/wishlistApi";
   import { addToWishList } from "../../feature/wishlist/wishlistSlice";
   // This is my main Header. start here
   const Header = () => {
@@ -24,13 +20,13 @@
     const [cartOpen, setCartOpen] = useState(false);
     const [cartStatus,setCartStatus]=useState("");
     const [isModalOpen, setIsModalOpen] = useState(false);
-
-    const dispatch = useDispatch();
-    // const [search, setSearch] = useState(false);
-    const cart = useSelector((state) => state.cart?.cart);
+    const[cartCounter,setCartCounter]=useState(0)
+    const[wishCounter,setWishCounter]=useState(0)
     const searchData = useSelector((state) => state.product.searchData);
-    const wish=useSelector(state=>state.wish.wishlist)
+
     
+
+
     const showDrawer = () => {
       setOpen(true);
     };
@@ -38,7 +34,6 @@
       setOpen(false);
     };
     const cartShowDrawer = (status) => {
-      
       setCartOpen(true);
       setCartStatus(status)
     };
@@ -47,26 +42,35 @@
       setCartOpen(false);
       
     };
-    const getDataCart = async () => {
-      try {
-        const res = await getCartData();
-        dispatch(addToCart(res?.data?.cartItems));
-      } catch (error) {}
-    };
-
-    const getDataWishlist = async () => {
-      try {
-        const res = await getWishlistData();
-        
-        dispatch(addToWishList(res?.wishlist));
-      } catch (error) {}
-    };
+   
 
 
     useEffect(() => {
-      getDataCart();
-      getDataWishlist();
+      const updateCartCounter = () => {
+        setCartCounter(localStorage.getItem("cart") || 0);
+        setWishCounter(localStorage.getItem("wish") || 0);
+      };
+
+    
+      // Update cart counter initially
+      updateCartCounter();
+    
+      // Listen for changes from other tabs
+      window?.addEventListener("storage", updateCartCounter);
+    
+      // Listen for changes in the same tab
+      const originalSetItem = localStorage.setItem;
+      localStorage.setItem = function (key, value) {
+        originalSetItem.apply(this, arguments);
+        if (key === "cart" || key === "wish") updateCartCounter();
+      };
+    
+      return () => {
+        window?.removeEventListener("storage", updateCartCounter);
+        localStorage.setItem = originalSetItem; // Restore original
+      };
     }, []);
+    
 
     return (
       <>
@@ -88,9 +92,9 @@
                 >
                   <img src={wishlist} />
                 </div>
-                {wish?.length > 0 && (
+                {wishCounter > 0 && (
                     <div className="flex justify-center   text-[#214344] items-center absolute  text-[10px] text-center  -top-1  -right-3 h-[16px] w-[16px] rounded-full bg-[#F0D5A0]">
-                      {wish?.length}
+                      {wishCounter}
                     </div>
                   )}
                   </NavLink>
@@ -103,9 +107,9 @@
                   <div className="md:h-[28px] h-[20px] md:w-[25px] w-[16px]  cursor-pointer">
                     <img className="object-fit" src={bag} />
                   </div>
-                  {cart?.length > 0 && (
+                  {cartCounter > 0 && (
                     <div className="flex justify-center  text-[#214344] items-center absolute  text-[10px] text-center  -top-1  -right-3 h-[16px] w-[16px] rounded-full bg-[#F0D5A0]">
-                      {cart?.length}
+                      {cartCounter}
                     </div>
                   )}
                 </NavLink>
@@ -117,10 +121,6 @@
               </Link>
             </div>
             <div className="flex gap-[51px]  cursor-pointer">
-              {/* {search && <Input onChange={(e)=>{
-                searchHandler(e)
-              }} className="bg-[#e4cc9b] border-none  rounded-full" placeholder="Search Your Products"/>
-          } */}
               <div className="flex items-center md:gap-[51px]   ">
                 <div
                  onClick={()=>{setIsModalOpen(true)}}
@@ -128,19 +128,16 @@
                 >
                   <img src={serach} className="object-fit" />
                 </div>
-                <div className="">
-                  <NavLink
-                    onClick={() => {
+                <div 
+                   onClick={() => {
                       showDrawer();
-                    }}
-                    className="text-[#fff] "
-                  >
-                    {
+                    }}>
+                
+                    
                       <div className=" md:h-[12px] md:w-[24px] h-[8px] w-[18px]">
                         <img className="object-fit" src={menuIcon} />
                       </div>
-                    }
-                  </NavLink>
+                    
                 </div>
               </div>
             </div>
@@ -157,7 +154,6 @@
       ></div>
 
       <CustomDrawer  component={<Cart />} open={cartOpen} setOpen={setOpen} onClose={cartOnClose} />
-   
         <EasyMenuHeader open={open} setOpen={setOpen} />
         <CustomDrawer
         cartStatus={cartStatus}

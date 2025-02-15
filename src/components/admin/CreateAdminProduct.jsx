@@ -41,7 +41,7 @@ const CreateAdminProduct = () => {
   }
   const createProductHandler=async()=>{
     const data={
-      ...productFormInput,images:productImagesUrl,video:videoUrl,metalType
+      ...productFormInput,images:productImagesUrl,video:videoUrl,metalType,compare_at_price:1200
     }
     if(!editData){
       try {

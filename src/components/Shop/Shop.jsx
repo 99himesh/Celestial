@@ -3,9 +3,6 @@ import { Pagination } from "antd";
 import ProductListing from "./ProductListing";
 import { Select } from "antd";
 import {
-  getProductApi,
-  getProductApiPaginate,
-  getProductApiSort,
   getProductFilterApi,
 } from "../../feature/product/productApi";
 import { useEffect, useState } from "react";

@@ -67,14 +67,14 @@ const Footer=()=>{
             <div className="max-sm:pt-7"   >
                 <h6 className="text-[24px]  text-[#F0D5A0] font-semibold">THE COLLECTION</h6>
                 <div className="flex flex-col gap-3 pt-10 ">
-                    <Link className="text-[#fff] hover:text-[#fff] text-[18px] cursor-pointer">Signature Collection</Link>
-                    <Link className="text-[#fff] hover:text-[#fff] text-[18px] cursor-pointer">Personalized Pieces</Link>
-                    <Link className="text-[#fff] hover:text-[#fff] text-[18px] cursor-pointer">Regular Upkeep</Link>
-                    <Link className="text-[#fff] hover:text-[#fff] text-[18px] cursor-pointer" onClick={()=>{filterSubcategary("nackeless")}}>Nackles</Link>
-                    <Link className="text-[#fff] hover:text-[#fff] text-[18px] cursor-pointer" onClick={()=>{filterSubcategary("earings")}}>Earring</Link>
-                    <Link className="text-[#fff] hover:text-[#fff] text-[18px] cursor-pointer" onClick={()=>{filterSubcategary("pendents")}}>Pendent</Link>
-                    <Link className="text-[#fff] hover:text-[#fff] text-[18px] cursor-pointer" onClick={()=>{filterSubcategary("bracelets")}}>Bracelet</Link>
-                    <Link className="text-[#fff] hover:text-[#fff] text-[18px] cursor-pointer" onClick={()=>{filterSubcategary("ring")}}>Rings</Link>
+                    <Link className="text-[#fff] hover:text-[#fff] text-[18px] cursor-pointer" to={"/shop"}>Signature Collection</Link>
+                    <Link className="text-[#fff] hover:text-[#fff] text-[18px] cursor-pointer" to={"/shop"}>Personalized Pieces</Link>
+                    <Link className="text-[#fff] hover:text-[#fff] text-[18px] cursor-pointer" to={"/shop"}>Regular Upkeep</Link>
+                    <Link className="text-[#fff] hover:text-[#fff] text-[18px] cursor-pointer" to={"/shop"} onClick={()=>{filterSubcategary("nackeless")}}>Nackles</Link>
+                    <Link className="text-[#fff] hover:text-[#fff] text-[18px] cursor-pointer"  to={"/shop"} onClick={()=>{filterSubcategary("earings")}}>Earring</Link>
+                    <Link className="text-[#fff] hover:text-[#fff] text-[18px] cursor-pointer"  to={"/shop"} onClick={()=>{filterSubcategary("pendents")}}>Pendent</Link>
+                    <Link className="text-[#fff] hover:text-[#fff] text-[18px] cursor-pointer"  to={"/shop"} onClick={()=>{filterSubcategary("bracelets")}}>Bracelet</Link>
+                    <Link className="text-[#fff] hover:text-[#fff] text-[18px] cursor-pointer"  to={"/shop"} onClick={()=>{filterSubcategary("ring")}}>Rings</Link>
                 </div>
 
 

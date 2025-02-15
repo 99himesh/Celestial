@@ -4,7 +4,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Card from "./Card";
 import { useDispatch, useSelector } from "react-redux";
-import { getProductApi } from "../../feature/product/productApi";
+import { getProductApi, getProductFilterApi } from "../../feature/product/productApi";
 import { addProducts } from "../../feature/product/productSlice";
 
 const settings = {
@@ -51,15 +51,15 @@ const settings = {
     ]
 };
 
-const MensProduct=()=>{  
+const TopSellerProduct=()=>{  
   
   const dispatch=useDispatch();
   const data=useSelector(state=>state?.product?.products)
   const getProduct = async () => {
-    const data = await getProductApi();
+    const newly={newlyCreated:true}
+    const data = await getProductFilterApi({newly});
     console.log(data);
-    
-    dispatch(addProducts(data))
+    dispatch(addProducts(data.products))
   }
   
   useEffect(() => {
@@ -79,5 +79,5 @@ const MensProduct=()=>{
       )
 }
 
-export default MensProduct;
+export default TopSellerProduct;
 

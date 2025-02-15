@@ -4,7 +4,9 @@ import video from "../../assets/video.mp4"
 import { RightOutlined } from "@ant-design/icons";
 import "./hero.css"
 import scrollDown from "../../assets/scrolldown.png"
+import { useNavigate } from "react-router";
 const HeroSection=()=>{
+  const navigate=useNavigate()
     return(
       <div className="sm:pt-[110px] pt-[70px] relative bg-[#efe6dc]">
         <div className="">
@@ -15,7 +17,7 @@ const HeroSection=()=>{
       </div>
       <div className="absolute md:top-[200px] top-[300px]  left-0 right-0 mx-auto  w-[60%] text-center ">
           <h1  className="md:text-[70px] text-[24px] font-[600] text-[#fff] ">Signature Collection Launching Soon </h1>
-          <button className="px-7 bg-[transparent]    backdrop-blur-lg py-1 rounded-full md:text-[20px] text-[20px]   text-[#fff] mt-8">Know More <RightOutlined /></button> 
+          <button onClick={()=>{navigate("/aboutus")}} className="px-7 bg-[transparent]    backdrop-blur-lg py-1 rounded-full md:text-[20px] text-[20px]   text-[#fff] mt-8">Know More <RightOutlined /></button> 
         <div className="sm:pt-20 pt-[180px]">
         <div className="sm:h-[60px] sm:w-[36px] h-[40px] w-[26px] animate-bounce absolute transition-all duration-[5000] ease-in-out left-0 right-0 mx-auto">
 

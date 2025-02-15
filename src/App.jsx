@@ -17,18 +17,20 @@ const ProductDetailsPage = lazy(() => import("./pages/productDetails/ProductDeta
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import AdminOrdersPage from "./pages/adminOrder/AdminOrderPage";
+import AboutUsPage from "./pages/aboutusPage/AboutUsPage";
 function App() {
  
   return (
     <>
     <ToastContainer/>
     <ApiLoader/>
-    <Suspense fallback={<Loading/>}>
+    <Suspense fallback={<Loading />} >
       <Routes>
-        <Route path="/" element={<Layout />}>
+        <Route path="/" element={<Layout />} >
           <Route index  element={<HomePage />} />
           <Route path="product/:id" element={<ProductDetailsPage />} />
           <Route path="shop" element={< ShopPage/>} />
+          <Route path="aboutus" element={< AboutUsPage/>} />
           <Route path="viewcart"  element={<ProtectedRoute><ViewCartPage /></ProtectedRoute>} />
           <Route path="wishlist"  element={<ProtectedRoute><WishlistPage /></ProtectedRoute>} />
           <Route path="*"  element={<NotFound/>} />

@@ -1,14 +1,12 @@
 import api from "../../axios/axios";
 // This is api of products
-
-export const addToWishlistData=async(data,token)=>{ 
-      
-    
+import { token } from "../constants/constants";
+import { userId } from "../constants/constants";
+export const addToWishlistData=async(data)=>{      
     try {
-        const res=await api.post(`https://zoci-backend.onrender.com/api/product/addtowishlist`,data,{ headers: {
+        const res=await api.post(`/product/addtowishlist`,data,{ headers: {
             'Content-Type': 'application/json', 
-            'Authorization': `${token}` // Sending token in the header
-
+            'Authorization': `Bearer ${token}`,
           }});
         return  res.data;   
     } catch (error) {    
@@ -17,31 +15,22 @@ export const addToWishlistData=async(data,token)=>{
 
 }
 export const getWishlistData=async()=>{    
-    const user=localStorage.getItem("userId")
-    const token=localStorage.getItem("token")
     try {
-        const res=await api.get(`https://zoci-backend.onrender.com/api/product/get-wishlist/${user}`,{
+        const res=await api.get(`/product/get-wishlist/${user}`,{
              headers: {
                 'Content-Type': 'application/json', 
-                'Authorization': `${token}` // Sending token in the header
-    
+                'Authorization': `Bearer ${token}`,
               }
         });        
         return await res.data;   
     } catch (error) {    
         throw error;
     }
-
 }
-
-
-
-export const deleteWishlistData = async (items) => {
-    const token = localStorage.getItem("token");
-  
+export const deleteWishlistData = async (items) => {  
     try {
       const res = await api.delete(
-        `https://zoci-backend.onrender.com/api/product/removeFromWishlist/${items.userId}/${items.prodId}`, 
+        `/product/removeFromWishlist/${items.userId}/${items.prodId}`, 
         {
           headers: {
             'Authorization': `Bearer ${token}`,

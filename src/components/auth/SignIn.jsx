@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Checkbox, Form, Input } from "antd";
+import { Button, Checkbox, ConfigProvider, Form, Input } from "antd";
 import { Link, useNavigate } from "react-router";
 import { loginWithNumberAndPassword } from "../../feature/auth/authApi";
 import { useDispatch } from "react-redux";
@@ -20,11 +20,13 @@ const SignIn = ({ setSingnin }) => {
   };
 
   const signInHandler = async () => {
+    if(input.mobile.length<10 || input.mobile=="") return toast.error("Please enter valid mobile number")
+    if(input.password=="" || input.password.length<6) return toast.error("Please enter valid password")
     try {
       const res = await loginWithNumberAndPassword(input);
       console.log(res);
       if (res.status) {
-        toast.success(res.data.message);
+        toast.success(res.message);
 
         localStorage.setItem("token", res.data?.token);
         localStorage.setItem("userId", res.data?._id);
@@ -49,7 +51,15 @@ const SignIn = ({ setSingnin }) => {
   };
 
   return (
+    <ConfigProvider
+    theme={{
+      token: {
+        colorPrimary: "#214344",
+      },
+    }}
+  >
     <div className="w-[100%] flex flex-col gap-3  justify-center ">
+      
       <Input
         name="mobile"
         value={input.mobile}
@@ -87,6 +97,7 @@ const SignIn = ({ setSingnin }) => {
         </Link>
       </div>
     </div>
+    </ConfigProvider>
   );
 };
 export default SignIn;
