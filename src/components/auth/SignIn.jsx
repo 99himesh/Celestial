@@ -31,6 +31,8 @@ const SignIn = ({ setSingnin }) => {
         localStorage.setItem("token", res.data?.token);
         localStorage.setItem("userId", res.data?._id);
         localStorage.setItem("role", res.data?.role);
+        localStorage.setItem("cart",res.data.cart.length)
+        localStorage.setItem("wish",res.data.wishlist.length)
         // localStorage.setItem("role", res.data?._id);
         dispatch(loginSuccess({ token: res.data.token, users: res.data }));
         if(res.data.role==="admin"){
@@ -62,7 +64,7 @@ const SignIn = ({ setSingnin }) => {
       
       <Input
       type="number"
-      
+
         name="mobile"
         value={input.mobile}
         onChange={(e) => {

@@ -23,8 +23,9 @@ const SendOtp=({setSentOtp,setMobile,setSingnin})=>{
         const sendOtpHandler = async () => {
           if(input.mobile.length<10 || input.mobile=="") return toast.error("Please enter valid mobile number")
           try {
-            setSentOtp(false);
             const res = await sendOtp(input);
+            setSentOtp(false);
+
             console.log(res);
             
             if (res.status) {
