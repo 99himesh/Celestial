@@ -48,7 +48,8 @@ const SendOtp=({setSentOtp,setMobile,setSingnin})=>{
         <div className="flex flex-col gap-2 pt-5 ">
        
                 <Input
-                type="text"
+                   type="number"
+
                   name="mobile"
                   value={input.mobile}
                   onChange={(e) => {

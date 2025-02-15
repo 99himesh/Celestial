@@ -61,6 +61,8 @@ const SignIn = ({ setSingnin }) => {
     <div className="w-[100%] flex flex-col gap-3  justify-center ">
       
       <Input
+      type="number"
+      
         name="mobile"
         value={input.mobile}
         onChange={(e) => {
