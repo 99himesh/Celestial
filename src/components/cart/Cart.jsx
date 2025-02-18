@@ -113,11 +113,11 @@ console.log(cartData);
         <div className="flex flex-col  gap-2">
             <Typography.Text className="text-[16px] font-[400] ">{item?.productId?.title}</Typography.Text>
             <Typography.Text className="text-[16px] font-bold">Rs {item?.price}</Typography.Text>
-            <div className="flex gap-2 items-center">
+            {/* <div className="flex gap-2 items-center">
             <Button onClick={()=>{cartCounterHandler(item,"minus")}} className="p-3 bg-[#214344] text-[10px] text-[#fff] hover:!text-[#214344] hover:!border-[#214344] rounded-full">-</Button>
                 <Typography.Text className="text-[16px] font-[400]">{cartCounter}</Typography.Text>
             <Button  onClick={()=>{cartCounterHandler(item,"plus")}} className="p-3 bg-[#214344] flex text-[10px] text-[#fff] hover:!text-[#214344] rounded-full hover:!border-[#214344]">+</Button>
-            </div>
+            </div> */}
         </div>
         
         </div>
