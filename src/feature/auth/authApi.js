@@ -1,6 +1,6 @@
 import api from "../../axios/axios";
-import { token } from "../constants/constants";
-import { userId } from "../constants/constants";
+var token = localStorage.getItem("token");
+var userId = localStorage.getItem("userId");
 export const sendOtp=async(data)=>{    
     try {
         const res=await api.post(`/user/sendOtp`,data,{ headers: {

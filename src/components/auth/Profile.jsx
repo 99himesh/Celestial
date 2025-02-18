@@ -14,7 +14,9 @@ const Profile=({setSentOtp})=>{
             const res=await logOutApi();
              dispatch(logout()) 
              setSentOtp(true) 
-           toast.success(res.message)
+              localStorage.removeItem("wish");
+              localStorage.removeItem("cart");
+             toast.success(res.message)
         } catch (error) {
             console.log(error);
           toast.error(error.response.data.message) 

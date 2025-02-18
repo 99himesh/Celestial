@@ -1,5 +1,5 @@
 import api from "../../axios/axios";
-import { token } from "../constants/constants";
+var token = localStorage.getItem("token");
 export const uploadProductVideo=async(data)=>{ 
     try {
         const res=await api.post('/upload/uploadProductVideos',data,{ headers: {

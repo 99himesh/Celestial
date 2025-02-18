@@ -1,4 +1,4 @@
-import { Input } from "antd";
+import { Empty, Input } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { getProductFilterApi } from "../../feature/product/productApi";
 import { searchProducts } from "../../feature/product/productSlice";
@@ -48,6 +48,7 @@ const CustomSearch = ({ items, search, setOpen,setIsModalOpen }) => {
       />
       </div>
       <div className="h-[350px]  overflow-auto py-5">
+      {searchData?.length===0 && <h1 className="text-[20px] text-center"><Empty/></h1>}  
       {searchData?.map((item) => (
         <div className=" px-5">
         <Link onClick={() => setOpen(false)} to={`/product/${item._id}`} key={item._id} className="flex justify-between px-2 pt-5 bg-[#efe6dc] rounded-xl shadow-xl py-5 mb-3">

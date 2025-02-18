@@ -15,6 +15,8 @@ const OrderModal = ({ isModalOpen, setIsModalOpen, item }) => {
   const users = useSelector((state) => state.auth.userData);
   const dispatch = useDispatch();
   const onFinish = async (values) => {
+        
+    if(values.pincode.length > 6) return
     const data = {
       shippingInfo: { ...values },
       userId: localStorage.getItem("userId"),
@@ -72,6 +74,7 @@ const OrderModal = ({ isModalOpen, setIsModalOpen, item }) => {
   };
 
   const pay = async () => {
+    
     const res = await loadScript(
       "https://checkout.razorpay.com/v1/checkout.js"
     );
@@ -155,7 +158,7 @@ const OrderModal = ({ isModalOpen, setIsModalOpen, item }) => {
                 label="First Name"
                 name="firstname"
                 rules={[
-                  { required: true, message: "Please enter your first name" },
+                  { required: true, message: "Please enter your first name" ,pattern: /^[A-Za-z\s]+$/},
                 ]}
               >
                 <Input
@@ -168,7 +171,7 @@ const OrderModal = ({ isModalOpen, setIsModalOpen, item }) => {
                 label="Last Name"
                 name="lastname"
                 rules={[
-                  { required: true, message: "Please enter your last name" },
+                  { required: true, message: "Please enter your last name",pattern: /^[A-Za-z\s]+$/ },
                 ]}
               >
                 <Input
@@ -181,7 +184,7 @@ const OrderModal = ({ isModalOpen, setIsModalOpen, item }) => {
                 label="Address"
                 name="address"
                 rules={[
-                  { required: true, message: "Please enter your address" },
+                  { required: true, message: "Please enter your address",pattern: /^[A-Za-z\s]+$/, },
                 ]}
               >
                 <Input
@@ -193,7 +196,7 @@ const OrderModal = ({ isModalOpen, setIsModalOpen, item }) => {
               <Form.Item
                 label="City"
                 name="city"
-                rules={[{ required: true, message: "Please enter your city" }]}
+                rules={[{ required: true, message: "Please enter your city" ,pattern: /^[A-Za-z\s]+$/,}]}
               >
                 <Input className="rounded-full" placeholder="Enter your City" />
               </Form.Item>
@@ -201,7 +204,7 @@ const OrderModal = ({ isModalOpen, setIsModalOpen, item }) => {
               <Form.Item
                 label="State"
                 name="state"
-                rules={[{ required: true, message: "Please enter your state" }]}
+                rules={[{ required: true, message: "Please enter your state" ,pattern: /^[A-Za-z\s]+$/,}]}
               >
                 <Input
                   className="rounded-full"
@@ -212,8 +215,9 @@ const OrderModal = ({ isModalOpen, setIsModalOpen, item }) => {
               <Form.Item
                 label="Pin Code"
                 name="pincode"
+                
                 rules={[
-                  { required: true, message: "Please enter your pin code" },
+                  { required: true, message: "Please enter your pin code",  pattern: /^\d{6}$/},
                 ]}
               >
                 <Input

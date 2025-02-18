@@ -63,7 +63,7 @@ const ViewCart=()=>{
             <Col span={16} className="pt-2" >
             <div className="h-[400px] overflow-auto ps-3 pe-5">
             {cartData?.length>0 ? cartData?.map((item,idx)=>{
-          sum+=item.price
+             sum+=item.price*item.quantity
             return(
        <div className="flex justify-between px-5 pt-5 bg-[#efe6dc] rounded-xl shadow-xl py-5 mb-3 ">
         <div  className=" flex gap-3">
@@ -72,7 +72,7 @@ const ViewCart=()=>{
         </div>
         <div className="flex flex-col pt-2">
             <Typography.Text className="text-[20px] font-[600]  ">{item?.productId?.title}</Typography.Text>
-            <Typography.Text className="text-[14px] font-[600]">Rs {item?.price} x 1</Typography.Text>
+            <Typography.Text className="text-[14px] font-[600]">Rs {item?.price} x {item?.quantity}</Typography.Text>
             {/* <button>+</button> */}
         </div>
         </div>

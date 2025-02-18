@@ -22,11 +22,11 @@ const ShopCard = ({ item, shop }) => {
   const [cartStatus,setCartStatus]=useState("");
   const cart=useSelector(state=>state.cart.cart)
   const wishlistData=useSelector(state=>state?.wish.wishlist)
-
+  var token=localStorage.getItem("token")
   // This function work as add to cart functionality
   const addCartHandler = async (item,status) => {
+        if(!token) return toast.error("Please login first");
     setCartStatus(status)
-    const token = localStorage.getItem("token");
     const user = localStorage.getItem("userId");
     const data = {
       userId: user,
@@ -55,6 +55,7 @@ const ShopCard = ({ item, shop }) => {
   // This function calculate percentage discount
  
   const addToWishlistHandler = async (item,status) => {
+    if(!token) return toast.error("Please login first");
     setCartStatus(status)
     const data = { userId: localStorage.getItem("userId"), prodId: item?._id };
     try {

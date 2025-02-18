@@ -10,15 +10,10 @@ import {
 import { Flex, Progress } from "antd";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import image from "../../assets/girl.jpg";
-import ringimage from "../../assets/rings.jpg";
-import { WishListIcon } from "../../icons/icon";
 import CustomDrawer from "../CustomDrawer";
 import { addToCartData } from "../../feature/categary/cartApi";
-import { addToCart, cartCountersData } from "../../feature/categary/cartSlice";
 import Cart from "../cart/Cart";
 import { addToWishlistData } from "../../feature/wishlist/wishlistApi";
-import video from "../../assets/video.mp4";
 import wishlist from "../../assets/wishlist.png";
 import bag from "../../assets/icons/bagYellow.png";
 import similarYellow from "../../assets/icons/similarYellow.png";
@@ -27,7 +22,7 @@ import { RWebShare } from "react-web-share";
 import { addCategary, addproductToshop } from "../../feature/shop/shopSlice";
 import { getProductFilterApi } from "../../feature/product/productApi";
 import { toast } from "react-toastify";
-import { parse } from "postcss";
+// import {token} from "../constants/constants"
 // This is my card .start here
 const Card = ({ item, shop }) => {
   const navigate=useNavigate  ();
@@ -36,13 +31,16 @@ const Card = ({ item, shop }) => {
   const [thumbnailButton, setThumbnailButton] = useState(false);
   const dispatch = useDispatch();
   const [discountPercentage, setDiscountPercentage] = useState();
-  const token = localStorage.getItem("token");
+  var token = localStorage.getItem("token");
   const user = localStorage.getItem("userId");
   const cart=useSelector(state=>state.cart.cart)
   const wish=useSelector(state=>state.wish.wishlist)
   
   // This function work as add to cart functionality
   const addCartHandler = async (item, status) => {
+    console.log(token);
+    
+    if(!token) return toast.error("Please login first");
     setCartStatus(status);
     const data = {
       userId: user,
@@ -51,7 +49,7 @@ const Card = ({ item, shop }) => {
       price: item.price,
     };
     try {
-      const res = await addToCartData(data, token); 
+      const res = await addToCartData(data); 
       setOpen(true);
       toast.success(res?.message);
       localStorage.setItem("cart",parseInt(cart.length)+1)
@@ -73,6 +71,7 @@ const Card = ({ item, shop }) => {
     setDiscountPercentage(percentage);
   };
   const addToWishlistHandler = async (item, status) => {
+    if(!token) return toast.error("Please login first");
     setCartStatus(status);
     const data = { userId: localStorage.getItem("userId"), prodId: item?._id };
 
@@ -311,7 +310,7 @@ const Card = ({ item, shop }) => {
 
       <CustomDrawer
         cartStatus={cartStatus}
-        component={<Cart />}
+        component={<Cart  />}
         open={open}
         setOpen={setOpen}
         onClose={onClose}
