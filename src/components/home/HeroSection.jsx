@@ -1,6 +1,5 @@
 import React from "react";
 // This is my hero section .start here
-import video from "../../assets/video.mp4"
 import { RightOutlined } from "@ant-design/icons";
 import "./hero.css"
 import scrollDown from "../../assets/scrolldown.png"
