@@ -1,8 +1,11 @@
 import api from "../../axios/axios";
 // This is api of products
-import { token } from "../constants/constants";
-import { userId } from "../constants/constants";
-export const addToWishlistData=async(data)=>{      
+
+
+
+export const addToWishlistData=async(data)=>{    
+const  token = localStorage.getItem("token");
+    
     try {
         const res=await api.post(`/product/addtowishlist`,data,{ headers: {
             'Content-Type': 'application/json', 
@@ -15,8 +18,12 @@ export const addToWishlistData=async(data)=>{
 
 }
 export const getWishlistData=async()=>{    
+const  token = localStorage.getItem("token");
+const userId = localStorage.getItem("userId");
+
+
     try {
-        const res=await api.get(`/product/get-wishlist/${user}`,{
+        const res=await api.get(`/product/get-wishlist/${userId}`,{
              headers: {
                 'Content-Type': 'application/json', 
                 'Authorization': `Bearer ${token}`,
@@ -28,6 +35,8 @@ export const getWishlistData=async()=>{
     }
 }
 export const deleteWishlistData = async (items) => {  
+const  token = localStorage.getItem("token");
+
     try {
       const res = await api.delete(
         `/product/removeFromWishlist/${items.userId}/${items.prodId}`, 

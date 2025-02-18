@@ -20,12 +20,14 @@ const Cart=()=>{
      
    let sum=0;
     const getCartDataHandler=async()=>{
+        if(!localStorage.getItem("token")) return toast.error("Please login first");
         setLoading(true)
         
         try {
             
        
             const data=await getCartData()
+            // setCartCounter(data[0].quantity)
             setLoading(false)
             
             dispatch(addToCart(data?.data?.cartItems))
@@ -42,17 +44,19 @@ const cartCounterHandler=async(items,status)=>{
     console.log(items);
     let quantity=items.quantity
     if(quantity===0 && status==="minus") return;
-    if(status==="plus") quantity+1
-    if(status==="minus") quantity-1
+    if(status==="plus")   quantity+=1
+    if(status==="minus")  quantity-=1
         try {
     const data={productId:items.productId._id,quantity:quantity,userId:localStorage.getItem("userId")}
-    const res=await updateCartApi(data)
-    setCartCounter(res.data.cartItems[0].quantity)
+    console.log(data);
+    
+    const res=await updateCartApi(data);
+    console.log(res);
+    setCartCounter(res?.data?.quantity)
     toast.success(res?.data?.message)
-            
+    getCartDataHandler()  
         } catch (error) {
             console.log(error);
-            
             toast.error(error?.response?.data?.message)
             
         }
@@ -69,7 +73,6 @@ const cartCounterHandler=async(items,status)=>{
         const response=await deleteCartData(id)  
         toast.success(response?.data?.message)
         localStorage.setItem("cart",parseInt(cart)-1)
-
         getCartDataHandler()
         } catch (error) {
             toast.error(error?.response?.data?.message)
@@ -146,7 +149,7 @@ console.log(cartData);
         </div>
         <div className="flex  justify-between pt-3">
             <div >
-                <Button className="bg-[#214344] text-[#fff] text-[16px] md:w-[210px] w-[150px] font-[400] rounded-full py-5 hover:!border-[#214344] hover:!text-[#214344]" onClick={()=>{navigate("/viewcart"),setOpen(true)}} >View Cart</Button>
+                <Button className="bg-[#214344] text-[#fff] text-[16px] md:w-[210px] w-[150px] font-[400] rounded-full py-5 hover:!border-[#214344] hover:!text-[#214344]" onClick={()=>{navigate("/viewcart")}} >View Cart</Button>
             </div>
             <div >
                 <Button className="bg-[#214344] text-[#fff] text-[16px]  md:w-[210px] w-[150px] font-[400] rounded-full py-5 hover:!border-[#214344] hover:!text-[#214344]"  >Checkout</Button>

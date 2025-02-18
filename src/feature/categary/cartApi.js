@@ -1,10 +1,10 @@
 
+import { useState } from "react";
 import api from "../../axios/axios";
-import { token } from "../constants/constants";
-import { userId } from "../constants/constants";
+var userId = localStorage.getItem("userId");
+export const addToCartData = async (data) => {   
+const  token = localStorage.getItem("token");
 
-
-export const addToCartData = async (data) => { 
     try {
         const res = await api.post(`/user/addtocart`, data, { 
             headers: {
@@ -20,6 +20,10 @@ export const addToCartData = async (data) => {
 };
 
 export const getCartData=async()=>{  
+const  token = localStorage.getItem("token");
+const userId = localStorage.getItem("userId");
+
+
     try {
         
         const res=await api.get(`/user/cart/view/${userId}`,{
@@ -34,7 +38,9 @@ export const getCartData=async()=>{
     }
 
 }
-export const deleteCartData=async(id)=>{      
+export const deleteCartData=async(id)=>{  
+const  token = localStorage.getItem("token");
+const userId = localStorage.getItem("userId");
     try {
         const res=await api.delete(`/user/cart/removeitem/${userId}/${id}`,{
             headers: {

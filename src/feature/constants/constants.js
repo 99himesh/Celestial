@@ -1,2 +1,7 @@
-export const token=localStorage.getItem("token");
-export const userId=localStorage.getItem("userId");
+export const token=()=>{
+    return localStorage.getItem("token");
+}
+
+export const getUserID=()=>{
+    return localStorage.getItem("userId");
+}

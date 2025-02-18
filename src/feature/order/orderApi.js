@@ -1,5 +1,6 @@
 import api from "../../axios/axios";
-import { token } from "../constants/constants";
+var token = localStorage.getItem("token");
+var userId = localStorage.getItem("userId");
 
 
 export const addOrder = async (data) => {    

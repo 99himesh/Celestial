@@ -1,17 +1,15 @@
 import { Button, Empty, Progress, Typography } from "antd";
 import { DeleteOutlined } from "@ant-design/icons";
-import image from "../../assets/women.jpg"
-import { addToCartData, deleteCartData, getCartData } from "../../feature/categary/cartApi";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../feature/categary/cartSlice";
 import { addToWishList } from "../../feature/wishlist/wishlistSlice";
 import { deleteWishlistData, getWishlistData } from "../../feature/wishlist/wishlistApi";
 import { useNavigate } from "react-router";
-import Loading from "../loading/Loading";
 import DrawerLoader from "../loading/DrawerLoader";
 import { toast } from "react-toastify";
 const WishList=()=>{
+    
     const dispatch=useDispatch();
     const wishlistData=useSelector(state=>state?.wish.wishlist)
     const navigate=useNavigate();
@@ -19,9 +17,13 @@ const WishList=()=>{
     const [loading,setLoading]=useState(false)
    
     const getwishlistDataHandler=async()=>{
+        if(!localStorage.getItem("token")) return toast.error("Please login first");
+        debugger
         setLoading(true)
         try {
             const data=await getWishlistData()
+            console.log(data);
+            
             dispatch(addToWishList(data?.wishlist))
             setLoading(false)
         } catch (error) {  

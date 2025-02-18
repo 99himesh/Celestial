@@ -51,10 +51,11 @@ const ProductDetails = () => {
   const user = localStorage.getItem("userId");
   const cart=useSelector(state=>state.cart.cart)
   const wishlistData=useSelector(state=>state?.wish.wishlist)
-
+   var token=localStorage.getItem("token")
   const getData = async () => {
     try {
       const data = await getProductDetailsApi(id);
+
       dispatch(addProductDetals(data.product));
     
       // Set the active image URL only after fetching is complete
@@ -77,8 +78,9 @@ const ProductDetails = () => {
   };
 
   const addCartHandler = async (item) => {
+    
+   if(!token) return toast.error("Please login first");
     setCartStatus("cart");
-    const token = localStorage.getItem("token");
     const data = {
       userId: user,
       productId: item._id,
@@ -101,6 +103,7 @@ const ProductDetails = () => {
   };
 
   const addTowishlistHandler = async (item) => {
+    if (!token) return toast.error("Please login first");
     const data = { userId: localStorage.getItem("userId"), prodId: item?._id };
 
     try {
