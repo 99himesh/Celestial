@@ -20,8 +20,6 @@ const  token = localStorage.getItem("token");
 export const getWishlistData=async()=>{    
 const  token = localStorage.getItem("token");
 const userId = localStorage.getItem("userId");
-
-
     try {
         const res=await api.get(`/product/get-wishlist/${userId}`,{
              headers: {

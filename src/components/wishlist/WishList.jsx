@@ -18,7 +18,6 @@ const WishList=()=>{
    
     const getwishlistDataHandler=async()=>{
         if(!localStorage.getItem("token")) return toast.error("Please login first");
-        debugger
         setLoading(true)
         try {
             const data=await getWishlistData()
