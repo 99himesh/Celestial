@@ -88,7 +88,6 @@ const Card = ({ item, shop }) => {
     try {
       const res=await getProductFilterApi({filters})
       console.log(res);
-      debugger
             dispatch(addproductToshop(res?.products));
             dispatch(addCategary(item.category));
             navigate("/shop",{state:"similer"})

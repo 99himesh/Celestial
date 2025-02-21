@@ -12,13 +12,14 @@ const CustomSearch = ({ items, search, setOpen,setIsModalOpen }) => {
   const [searchInput,setSearchInut]=useState("");
   const searchData = useSelector((state) => state.product.searchData);
 
-  const searchHandler = async (e) => {
+  const searchHandler = async () => {
     try {
       const search = { title:searchInput};
       const res = await getProductFilterApi({ search });
       dispatch(searchProducts(res.products));
     } catch (error) {
-      console.log(error);
+      console.log(error,"search");
+            console.log(error);
     }
   };
 
