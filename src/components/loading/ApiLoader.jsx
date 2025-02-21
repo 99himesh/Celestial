@@ -1,5 +1,4 @@
 import { useDispatch, useSelector } from "react-redux";
-import loader from "../../assets/loader.mp4"
 import Header from "../header/Header";
 import { useEffect } from "react";
 import { addUserData } from "../../feature/auth/authSlice";
@@ -21,8 +20,8 @@ const ApiLoader=()=>{
         <div style={loadingStyle} className="bg-[rgba(0,0,0,0.5)] h-[100vh] fixed left-0 right-0 mx-auto  z-[9999]">
                     
                     <video width="80px" height="80px" muted loop autoPlay>
-          <source src={loader} type="video/mp4"/>
-          <source src={loader} type="video/ogg"/>
+          <source src={"https://zoci-data.s3.ap-south-1.amazonaws.com/productVideos/1739968128208_loader.mp4"} type="video/mp4"/>
+          <source src={"https://zoci-data.s3.ap-south-1.amazonaws.com/productVideos/1739968128208_loader.mp4"} type="video/ogg"/>
         </video>
                 </div>
                 </>}

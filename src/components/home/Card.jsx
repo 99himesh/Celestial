@@ -1,11 +1,7 @@
-import cardImage from "../../assets/shoes.jpg";
 import React, { useEffect, useState } from "react";
-import { Button, Modal, Tooltip, Typography } from "antd";
-import {
-  EyeFilled,
-  ReloadOutlined,
-  ShareAltOutlined,
-  ShoppingCartOutlined,
+import {  Tooltip, Typography } from "antd";
+import { 
+  ShareAltOutlined
 } from "@ant-design/icons";
 import { Flex, Progress } from "antd";
 import { Link, useNavigate } from "react-router-dom";
@@ -22,8 +18,6 @@ import { RWebShare } from "react-web-share";
 import { addCategary, addproductToshop } from "../../feature/shop/shopSlice";
 import { getProductFilterApi } from "../../feature/product/productApi";
 import { toast } from "react-toastify";
-// import {token} from "../constants/constants"
-// This is my card .start here
 const Card = ({ item, shop }) => {
   const navigate=useNavigate  ();
   const [open, setOpen] = useState(false);
@@ -45,7 +39,7 @@ const Card = ({ item, shop }) => {
     const data = {
       userId: user,
       productId: item._id,
-      quantity: item.quantity,
+      quantity:1,
       price: item.price,
     };
     try {
@@ -94,10 +88,11 @@ const Card = ({ item, shop }) => {
     try {
       const res=await getProductFilterApi({filters})
       console.log(res);
+      debugger
             dispatch(addproductToshop(res?.products));
             dispatch(addCategary(item.category));
-            navigate("/shop")
-    } catch (error) {
+            navigate("/shop",{state:"similer"})
+    } catch (error) { 
       console.log(error);
     }
   }

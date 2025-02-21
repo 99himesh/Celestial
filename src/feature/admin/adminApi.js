@@ -1,6 +1,6 @@
 import api from "../../axios/axios";
-var token = localStorage.getItem("token");
 export const uploadProductVideo=async(data)=>{ 
+const token = localStorage.getItem("token");
     try {
         const res=await api.post('/upload/uploadProductVideos',data,{ headers: {
             "Content-Type": "multipart/form-data",
@@ -13,6 +13,7 @@ export const uploadProductVideo=async(data)=>{
 
 }
 export const uploadProductImages=async(data)=>{  
+const token = localStorage.getItem("token");
     try {
         const res=await api.post('/upload/uploadProductImages',data,{ headers: {
             "Content-Type": "multipart/form-data",
@@ -25,6 +26,7 @@ export const uploadProductImages=async(data)=>{
 
 }
 export const createProductApi=async(data)=>{   
+const token = localStorage.getItem("token");
   try {
       const res=await api.post('/product/create-new-product',data,{ headers: {
         'Content-Type': 'application/json', 
@@ -37,7 +39,8 @@ export const createProductApi=async(data)=>{
 
 }
 
-export const editProductApi=async(data,id)=>{      
+export const editProductApi=async(data,id)=>{ 
+const token = localStorage.getItem("token");
   try {
       const res=await api.put(`product/updateProduct/${id}`,data,{ headers: {
         'Content-Type': 'application/json', 
@@ -51,6 +54,7 @@ export const editProductApi=async(data,id)=>{
 }
 
 export const deleteProductData = async (id) => {
+const token = localStorage.getItem("token");
   try {
     const res = await api.delete(`/product/deleteProduct/${id}`, 
       {
@@ -66,26 +70,27 @@ export const deleteProductData = async (id) => {
   }
 };
 
+export const getAllOrder = async (page) => {
+  const token = localStorage.getItem("token");
 
-export const getAllOrder=async(data)=>{ 
-     try {
-      
-      const res=await api.get('/user/getallorders',{
+  try {
+      const res = await api.get('/user/getallorders', {
           headers: {
-          'Content-Type': 'application/json', 
-          'Authorization': `Bearer ${token}` // Sending token in the header
-          }
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}` // Sending token in the header
+          },
+          params: page // Adding params here
       });
-      return await res.data;   
-  } catch (error) {    
+      return res.data;
+  } catch (error) {
       throw error;
   }
-
 }
 
 
-
-export const updateStatus=async(data,id)=>{        
+export const updateStatus=async(data,id)=>{  
+  const token=localStorage.getItem("token");
+        
     try {
         const res=await api.put(`/user/updateOrder/${id}`,data,{ headers: {
           'Content-Type': 'application/json', 
@@ -98,3 +103,21 @@ export const updateStatus=async(data,id)=>{
   
   }
 
+
+  
+export const getallCategaryApi=async(data)=>{ 
+  const token=localStorage.getItem("token");
+     try {
+      
+      const res=await api.get('/category/getallCategory',{
+          headers: {
+          'Content-Type': 'application/json', 
+          'Authorization': `Bearer ${token}` // Sending token in the header
+          }
+      });
+      return await res.data;   
+  } catch (error) {    
+      throw error;
+  }
+
+}

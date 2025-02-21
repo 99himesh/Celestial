@@ -1,9 +1,9 @@
 import api from "../../axios/axios";
-var token = localStorage.getItem("token");
 var userId = localStorage.getItem("userId");
 
 
-export const addOrder = async (data) => {    
+export const addOrder = async (data) => {  
+    const token=localStorage.getItem("token");  
     try {
         const res = await api.post(`/user/cart/create-order`, data, { 
             headers: {
@@ -19,6 +19,7 @@ export const addOrder = async (data) => {
 
 
 export const payment = async (data) => {    
+    const token=localStorage.getItem("token");
         try {
             const res = await api.post(`/user/payOrderDueAmount`, data, { 
                 headers: {

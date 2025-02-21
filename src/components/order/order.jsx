@@ -8,6 +8,8 @@ import { getUserData } from "../../feature/auth/authApi";
 import { toast } from "react-toastify";
 
 const OrderModal = ({ isModalOpen, setIsModalOpen, item }) => {
+  console.log(item,"dkjfhjkhd");
+  
   const [form] = Form.useForm(); // Ant Design form instance
   const [orderStatus, setOrderStatus] = useState(false);
   const [order, setOrder] = useState({});
@@ -17,14 +19,18 @@ const OrderModal = ({ isModalOpen, setIsModalOpen, item }) => {
   const onFinish = async (values) => {
         
     if(values.pincode.length > 6) return
+    [{ product: item?._id, quantity: 1, price: item?.price }]
+    
     const data = {
       shippingInfo: { ...values },
       userId: localStorage.getItem("userId"),
-      orderItems: [{ product: item?._id, quantity: 1, price: item?.price }],
-      totalPrice: item?.price,
+      orderItems: item.map((ele) => ({
+        product: ele?._id,
+        quantity: 1,
+        price: ele?.price
+      })),
+      totalPrice: item.reduce((acc, ele) => acc + ele.price, 0),
     };
-    // if()
-    console.log(item);
 
     try {
       const res = await addOrder(data);
@@ -93,8 +99,7 @@ const OrderModal = ({ isModalOpen, setIsModalOpen, item }) => {
       name: "Zoci",
       description: order.description,
       order_id: order.razorpayOrderId,
-      image:
-        "https://zoci-data.s3.ap-south-1.amazonaws.com/productImages/1739276265624_header.png",
+      image:"https://zoci-data.s3.ap-south-1.amazonaws.com/productImages/1740047051814_Screenshot%202025-02-20%20155231.pnga",
       handler: function (response) {
         const data = {
           razorpayPaymentId: response.razorpay_payment_id,
@@ -240,23 +245,28 @@ const OrderModal = ({ isModalOpen, setIsModalOpen, item }) => {
         ) : (
           <>
             <div className="flex justify-between items-end py-5">
-              <div className="flex  gap-5">
+             {item.map((ele,idx)=>{
+              return(
+                <div key={idx} className="flex  gap-5">
                 <div className="size-[100px]">
                   <img
-                    src={item?.images[0]}
+                    src={ele?.images[0]}
                     className="rounded-md object-cover"
                     alt=""
                   />
                 </div>
                 <div className="flex flex-col gap-2">
                   <Typography.Text className="text-[#214344] text-[24px] font-semibold">
-                    {item?.title}
+                    {ele?.title}
                   </Typography.Text>
                   <Typography.Text className="text-[#214344] text-[16px] font-bold">
-                    Rs.{item?.price}
+                    Rs.{ele?.price}
                   </Typography.Text>
                 </div>
               </div>
+
+              )
+             }) }
               <div>
                 <Button
                   onClick={() => {

@@ -1,10 +1,8 @@
 import { Col, Row } from "antd";
-import imageTest from "../../assets/men.jpg"
 // import manyaImage from "../../assets/Manya.HEIC";
 import divyanshi from "../../assets/Divyanshi.jpg"
 import manya from "../../assets/Manya.png"
 import pritiImage from  "../../assets/Priti.jpg" 
-import { FcLike } from "react-icons/fc";
 const Testimonial=()=>{
     return(
         <div className="textimonial md:pb-20  ">

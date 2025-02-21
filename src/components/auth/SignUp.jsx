@@ -1,15 +1,12 @@
 import React, { useState } from "react";
-import { Button, Checkbox, Form, Input, Typography } from "antd";
-import { sendOtp, verifyOtp } from "../../feature/auth/authApi";
-import { useDispatch, useSelector } from "react-redux";
-import { loginSuccess } from "../../feature/auth/authSlice";
-import profile from "../../assets/greenProfile.png";
+import {  useSelector } from "react-redux";
+import profile from "../../assets/icons/GreenProfile.png";
 import "./auth.css";
 import Profile from "./Profile";
 import SendOtp from "./SendOtp";
 import VerifyOtp from "./VeryfyOtp";
 import SignIn from "./SignIn";
-const SignUp = () => {
+const SignUp = ({setWishCounter,setCartCounter}) => {
   const [sentOtp, setSentOtp] = useState(true);
   const [mobile,setMobile]=useState(null)
   const [signin,setSingnin]=useState(null)
@@ -30,7 +27,7 @@ const SignUp = () => {
          {!isAuth ? <div className="flex flex-col gap-5 w-full">
           {signin  ? (<SignIn setSingnin={setSingnin} setSentOtp={setSentOtp}/>):
            ( sentOtp ? <SendOtp setMobile={setMobile} setSentOtp={setSentOtp} setSingnin={setSingnin}/> : <VerifyOtp mobile={mobile}  /> )}</div>  
-       :<Profile setSentOtp={setSentOtp} />
+       :<Profile setSentOtp={setSentOtp} setWishCounter={setWishCounter} setCartCounter={setCartCounter} />
         }
        
       </div>

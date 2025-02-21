@@ -7,6 +7,8 @@ const shopSlice = createSlice({
   initialState,
   reducers: {
     addproductToshop:(state,action)=>{ 
+      console.log(action.payload,"dfhh");
+      
         state.shop=action.payload
         
      },

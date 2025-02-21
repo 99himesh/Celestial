@@ -22,7 +22,7 @@ const Sorting = ({ setPaginateData, item, paginateData,setFiter }) => {
   const sortHandler = async (id) => {
     setSort(id)
     switch (sort) {
-      case "low":
+      case "high":
         try {
           const sortby = { sort: "priceDesc" }
         const highData = await getProductFilterApi({sortby})
@@ -32,13 +32,8 @@ const Sorting = ({ setPaginateData, item, paginateData,setFiter }) => {
           console.log(error);
           
         }
-        
-        
-        // if(highData)  setLoading(false)
-
-        // setPaginateData(highData);
         break;
-      case "high":
+      case "low":
         try {
           const sortby = { sort: "priceAsc" }
 

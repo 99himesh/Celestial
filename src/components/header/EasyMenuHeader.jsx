@@ -1,18 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { Button, Collapse, Drawer, Radio, Space, Tooltip, Typography } from "antd";
-import { Link, NavLink, useNavigate } from "react-router";
+import React, {  useState } from "react";
+import {  Collapse, Drawer, Tooltip, Typography } from "antd";
+import {  NavLink, useNavigate } from "react-router";
 import {
-  FileSearchOutlined,
-  HomeOutlined,
-  LinkedinOutlined,
   SearchOutlined,
-  ShoppingCartOutlined,
   WhatsAppOutlined,
 } from "@ant-design/icons";
 import Sider from "antd/es/layout/Sider";
-import { FcLike } from "react-icons/fc";
-import { IoMdGitCompare } from "react-icons/io";
-import { ProfileIcon, ShopingBag, WishListIcon } from "../../icons/icon";
 import {
   FaFacebook,
   FaInstagram,
@@ -23,39 +16,29 @@ import closeIcon from "../../assets/closeicon.png";
 
 import shopingCart from "../../assets/icons/shopYellow.png";
 import wishListGreen from "../../assets/icons/wishlistGreen.png";
-import similarYellow from "../../assets/icons/similarYellow.png";
 import catalogueYellow from "../../assets/icons/catalogueYellow.png";
 import homeGreen from "../../assets/icons/homeGreen.png";
 import profileGreen from "../../assets/icons/GreenProfile.png";
 
 import shopingCartYellow from "../../assets/icons/shopGreen.png";
 import wishListYellow from "../../assets/icons/wishlistyellow.png";
-import similarGreen from "../../assets/icons/similarGreen.png";
 import catalogueGreen from "../../assets/icons/catalogueGreen.png";
 import homeYellow from "../../assets/icons/homeYellow.png";
-import greenBag from "../../assets/icons/greenBag.png";
 import profileYellow from "../../assets/icons/profileYellow.png";
 
-import api from "../../axios/axios";
 import {
   getProductFilterApi,
 } from "../../feature/product/productApi";
-import image from "../../assets/girl.jpg";
 import Catalogue from "../catalogue/Catalogue";
-import wishlist from "../../assets/wishlist.png";
-import cart from "../../assets/Bag.png";
-import Cart from "../cart/Cart";
 import WishList from "../wishlist/WishList";
-import SignIn from "../auth/SignIn";
 import "./header.css";
 import SignUp from "../auth/SignUp";
 import { useDispatch, useSelector } from "react-redux";
 import { addCategary, addproductToshop } from "../../feature/shop/shopSlice";
 import { TbBrandLinkedin, TbPointFilled } from "react-icons/tb";
 import { searchProducts } from "../../feature/product/productSlice";
-import useSelection from "antd/es/table/hooks/useSelection";
-import CustomSearch from "../home/CustomSearch";
 import { toast } from "react-toastify";
+import { headermenuHandler } from "../../feature/header/headerSlice";
 // this is my mobile nav. start here
 const siderStyle = {
   height: "full",
@@ -63,14 +46,15 @@ const siderStyle = {
   color: "#fff",
   backgroundColor: "#214344",
 };
-const EasyMenuHeader = ({ open, setOpen }) => {
+const EasyMenuHeader = ({ setCartCounter,setWishCounter }) => {
   const navigate=useNavigate();
   const dispatch = useDispatch();
   // const [searchData,setSearchData]=useState([]);
   const [activeTab, setActiveTab] = useState("home");
   const searchData=useSelector(state=>state.product.searchData)
+  const open=useSelector(state=>state.header.headermenu)
   const onClose = () => {
-    setOpen(false);
+          dispatch(headermenuHandler(false))
   };
 
   const filterSubcategary = async (data) => {
@@ -240,7 +224,7 @@ const EasyMenuHeader = ({ open, setOpen }) => {
         </Sider>
         {activeTab == "catalogue" && <Catalogue />}
         {activeTab == "wishlist" && <div  className=" pt-16 w-full"><WishList /></div>}
-        {activeTab == "profile" && <SignUp />}
+        {activeTab == "profile" && <SignUp setWishCounter={setWishCounter} setCartCounter={setCartCounter} />}
         {/* {activeTab == "cart" && <SignUp />} */}
 
         <div className=" pt-[55px] home-tab">
@@ -282,7 +266,7 @@ const EasyMenuHeader = ({ open, setOpen }) => {
             <div className="flex flex-col px-10 pt-5 gap-2">
               <NavLink
                 onClick={() => {
-                  setOpen(false);
+                  dispatch(headermenuHandler(false))
                 }}
                 className="text-[#214344] text-[16px] font-[600] hover:text-[#214344]"
                 to={"/"}
@@ -313,7 +297,7 @@ const EasyMenuHeader = ({ open, setOpen }) => {
                         <div className="flex flex-col gap-2">
                           <NavLink
                             onClick={() => {
-                              filterSubcategary("pendents"), setOpen(false);
+                              filterSubcategary("pendents"), dispatch(headermenuHandler(false));
                             }}
                             className={"hover:text-[#214344] "}
                             to={"/shop"}
@@ -325,7 +309,7 @@ const EasyMenuHeader = ({ open, setOpen }) => {
                           </NavLink>
                           <NavLink
                             onClick={() => {
-                              filterSubcategary("ring"), setOpen(false);
+                              filterSubcategary("ring"), dispatch(headermenuHandler(false));
                             }}
                             className={"hover:text-[#214344]"}
                             to={"/shop"}
@@ -337,7 +321,7 @@ const EasyMenuHeader = ({ open, setOpen }) => {
                           </NavLink>
                           <NavLink
                             onClick={() => {
-                              filterSubcategary("bracelets"), setOpen(false);
+                              filterSubcategary("bracelets"), dispatch(headermenuHandler(false));
                             }}
                             className={"hover:text-[#214344]"}
                             to={"/shop"}
@@ -349,7 +333,7 @@ const EasyMenuHeader = ({ open, setOpen }) => {
                           </NavLink>
                           <NavLink
                             onClick={() => {
-                              filterSubcategary("earings"), setOpen(false);
+                              filterSubcategary("earings"), dispatch(headermenuHandler(false));
                             }}
                             className={"hover:text-[#214344]"}
                             to={"/shop"}
@@ -361,7 +345,7 @@ const EasyMenuHeader = ({ open, setOpen }) => {
                           </NavLink>
                           <NavLink
                             onClick={() => {
-                              filterSubcategary("nackeless"), setOpen(false);
+                              filterSubcategary("nackeless"), dispatch(headermenuHandler(false));
                             }}
                             className={"hover:text-[#214344] text-[#214344]"}
                             to={"/shop"}
@@ -383,11 +367,10 @@ const EasyMenuHeader = ({ open, setOpen }) => {
                 }}
                 className="text-[#214344] text-[16px] font-[600] hover:text-[#214344]"  >
                 <div className="flex gap-3 items-center h-[18px] w-[18px]">
-                  {/* <img src={greenBag} /> */}
                   <h6> Bag</h6>
                 </div>
               </NavLink>
-              <NavLink onClick={()=>{setOpen(false)}} to={"/aboutus"} className="text-[#214344] text-[16px] font-[600] hover:text-[#214344]">
+              <NavLink onClick={()=>{dispatch(headermenuHandler(false))}} to={"/aboutus"} className="text-[#214344] text-[16px] font-[600] hover:text-[#214344]">
                 <div  className="flex items-center"> About us</div>
               </NavLink>
             </div>
