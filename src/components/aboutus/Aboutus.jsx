@@ -14,7 +14,7 @@ const AboutUs = () => {
   };
   return (
     <>
-      <Row className="bg-[#9f9f9f] pt-[120px]">
+      <Row className="bg-[#9f9f9f] pt-[120px]  w-full">
         <Col xl={12} lg={12} md={12} sm={24} xs={24}>
           <div className="flex flex-col gap-4 md:ps-20 px-5 py-20 ">
             <div>
