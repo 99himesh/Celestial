@@ -104,7 +104,7 @@ const CustomDrawer = ({
           header: { background: "#214344" },
         }}
       >
-        {activeDrawer == "cart" ? <Cart setCartOpen={setCartOpen} /> : <WishList />}
+        {activeDrawer == "cart" ? <Cart setCartOpen={setCartOpen} /> : <WishList setCartOpen={setCartOpen} />}
       </Drawer>
     </>
   );

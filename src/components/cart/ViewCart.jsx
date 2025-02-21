@@ -8,14 +8,12 @@ import { addToCart } from "../../feature/categary/cartSlice";
 import { toast } from "react-toastify";
 
 const ViewCart=()=>{
-    console.log("hgh");
     
 
 
 
     const dispatch=useDispatch();
     const cartData=useSelector(state=>state.cart.cart)
-    console.log(cartData);
     
    let sum=0;
     const getCartDataHandler=async()=>{

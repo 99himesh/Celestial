@@ -4,7 +4,7 @@ import diamond from "../../assets/diamond.webp"
 import { useState } from "react";
 import "./subcategary.css"
 const womensData=["Earing","Bracelets","Ring","Pendents","Necklaces","Band","Watch","Jackets"];
-const mensData=["LaunchSoon","LaunchSoon","LaunchSoon","LaunchSoon","LaunchSoon","LaunchSoon","LaunchSoon","LaunchSoon"];
+const mensData=["Launching Soon","Launching Soon","Launching Soon","Launching Soon","Launching Soon","Launching Soon","Launching Soon","Launching Soon"];
 const settings = {
     className:"center",
     dots: false,

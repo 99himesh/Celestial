@@ -76,7 +76,7 @@ import { headermenuHandler } from "../../feature/header/headerSlice";
 
     return (
       <>
-      <div className="relative">
+      <div className="relative w-full">
         <div
         className={`header fixed w-full z-[999] bg-[#214344] ${
           isModalOpen || open || cartOpen ? 'backdrop-blur-md' : ''
