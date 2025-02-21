@@ -7,21 +7,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { getProductApi, getProductDetailsApi } from "../../feature/product/productApi";
 import { addProductDetals, addProducts } from "../../feature/product/productSlice";
 import "react-inner-image-zoom/lib/InnerImageZoom/styles.css";
-import girlImage from "../../assets/girl.jpg";
-import Slider from "react-slick";
 import CustomDrawer from "../CustomDrawer";
-import startWhite from "../../assets/StarWhite.png";
 // import starYellow from "../../assets/starYellow.png"
 import starOrange from "../../assets/starOrange.png";
-import manya from "../../assets/Manya.png";
 import "./productDetails.css";
 import bag from "../../assets/icons/greenBag.png";
 import wishlist from "../../assets/icons/wishlistGreen.png";
-import {
-  TransformWrapper,
-  TransformComponent,
-  useControls,
-} from "react-zoom-pan-pinch";
 import InnerImageZoom from "react-inner-image-zoom";
 import Cart from "../cart/Cart";
 import { addToCartData } from "../../feature/categary/cartApi";
@@ -84,7 +75,7 @@ const ProductDetails = () => {
     const data = {
       userId: user,
       productId: item._id,
-      quantity: item.quantity,
+      quantity: 1,
       price: item.price,
     };
     try {
@@ -440,7 +431,7 @@ const ProductDetails = () => {
             <OrderModal
               setIsModalOpen={setIsModalOpen}
               isModalOpen={isModalOpen}
-              item={item}
+              item={[item]}
             />
           )}
         </Col>

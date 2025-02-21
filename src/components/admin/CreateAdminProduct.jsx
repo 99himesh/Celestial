@@ -6,32 +6,55 @@ import "./admin.css";
 import {
   createProductApi,
   editProductApi,
+  getallCategaryApi,
   uploadProductImages,
   uploadProductVideo,
 } from "../../feature/admin/adminApi";
 import { toast } from "react-toastify";
 import { useLocation, useNavigate } from "react-router";
+import { addAdminCategary } from "../../feature/admin/adminSlice";
+import { useDispatch, useSelector } from "react-redux";
+import TextArea from "antd/es/input/TextArea";
 
 const CreateAdminProduct = () => {
   const location=useLocation()
   const navigate=useNavigate()
   const [video, setVideo] = useState();
-  const [videoUrl, setVideoUrl] = useState("");
+  const [videoUrl, setVideoUrl] = useState([]);
   const [image, setImage] = useState(null);
   const [preview, setPreview] = useState([]);
   const [productImagesUrl,setProductImagesUrl]=useState([])
   const [metalType, setMetalType] = useState([]);
+  const [category,setCategary]=useState("")
   const editData=location?.state?.product;
+  console.log(editData,"editData");
+  
+  const dispatch = useDispatch();
+  const categaries=useSelector((state)=>state?.admin?.categary)
   const [productFormInput, setProductFormInput] = useState({
     title: "",
     price: "",
-    category: "",
-    metalType:"",
     description: "",
     quantity:"",
     weight:"",
     size:"",
-    madefor:""
+    madefor:"",
+    metalColor:""
+  })
+  const getCategary=async()=>{
+    try {
+      const res=await getallCategaryApi();
+      dispatch(addAdminCategary(res))
+    } catch (error) {
+      console.log(error);  
+    }
+
+  }
+  const categaryData=categaries?.map((item)=>{
+    return{
+      value:item.title,
+      label:item.title
+    }
   })
 
   const createProductInputHandler=(e)=>{
@@ -39,10 +62,50 @@ const CreateAdminProduct = () => {
     setProductFormInput({...productFormInput,[e.target.name]:e.target.value})
     
   }
-  const createProductHandler=async()=>{
-    const data={
-      ...productFormInput,images:productImagesUrl,video:videoUrl,metalType,compare_at_price:1200
+  function deepCompareArraysOnly(oldObj, newObj) {
+    const changes = {};
+  
+    // Loop through keys in newObj to compare with oldObj
+    for (const key in newObj) {
+      // If the value is an array, compare deeply
+      if (Array.isArray(newObj[key]) && Array.isArray(oldObj[key])) {
+        if (!arraysAreEqual(oldObj[key], newObj[key])) {
+          changes[key] = newObj[key]; // If arrays are different, return the new array
+        }
+      } else if (oldObj[key] !== newObj[key]) {
+        // If values are different, return the new value
+        changes[key] = newObj[key];
+      }
     }
+  
+    // Handle deleted properties (keys in oldObj but not in newObj)
+    for (const key in oldObj) {
+      if (!(key in newObj)) {
+        changes[key] = undefined; // indicate property was removed
+      }
+    }
+  
+    return changes;
+  }
+  
+  // Helper function to compare two arrays deeply
+  function arraysAreEqual(arr1, arr2) {
+    if (arr1.length !== arr2.length) return false;
+    for (let i = 0; i < arr1.length; i++) {
+      if (arr1[i] !== arr2[i]) return false;
+    }
+    return true;
+  }
+
+
+  const createProductHandler=async()=>{
+    if(!editData && (productImagesUrl.length<4 || videoUrl.length<1)) return toast.error("Please add all images and videos")
+    const data={
+      ...productFormInput,images:productImagesUrl,video:videoUrl,metalType,compare_at_price:1200,category:category
+    }
+ 
+    
+    
     if(!editData){
       try {
         const res=await createProductApi(data); 
@@ -54,14 +117,29 @@ const CreateAdminProduct = () => {
       toast.error(error.response.data.message);  
       }
     }else{
-      try {
-        const res=await editProductApi(data,editData._id); 
-        toast.success(res.message);    
-        navigate ("/admin/products")
-      } catch (error) {
-      console.log(error.message);
-      toast.error(error.response.data.message);  
-      }
+
+      const newData = {
+        ...productFormInput,
+        images: productImagesUrl, // Ensure this includes existing or new images
+        video: videoUrl, // Ensure this includes existing or new video
+        metalType,
+        category,
+        compare_at_price: 1200
+    };
+   
+  const changedData = deepCompareArraysOnly(editData, newData);
+  if (Object.keys(changedData).length === 0) {
+      return toast.info("No changes detected.");
+  }
+
+  try {
+      const res = await editProductApi(changedData, editData._id);
+      toast.success(res.message);
+      navigate("/admin/products");
+  } catch (error) {
+      console.log(error);
+      toast.error(error.response?.data?.message);
+  }
     }
   }
   const handleChange = (value) => {
@@ -80,7 +158,7 @@ const CreateAdminProduct = () => {
       const formData = new FormData();
       formData.append("productVideos", selectedVideo);
       const res = await uploadProductVideo(formData);
-      setVideoUrl(res?.videos[0]);
+      setVideoUrl([res?.videos[0]]);
       toast.success(res.message);     
 
     } catch (error) {
@@ -89,7 +167,7 @@ const CreateAdminProduct = () => {
     }
   };
 
-  const imageHandler = async(e) => {
+  const imageHandler = async(e,i) => {
     const file = e.target.files[0];
     setImage(file);
     if(!file) {
@@ -101,30 +179,28 @@ const CreateAdminProduct = () => {
     formData.append("productImages",file);
     try {
       const res=await uploadProductImages(formData);
-      console.log(res);
+      if(editData){
+        const updaateimage=res.images.splice(i,1,res.images[i])
+        setProductImagesUrl([...productImagesUrl,updaateimage])
+      }
       setProductImagesUrl([...productImagesUrl,res?.images[0]])
       toast.success(res.message); 
        
     } catch (error) {
       console.log(error);
-      toast.error(error.response.data.message);
-      
-      
+      toast.error(error.response.data.message); 
     }
-
-
   };
-
-  console.log(productImagesUrl,"images");
-  console.log(videoUrl,"video");
   useEffect(()=>{
+    getCategary()
     
     if(editData){
       setProductFormInput({...editData})
-      setMetalType(editData.metalType)
-      setPreview(editData.images)
-      setVideoUrl(editData.video[0])
-      
+      setMetalType(editData?.metalType)
+      setPreview(editData?.images)
+      setVideoUrl([editData?.video[0]])
+      setProductImagesUrl(editData?.images??[])
+      setCategary(editData?.category??"")
     }
   },[])
   
@@ -146,6 +222,45 @@ const CreateAdminProduct = () => {
         </Row>
 
         <Form>
+        <Row gutter={[20, 20]}>
+          
+          <Col span={12}>
+            <Typography.Text className="text-[14px] font-semibold">
+             Categary
+            </Typography.Text>
+            <div className="pt-2">
+            <Select
+            name="categary"
+
+            defaultValue="Nackless"
+            onChange={(e)=>{setCategary(e)}}
+            className="w-full rounded-md"
+            options={categaryData}
+          />
+          </div>
+          </Col>
+          <Col span={12}>
+            <Typography.Text className="text-[14px] font-semibold">
+              Metal Type
+            </Typography.Text>
+            <div className="pt-2">
+            <Select
+            name="metalType"
+            defaultValue="Gold"
+            onChange={handleChange}
+            className="w-full rounded-md"
+            options={[
+              { value: 'Gold', label: 'Gold' },
+              { value: 'Silver', label: 'Silver (9-5)' },
+              { value: 'Platinum', label: 'Platinum' },
+              { value: 'Diamond', label: 'Diamond' },
+              { value: 'Brass', label: 'Brass' },
+              { value: 'Others', label: 'Others' },
+            ]}
+          />
+          </div>
+          </Col>
+        </Row>
           <Row gutter={[20, 20]} className="pt-[24px]">
             <Col span={12}>
               <Form.Item>
@@ -168,46 +283,14 @@ const CreateAdminProduct = () => {
               </Form.Item>
             </Col>
           </Row>
-          <Row gutter={[20, 20]}>
-            <Col span={12}>
-              <Typography.Text className="text-[14px] font-semibold">
-              category
-              </Typography.Text>
-              <div className="pt-2 category">
-               
-              <Input name="category" onChange={(e) => createProductInputHandler(e)} value={productFormInput?.category}  placeholder="Enter Product category"  className="py-1 rounded-full" />
-                
-              </div>
-            </Col>
-            <Col span={12}>
-              <Typography.Text className="text-[14px] font-semibold">
-                Metal Type
-              </Typography.Text>
-              <div className="pt-2">
-              {/* <Input name="metalType" onChange={(e) => createProductInputHandler(e)} value={productFormInput.metalType}  placeholder="Enter Price"  className="py-1 rounded-full" /> */}
-              <Select
-              defaultValue="Gold"
-              onChange={handleChange}
-              className="w-full rounded-md"
-              options={[
-                { value: 'Gold', label: 'Gold' },
-                { value: 'Silver', label: 'Silver' },
-                { value: 'Platinum', label: 'Platinum' },
-                { value: 'Diamond', label: 'Diamond' },
-                { value: 'Brass', label: 'Brass' },
-                { value: 'Others', label: 'Others' },
-              ]}
-            />
-            </div>
-            </Col>
-          </Row>
-          <Row gutter={[20, 20]} className="pt-[24px]">
+         
+          <Row gutter={[20, 20]} >
             <Col span={24}>
               <Typography.Text className="text-[14px] font-semibold">
                 Description
               </Typography.Text>
               <div className="pt-2">
-                <Input  name="description" onChange={(e) => createProductInputHandler(e)} value={productFormInput?.description} placeholder="Enter Description" className="py-1  rounded-full" />
+                <TextArea  name="description" value={productFormInput?.description} placeholder="Enter Description"    allowClear onChange={(e) => createProductInputHandler(e)} />
               </div>
             </Col>
           </Row>
@@ -263,10 +346,20 @@ const CreateAdminProduct = () => {
                   options={[
                     { value: "Men", label: "Men" },
                     { value: "Women", label: "Women" },
-                    { value: "Kids", label: "Kids" },
+                    { value: "Unisex", label: "Unisex" },
                     { value: "Others", label: "Others" },
                   ]}
                 />
+              </div>
+            </Col>
+          </Row>
+          <Row className="pb-5">
+          <Col span={12}>
+              <Typography.Text className="text-[14px] font-semibold">
+               Metal Color
+              </Typography.Text>
+              <div className="pt-2">
+                <Input name="metalColor" className="py-1  rounded-full"   onChange={(e) => createProductInputHandler(e)} value={productFormInput?.metalColor} placeholder="Enter Metal Color" />
               </div>
             </Col>
           </Row>
@@ -286,13 +379,13 @@ const CreateAdminProduct = () => {
                       type="file"
                       accept="image/*"
                       onChange={(e) => {
-                        imageHandler(e);
+                        imageHandler(e,1);
                       }}
                     />
                     {preview && (
                       <img
                         className="pt-1 rounded-full"
-                        src={preview[0]}
+                        src={preview[0]??"https://zoci-data.s3.ap-south-1.amazonaws.com/productImages/1739966281003_no-image-found-360x250.webp"}
                         alt="Preview"
                         width="50px"
                       />
@@ -308,13 +401,13 @@ const CreateAdminProduct = () => {
                       type="file"
                       accept="image/*"
                       onChange={(e) => {
-                        imageHandler(e);
+                        imageHandler(e,2);
                       }}
                     />
                     {preview && (
                       <img
                         className="pt-1 rounded-full"
-                        src={preview[1]}
+                        src={preview[1]??"https://zoci-data.s3.ap-south-1.amazonaws.com/productImages/1739966281003_no-image-found-360x250.webp"}
                         alt="Preview"
                         width="50px"
                       />
@@ -331,13 +424,13 @@ const CreateAdminProduct = () => {
                       type="file"
                       accept="image/*"
                       onChange={(e) => {
-                        imageHandler(e);
+                        imageHandler(e,3);
                       }}
                     />
                     {preview && (
                       <img
                         className="pt-1 rounded-full"
-                        src={preview[2]}
+                        src={preview[2]??"https://zoci-data.s3.ap-south-1.amazonaws.com/productImages/1739966281003_no-image-found-360x250.webp"}
                         alt="Preview"
                         width="50px"
                       />
@@ -353,13 +446,13 @@ const CreateAdminProduct = () => {
                       type="file"
                       accept="image/*"
                       onChange={(e) => {
-                        imageHandler(e);
+                        imageHandler(e,4);
                       }}
                     />
                     {preview && (
                       <img
                         className="pt-1 rounded-full"
-                        src={preview[3]}
+                        src={preview[3]??"https://zoci-data.s3.ap-south-1.amazonaws.com/productImages/1739966281003_no-image-found-360x250.webp"}
                         alt="Preview"
                         width="50px"
                       />

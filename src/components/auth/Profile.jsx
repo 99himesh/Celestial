@@ -1,12 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
-import profile from "../../assets/greenProfile.png";
-import { useEffect, useState } from "react";
-import { createPassword, getUserData, logOutApi } from "../../feature/auth/authApi";
-import { Button, Typography } from "antd";
+import { useEffect } from "react";
+import {  getUserData, logOutApi } from "../../feature/auth/authApi";
+import {  Typography } from "antd";
 import { addUserData, logout } from "../../feature/auth/authSlice";
 import { toast } from "react-toastify";
 
-const Profile=({setSentOtp})=>{
+const Profile=({setSentOtp,setWishCounter,setCartCounter})=>{
     const dispatch=useDispatch()
     const users=useSelector(state=>state.auth.userData)  
     const logoutHandler=async()=>{
@@ -16,6 +15,8 @@ const Profile=({setSentOtp})=>{
              setSentOtp(true) 
               localStorage.removeItem("wish");
               localStorage.removeItem("cart");
+              setWishCounter(0)
+              setCartCounter(0)
              toast.success(res.message)
         } catch (error) {
             console.log(error);

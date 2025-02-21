@@ -26,6 +26,8 @@ export const getProductDetailsApi=async(id)=>{
 
 
 export const getProductFilterApi = async ({ page, limit, sortby, filters,search,newly }) => {    
+  debugger
+
    try {
       const params = {
         page,

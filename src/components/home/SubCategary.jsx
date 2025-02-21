@@ -1,7 +1,4 @@
-
-
 import Slider from "react-slick";
-import ringImage from "../../assets/rings.jpg";
 import { Card } from "antd";
 import diamond from "../../assets/diamond.webp"
 import { useState } from "react";
@@ -63,7 +60,6 @@ const settings = {
             slidesToScroll: 1,
             autoplaySpeed: 2000,
             dots: false,
-            centerMode: true,
           }
         }
       ]

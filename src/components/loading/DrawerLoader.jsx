@@ -1,4 +1,3 @@
-import loader from "../../assets/loader.mp4"
 const DrawerLoader = () => {
     const loadingStyle = {
         display: 'flex',
@@ -17,8 +16,8 @@ const DrawerLoader = () => {
     return (
         <div style={loadingStyle} className="backdrop:blur-lg">
             <video width="80px" height="80px" muted loop autoPlay>
-  <source src={loader} type="video/mp4"/>
-  <source src={loader} type="video/ogg"/>
+  <source src={"https://zoci-data.s3.ap-south-1.amazonaws.com/productVideos/1739968128208_loader.mp4"} type="video/mp4"/>
+  <source src={"https://zoci-data.s3.ap-south-1.amazonaws.com/productVideos/1739968128208_loader.mp4"} type="video/ogg"/>
 </video>
         </div>
     )

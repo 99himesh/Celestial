@@ -2,24 +2,32 @@ import { EditOutlined, PlusCircleOutlined } from "@ant-design/icons";
 import { Avatar, Space, Table, Typography } from "antd";
 import "./admin.css"
 import { Link, useNavigate } from "react-router";
-import image from "../../assets/girl.jpg"
 import deleteIcon from "../../assets/icons/GreenDelete.png"
 import { useEffect, useState } from "react";
-import { getProductApi } from "../../feature/product/productApi";
+import { getProductApi, getProductFilterApi } from "../../feature/product/productApi";
 import { deleteProductData } from "../../feature/admin/adminApi";
 import { toast } from "react-toastify";
+import { useDispatch, useSelector } from "react-redux";
+import { addProducts } from "../../feature/product/productSlice";
+import CustomPagination from "../CustomPagination";
+import { addAdminProducts } from "../../feature/admin/adminSlice";
 const AdminProducts=()=>{
-     const [data,setData]=useState();
+     const dispatch=useDispatch();
      const navigate=useNavigate();
-     console.log(data); 
-     const getProductData=async()=>{
-      try {
-      const res=await getProductApi();
-        setData(res)
-      } catch (error) {
-        console.log(error);
-         
-      }
+     const [totalPages,setTotalPages]=useState()
+       const data=useSelector(state=>state?.admin?.products)
+     const pageHandler=async(current)=>{
+      const page={page:current,limit:10}
+       console.log(current);
+       try {
+        const res=await getProductFilterApi(page);
+        setTotalPages(res?.totalProducts);
+        
+          dispatch(addAdminProducts(res.products))
+        } catch (error) {
+          console.log(error);  
+        }
+       
      }
      const deleteProductHandler=async(id)=>{
       try {
@@ -27,7 +35,7 @@ const AdminProducts=()=>{
         const res=await deleteProductData(id)
         console.log(res,"delete success");
         
-        getProductData()
+        pageHandler()
         toast.success(res.data.message)
 
         
@@ -123,7 +131,7 @@ const AdminProducts=()=>{
       
 
       useEffect(()=>{
-        getProductData();
+        pageHandler();
       },[])
     return(
         <>
@@ -134,7 +142,10 @@ const AdminProducts=()=>{
 
             </div>
             <div className="px-5">
-        <Table scroll={1000} headerColor={"red"} dataSource={data} columns={columns} />;
+        <Table scroll={1000} headerColor={"red"} dataSource={data} columns={columns} pagination={false}/>;
+        </div>
+        <div className="flex justify-end py-5 px-5 cursor-pointer">
+        <CustomPagination totalPages={totalPages} pageHandler={(e)=>{pageHandler(e)}}/>
         </div>
 
 

@@ -44,7 +44,8 @@ const settings = {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-        // centerPadding: "40px",
+        centerPadding: "40px",
+        centerMode:true
 
         }
       }
@@ -67,7 +68,7 @@ const TopSellerProduct=()=>{
   }, [])
  
       return (
-        <div className=" md:w-[78%] w-[85%] mx-auto pt-10 overflow-hidden">
+        <div className=" md:w-[78%] w-[100%] mx-auto pt-10 overflow-hidden">
           <Slider {...settings}>
             {data?.map((item,idx) => (
               <div key={idx} style={{  padding: "10px", textAlign: "center"}}>

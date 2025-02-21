@@ -1,4 +1,4 @@
-import { Avatar, Button, Dropdown, Flex, Input, Layout, Menu } from "antd";
+import { Avatar, Button, Dropdown, Flex, Input, Layout, Menu, Typography } from "antd";
 import Sider from "antd/es/layout/Sider";
 import { Content, Footer, Header } from "antd/es/layout/layout";
 import logo from "../../assets/header.png";
@@ -17,7 +17,6 @@ const AdminLayout = () => {
   const contentStyle = {
     color: "#d5c294",
     backgroundColor: "#efe6dc",
-    // padding:"30px 50p  x"
   };
   const siderStyle = {
     color: "#fff",
@@ -36,8 +35,6 @@ const AdminLayout = () => {
     } catch (error) {
       console.log(error);
       toast.error(error.message);
-      // dispatch(logout())
-      // setSentOtp(true)
     }
   };
 
@@ -45,13 +42,13 @@ const AdminLayout = () => {
     {
       key: "1",
       label: (
-        <Button
-          onClick={() => {
-            logoutHandler();
-          }}
-        >
+        <Typography.Text  className="text-[#214344] cursor-pointer" onClick={() => {
+          logoutHandler();
+        }}
+      >
+        
           Logout
-        </Button>
+        </Typography.Text>
       ),
     },
   ];
@@ -64,10 +61,10 @@ const AdminLayout = () => {
             <div className="lg:h-[50px] h-[30px] lg:w-[150px] w-[100px] mx-auto">
               <img src={logo} />
             </div>
-            <div className="flex flex-col px-2 gap-3 pt-10">
+            <div className="flex flex-col px-2 gap-3 pt-10 ">
               <div
               
-                className={`${
+                className={` ${
                   activeTab === 1 && "py-1 rounded-md bg-[#f0d5a0]"
                 }`}
               >
@@ -76,7 +73,7 @@ const AdminLayout = () => {
                     setActiveTab(1);
                   }}
                   to={"/admin/products"}
-                  className={`text-[14px] px-2 ${
+                  className={`text-[14px] px-2  ${
                     activeTab === 1
                       ? "text-[#214344] hover:text-[#214344]"
                       : "text-[#f0d5a0] hover:text-[#f0d5a0]"
@@ -112,7 +109,7 @@ const AdminLayout = () => {
           <Header style={headerStyle}>
             <div className="flex justify-end gap-[50px]  ">
               <div className="cursor-pointer">
-                <Dropdown menu={{ items }} placement="bottom" arrow>
+                <Dropdown menu={{ items }}  placement="bottomRight" arrow> 
                   <Avatar />
                 </Dropdown>
               </div>

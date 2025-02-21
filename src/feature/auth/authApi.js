@@ -37,6 +37,8 @@ export const createPassword=async(data)=>{
 
 
 export const logOutApi=async()=>{ 
+  const token = localStorage.getItem("token");
+  const userId=localStorage.getItem("userId");
   try {
     
       const res=await api.post(`/user/logout/${userId}`,{ headers: {

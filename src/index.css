@@ -60,5 +60,8 @@
   filter: blur(4px);
 }
 
+::-webkit-scrollbar{background-color: gray;}
+
+::-webkit-scrollbar-thumb{background-color: black; border-radius: 10px;}
 
 

@@ -20,6 +20,7 @@ import yellowBag from "../../src/assets/icons/bagYellow.png";
 import WishList from "./wishlist/WishList";
 
 const CustomDrawer = ({
+  setCartOpen,
   component,
   open,
   onClose,
@@ -103,7 +104,7 @@ const CustomDrawer = ({
           header: { background: "#214344" },
         }}
       >
-        {activeDrawer == "cart" ? <Cart /> : <WishList />}
+        {activeDrawer == "cart" ? <Cart setCartOpen={setCartOpen} /> : <WishList />}
       </Drawer>
     </>
   );

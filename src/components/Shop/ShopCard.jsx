@@ -31,7 +31,7 @@ const ShopCard = ({ item, shop }) => {
     const data = {
       userId: user,
       productId: item._id,
-      quantity: item.quantity,
+      quantity: 1,
       price: item.price,
     };
     try {

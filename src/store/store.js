@@ -7,6 +7,7 @@ import shopReducer from "../feature/shop/shopSlice"
 import loaderReaducer from "../feature/loader/loaderSlice"
 import orderReducer from "../feature/order/orderSlice"
 import adminReducer from "../feature/admin/adminSlice"
+import headerSlice from "../feature/header/headerSlice"
 const store=configureStore({
     reducer:{
         product:productReducer,
@@ -16,7 +17,8 @@ const store=configureStore({
         shop:shopReducer,
         load:loaderReaducer,
         order:orderReducer,
-        admin:adminReducer
+        admin:adminReducer,
+        header:headerSlice
     }
 })
 

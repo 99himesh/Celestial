@@ -1,10 +1,9 @@
 import { DeleteOutlined } from "@ant-design/icons";
 import { Empty, Flex, Progress, Typography } from "antd";
 import { useDispatch, useSelector } from "react-redux"
-import image from "../../assets/girl.jpg"
 import { deleteWishlistData, getWishlistData } from "../../feature/wishlist/wishlistApi";
 import { addToWishList } from "../../feature/wishlist/wishlistSlice";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { toast } from "react-toastify";
 const WishlistView=()=>{
   console.log("data");
@@ -20,7 +19,7 @@ const WishlistView=()=>{
      const getwishlistDataHandler=async()=>{
             try {
                 const data=await getWishlistData()
-                debugger
+                
                 console.log(data);
                 
                 dispatch(addToWishList(data?.wishlist))
@@ -42,7 +41,7 @@ const WishlistView=()=>{
             }
         }
             useEffect(()=>{
-              debugger
+              
                 getwishlistDataHandler();
             },[])
               useEffect(() => {

@@ -1,37 +1,38 @@
   import { Link, NavLink } from "react-router";
   import { useEffect, useState } from "react";
   import EasyMenuHeader from "./EasyMenuHeader";
-  import { useDispatch, useSelector } from "react-redux";
+  import {  useDispatch, useSelector } from "react-redux";
   import headerImage from "../../assets/header.png";
   import CustomDrawer from "../CustomDrawer";
   import Cart from "../cart/Cart";
-  import { getCartData } from "../../feature/categary/cartApi";
-  import { addToCart } from "../../feature/categary/cartSlice";
   import serach from "../../assets/search.png";
-  import bag from "../../assets/Bag.png";
+  import bag from "../../assets/icons/bagYellow.png";
   import wishlist from "../../assets/wishlist.png";
-  import menuIcon from "../../assets/Menuicon.png";
+  import menuIcon from "../../assets/icons/menuYellow.png";
   import CustomSearch from "../home/CustomSearch";
-  import {  getWishlistData } from "../../feature/wishlist/wishlistApi";
-  import { addToWishList } from "../../feature/wishlist/wishlistSlice";
+import { headermenuHandler } from "../../feature/header/headerSlice";
   // This is my main Header. start here
   const Header = () => {
     const [open, setOpen] = useState(false);
     const [cartOpen, setCartOpen] = useState(false);
     const [cartStatus,setCartStatus]=useState("");
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const[cartCounter,setCartCounter]=useState(0)
-    const[wishCounter,setWishCounter]=useState(0)
+    const[cartCounter,setCartCounter]=useState(0);
+    const[wishCounter,setWishCounter]=useState(0);
     const searchData = useSelector((state) => state.product.searchData);
+    const dispatch =useDispatch();
 
     
 
 
     const showDrawer = () => {
-      setOpen(true);
+      // setOpen(true);
+      dispatch(headermenuHandler(true))
     };
     const onClose = () => {
-      setOpen(false);
+      // setOpen(false);
+      dispatch(headermenuHandler(false))
+
     };
     const cartShowDrawer = (status) => {
       setCartOpen(true);
@@ -46,6 +47,7 @@
 
 
     useEffect(() => {
+     
       const updateCartCounter = () => {
         setCartCounter(localStorage.getItem("cart") || 0);
         setWishCounter(localStorage.getItem("wish") || 0);
@@ -153,13 +155,13 @@
         onClick={onClose}
       ></div>
 
-      <CustomDrawer  component={<Cart />} open={cartOpen} setOpen={setOpen} onClose={cartOnClose} />
-        <EasyMenuHeader open={open} setOpen={setOpen} />
+      {/* <CustomDrawer  component={<Cart />} open={cartOpen} setOpen={setOpen} onClose={cartOnClose} /> */}
+        <EasyMenuHeader   setCartCounter={setCartCounter} setWishCounter={setWishCounter}/>
         <CustomDrawer
         cartStatus={cartStatus}
           component={<Cart />}
           open={cartOpen}
-          setOpen={setOpen}
+          setCartOpen={setCartOpen}
           onClose={cartOnClose}
         />
       

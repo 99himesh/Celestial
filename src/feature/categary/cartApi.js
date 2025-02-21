@@ -58,7 +58,8 @@ const userId = localStorage.getItem("userId");
 
 }
 
-export const updateCartApi = async (data) => {        
+export const updateCartApi = async (data) => {    
+    const token = localStorage.getItem("token");    
     try {
         const res = await api.put(`/user/cart/updatequantity`, data, { 
             headers: {
