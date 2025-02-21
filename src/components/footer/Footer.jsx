@@ -116,7 +116,7 @@ const Footer=()=>{
         </div>
         <Row className="pt-5" >
              <div className="flex w-full gap-5 justify-center items-center py-7 border-b-[0.5px] border-t-[1px] border-gray-500"  >
-                <h4 className="text-[18px] font-bold text-[#F0D5A0] tracking-wide  ">Follow US On</h4>
+                <h4 className="text-[18px] font-bold text-[#F0D5A0] tracking-wide  ">Follow Us On</h4>
                 {/* <FacebookOutlined style={{fontSize:"24px",color:"#F0D5A0"}} />
                 <InstagramOutlined style={{fontSize:"24px",color:"#F0D5A0"}} />
                 <WhatsAppOutlined style={{fontSize:"24px",color:"#F0D5A0"}} />

@@ -6,45 +6,34 @@ import { addToCart } from "../../feature/categary/cartSlice";
 import { addToWishList } from "../../feature/wishlist/wishlistSlice";
 import { deleteWishlistData, getWishlistData } from "../../feature/wishlist/wishlistApi";
 import { useNavigate } from "react-router";
-import DrawerLoader from "../loading/DrawerLoader";
 import { toast } from "react-toastify";
-const WishList=()=>{
+const WishList=({setCartOpen})=>{
     
     const dispatch=useDispatch();
     const wishlistData=useSelector(state=>state?.wish.wishlist)
     const navigate=useNavigate();
     const user=localStorage.getItem("userId")
-    const [loading,setLoading]=useState(false)
    
     const getwishlistDataHandler=async()=>{
         if(!localStorage.getItem("token")) return toast.error("Please login first");
-        setLoading(true)
         try {
             const data=await getWishlistData()
-            console.log(data);
             
             dispatch(addToWishList(data?.wishlist))
-            setLoading(false)
         } catch (error) {  
-            setLoading(false)
+            console.log(error);  
         }
     }
    
     const deleteWishlistHandler=async(item)=>{
-        setLoading(true)
-        
       const items={userId:user,prodId: item.prodId }
-        
         try {
         const data=await deleteWishlistData(items)  
-
-        setLoading(false)
         toast.success(data?.message)
         getwishlistDataHandler();
       localStorage.setItem("wish",parseInt(wishlistData.length)-1)
 
         } catch (error) {
-            setLoading(false)
         toast.error(error?.response?.data?.message)
             throw error;
         }
@@ -53,7 +42,6 @@ const WishList=()=>{
     useEffect(()=>{
         getwishlistDataHandler();
     },[])
-    if(loading) return <DrawerLoader/>
     return(
         <>
           <div className="cart w-full    px-5 min-h-[calc(100vh-85px)]    bg-[#efe6dc]  pb-3">
@@ -87,7 +75,7 @@ const WishList=()=>{
         })}
               <div className="pt-5">
 
-{wishlistData.length!=0 && <Button className="w-full rounded-full bg-[#214344] font-semibold text-[#fff] hover:!text-[#214344] hover:!border-[#214344]" onClick={()=>{navigate("/wishlist")}}>Open WishList Page</Button>}
+{wishlistData.length!=0 && <Button className="w-full rounded-full bg-[#214344] font-semibold text-[#fff] hover:!text-[#214344] hover:!border-[#214344]" onClick={()=>{navigate("/wishlist"),setCartOpen(false)}}>Open WishList Page</Button>}
 </div>
 </div>
     

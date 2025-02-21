@@ -13,7 +13,6 @@ const Cart=({setCartOpen})=>{
     const dispatch=useDispatch();
     const navigate=useNavigate();
     const cartData=useSelector(state=>state?.cart?.cart)
-    const [loading,setLoading]=useState(false)
     const cart=useSelector(state=>state.cart.cartLenght)
     const [isModalOpen, setIsModalOpen] = useState(false);
     
@@ -22,13 +21,11 @@ const Cart=({setCartOpen})=>{
    let sum=0;
     const getCartDataHandler=async()=>{
         if(!localStorage.getItem("token")) return toast.error("Please login first");
-        setLoading(true)
         
         try {
             
        
             const data=await getCartData()
-            setLoading(false)
             
             dispatch(addToCart(data?.data?.cartItems))
         } catch (error) {
@@ -36,7 +33,6 @@ const Cart=({setCartOpen})=>{
             if(error?.response?.data?.message==="No items in the cart"){
                 dispatch(addToCart([]))  
             }
-            setLoading(false)
         }
     }
 
@@ -61,7 +57,6 @@ const cartCounterHandler=async(items,status)=>{
 }
 
     const deleteCartHandler=async(items)=>{
-        setLoading(true)
         if(cartData.length===0) return
         const id=items.productId._id;
         try {
@@ -79,9 +74,7 @@ const cartCounterHandler=async(items,status)=>{
        getCartDataHandler()
     }, []);
  
-console.log(cartData);
 
-  if(loading) return <DrawerLoader/>
    
     return(
         <>
